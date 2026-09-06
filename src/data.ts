@@ -114,19 +114,24 @@ export const PORTFOLIO: PortfolioItem[] = [
   },
   {
     id: "gnuts-tech-summit",
-    title: "GNUTS National Tech Summit & TVET Exhibition",
+    title: "GNUTS National Tech Summit & Technical Education Tour",
     category: "Event Design",
     image: "/portfolio-assets/gnuts-summit-banner-1.jpg",
-    description: "From skills to solutions: driving innovation and sustainable livelihood through TVET with national keynote leaders.",
+    description: "From skills to solutions: driving innovation and sustainable livelihood through TVET with national keynote leaders across Ghana.",
     client: "Ghana National Union of Technical Students (GNUTS)",
     duration: "10 Days",
-    scope: ["National Summit", "TVET Education", "Speaker Banners", "Sponsor Showcase"],
-    challenge: "Packaging a multi-stakeholder national convention featuring government ministers, educators, and union delegates.",
-    solution: "Architected a cohesive green-and-gold visual theme with prominent speaker profiles and national sponsor attribution.",
+    scope: ["National Summit", "TVET Education", "Program Outline", "Institutional Visits", "Easter Blessings"],
+    challenge: "Packaging a nationwide multi-stakeholder union convention featuring government ministers, educators, and university tours.",
+    solution: "Architected a cohesive green-and-gold visual identity with full event agendas, countdown badges, campus tour banners, and civic holiday greetings.",
     extraImages: [
       "/portfolio-assets/gnuts-summit-banner-2.jpg",
       "/portfolio-assets/gnuts-choose-tvet.jpg",
-      "/portfolio-assets/gnuts-director-general.jpg"
+      "/portfolio-assets/gnuts-director-general.jpg",
+      "/portfolio-assets/gnuts-program-outline.jpg",
+      "/portfolio-assets/gnuts-cc-countdown.jpg",
+      "/portfolio-assets/gnuts-cape-coast-visit.jpg",
+      "/portfolio-assets/gnuts-easter-blessings.jpg",
+      "/portfolio-assets/gnuts-independence-celebration.jpg"
     ]
   },
   {
@@ -137,11 +142,12 @@ export const PORTFOLIO: PortfolioItem[] = [
     description: "Eid Ul-Adha luxury wardrobe collection and modest fashion promotional flyers highlighting style, elegance, and confidence.",
     client: "Bliss Elle Ghana",
     duration: "4 Days",
-    scope: ["Modest Fashion", "Luxury Boutique", "Eid Celebration", "E-Commerce Promo"],
+    scope: ["Modest Fashion", "Luxury Boutique", "Eid Celebration", "Valentine Collection", "E-Commerce Promo"],
     challenge: "Designing festive holiday fashion campaigns that balance traditional modesty with high-end luxury appeal.",
-    solution: "Produced warm, inviting boutique compositions with regal typography, festive Eid Mubarak motifs, and direct WhatsApp ordering.",
+    solution: "Produced warm, inviting boutique compositions with regal typography, festive Eid motifs, and Valentine luxury gift suites.",
     extraImages: [
-      "/portfolio-assets/bliss-elle-portrait.jpg"
+      "/portfolio-assets/bliss-elle-portrait.jpg",
+      "/portfolio-assets/bliss-elle-valentines-collection.jpg"
     ]
   },
   {
@@ -303,19 +309,21 @@ export const PORTFOLIO: PortfolioItem[] = [
   },
   {
     id: "techloom-gadget-promo",
-    title: "TechLoom Digital Hub & Premium Gadget Store Adverts",
+    title: "TechLoom Digital Agency Brand & Creative Promos",
     category: "Social Media Design",
     image: "/portfolio-assets/gadget-store-flyer.jpg",
-    description: "High-converting commercial advertising banners for electronics, smartphone deals, and agency creative services.",
-    client: "TechLoom Gadgets",
+    description: "Commercial brand promotions and limited-time design packages showcasing TechLoom's premium creative services.",
+    client: "TechLoom Ghana",
     duration: "1 Week",
-    scope: ["Electronics Ad", "Social Media Marketing", "Product Flyer", "Tech Retail"],
-    challenge: "Showcasing modern smartphones and accessories in eye-catching, high-converting digital ad layouts.",
-    solution: "Implemented neon 3D lighting, crisp product renders, and immediate contact action badges.",
+    scope: ["Agency Branding", "Limited Promo", "Service Showcase", "Electronics Deals"],
+    challenge: "Communicating versatile tech agency capabilities across graphic design, branding, and hardware deals.",
+    solution: "Implemented high-tech blue geometric curves, vibrant promotional badges, and direct WhatsApp contact coordinates.",
     extraImages: [
       "/portfolio-assets/techloom-brand-ad-1.jpg",
       "/portfolio-assets/techloom-brand-ad-2.jpg",
-      "/portfolio-assets/techloom-brand-ad-3.jpg"
+      "/portfolio-assets/techloom-brand-ad-3.jpg",
+      "/portfolio-assets/techloom-two-designs-promo.jpg",
+      "/portfolio-assets/techloom-free-flyer-week.jpg"
     ]
   },
   {
@@ -502,6 +510,293 @@ export const PORTFOLIO: PortfolioItem[] = [
     challenge: "Positioning an entertainer as a versatile, charismatic host for both high-end corporate galas and energetic concerts.",
     solution: "Infused spotlight stage lighting, confident tuxedo styling, and bold gold-embossed typography.",
     extraImages: []
+  },
+
+  // 29. Abdul Hafiz Ammar Yarimah
+  {
+    id: "ammar-presidential-campaign",
+    title: "Abdul Hafiz Ammar Yarimah KsTU SRC Presidential Campaign '26",
+    category: "Campaign Design",
+    image: "/portfolio-assets/ammar-presidential-portrait.jpg",
+    description: "Official presidential candidacy identity, weekly motivation posters, and student body engagement suite for Kumasi Technical University.",
+    client: "Abdul Hafiz Ammar Yarimah Campaign",
+    duration: "2 Weeks",
+    scope: ["Presidential Identity", "Weekly Motivation", "Student Engagement", "Campus Elections"],
+    challenge: "Maintaining continuous voter engagement throughout the academic semester across campus halls.",
+    solution: "Designed consistent presidential portraiture with themed weekly touchpoints including Monday Motivation and Midweek Focus flyers.",
+    extraImages: [
+      "/portfolio-assets/ammar-monday-motivation.jpg",
+      "/portfolio-assets/ammar-midweek-focus.jpg",
+      "/portfolio-assets/ammar-eid-mubarak.jpg"
+    ]
+  },
+
+  // 30. GNUTS Central Committee Dignitaries Series
+  {
+    id: "gnuts-dignitaries-series",
+    title: "GNUTS National Dignitaries & Keynote Speaker Spotlight",
+    category: "Political Design",
+    image: "/portfolio-assets/gnuts-dignitary-pelpuo.jpg",
+    description: "Distinguished keynote speaker and state leader announcement posters designed for GNUTS high-level national conventions.",
+    client: "GNUTS National Secretariat",
+    duration: "1 Week",
+    scope: ["Keynote Speakers", "Parliamentarians", "Ministers of State", "State Dignitaries"],
+    challenge: "Spotlighting national statesmen with uniform institutional dignity and sharp typographic hierarchy.",
+    solution: "Crafted stately official portraits with gold heraldry frames, parliamentary designations, and national flags.",
+    extraImages: [
+      "/portfolio-assets/gnuts-dignitary-pablo.jpg",
+      "/portfolio-assets/gnuts-dignitary-wiseman.jpg",
+      "/portfolio-assets/gnuts-dignitary-linda-ocloo.jpg",
+      "/portfolio-assets/gnuts-dignitary-haruna.jpg"
+    ]
+  },
+
+  // 31. Apparel & 3D Merchandise Mockup Suite
+  {
+    id: "apparel-3d-merchandise",
+    title: "National Campaign Apparel & 3D Merchandise Mockups",
+    category: "Branding & Identity",
+    image: "/portfolio-assets/apparel-nii-baba-polo.jpg",
+    description: "Photorealistic 3D apparel mockups, branded polo shirts, and campaign team uniforms with precision embroidery detailing.",
+    client: "National Campaign Merchandising",
+    duration: "5 Days",
+    scope: ["3D Apparel Mockups", "Polo Shirts", "Campaign Uniforms", "Merchandise Production"],
+    challenge: "Simulating physical textile texture, seam stitching, and chest print placement before bulk garment production.",
+    solution: "Generated photorealistic studio mockups with front-and-back perspectives and custom color block designs.",
+    extraImages: [
+      "/portfolio-assets/apparel-tjisty-front-back.jpg",
+      "/portfolio-assets/apparel-presidential-tshirt.jpg"
+    ]
+  },
+
+  // 32. Ishmael Evans Nii Odartey Lamptey - NASPA Western Regional VP
+  {
+    id: "odartey-naspa-vp",
+    title: "Ishmael Evans Nii Odartey Lamptey - NASPA Western Regional VP",
+    category: "Campaign Design",
+    image: "/portfolio-assets/odartey-naspa-regional-main.jpg",
+    description: "Dynamic candidacy declaration and voter mobilization posters for the NASPA Western Regional Vice Presidency.",
+    client: "Ishmael Evans Nii Odartey Lamptey",
+    duration: "1 Week",
+    scope: ["NASPA Elections", "Vice Presidential Bid", "Voter Mobilization", "Youth Leadership"],
+    challenge: "Mobilizing national service personnel across diverse corporate and public postings in the Western Region.",
+    solution: "Formulated vibrant campaign graphics with clear policy commitments and memorable voting reminders.",
+    extraImages: [
+      "/portfolio-assets/odartey-naspa-vote-flyer.jpg"
+    ]
+  },
+
+  // 33. Ampofo Twumasi Benjamin - NPP Tano North Organizer
+  {
+    id: "ampofo-npp-organizer",
+    title: "Ampofo Twumasi Benjamin - NPP Tano North Constituency Organizer",
+    category: "Political Design",
+    image: "/portfolio-assets/ampofo-npp-declaration.jpg",
+    description: "Official declaration of intent and grassroots mobilization posters for the NPP Tano North Constituency Organizer race.",
+    client: "Ampofo Twumasi Benjamin Campaign",
+    duration: "5 Days",
+    scope: ["Declaration of Intent", "Constituency Politics", "Party Mobilization", "Grassroots Leadership"],
+    challenge: "Projecting grassroots organizational vigor and party loyalty within the constituency.",
+    solution: "Employed signature blue, white, and red party colors with commanding stance and crisp typography.",
+    extraImages: [
+      "/portfolio-assets/ampofo-npp-grassroots.jpg"
+    ]
+  },
+
+  // 34. Sarmpa Black Soap - Organics Africa
+  {
+    id: "sarmpa-black-soap",
+    title: "Sarmpa Black Soap - Organics Africa Natural Skincare",
+    category: "Branding & Identity",
+    image: "/portfolio-assets/sarmpa-organics-black-soap.jpg",
+    description: "Vibrant product marketing banner for premium natural black soap enriched with herbs for flawless skin glow.",
+    client: "Organics Africa",
+    duration: "3 Days",
+    scope: ["Product Promo", "Skincare Branding", "Cosmetics Advertising", "Retail Poster"],
+    challenge: "Highlighting organic herbal ingredients while conveying modern dermatological appeal.",
+    solution: "Blended natural earthy botanical backdrops with glowing product packaging and ingredient callouts.",
+    extraImages: []
+  },
+
+  // 35. The Peace Consult - Admissions Support
+  {
+    id: "peace-consult-kstu-admissions",
+    title: "The Peace Consult - Kumasi Technical University Admissions Support",
+    category: "Flyer Design",
+    image: "/portfolio-assets/peace-consult-kstu-admissions.jpg",
+    description: "Higher education consulting poster assisting prospective students with seamless KsTU admission applications.",
+    client: "The Peace Consult",
+    duration: "3 Days",
+    scope: ["Education Consulting", "Tertiary Admissions", "Student Support", "Academic Services"],
+    challenge: "Outlining university application requirements and contact channels clearly for senior high graduates.",
+    solution: "Engineered high-clarity informational layout with direct hotline badges and university campus imagery.",
+    extraImages: []
+  },
+
+  // 36. Qur'an & Co. - Sisters Quran Hangout
+  {
+    id: "quran-and-co-sisters-hangout",
+    title: "Qur'an & Co. - Sisters Quran Hangout at KNUST Botanical Garden",
+    category: "Social Media Design",
+    image: "/portfolio-assets/quran-and-co-sisters-hangout.jpg",
+    description: "Delicate pastel and floral fellowship banner organizing an uplifting outdoor spiritual reflection for Muslim sisters.",
+    client: "Qur'an & Co.",
+    duration: "3 Days",
+    scope: ["Spiritual Fellowship", "Sisters Hangout", "Floral Aesthetics", "Campus Community"],
+    challenge: "Creating an inviting, peaceful atmosphere that resonated with university women seeking sisterhood.",
+    solution: "Selected gentle botanical accents, serene typography, and a harmonious pastel palette.",
+    extraImages: []
+  },
+
+  // 37. Ivy's Kids Apparel - Suame Fashion
+  {
+    id: "ivys-kids-apparel-suame",
+    title: "Ivy's Kids Apparel - Suame Children's Fashion Boutique",
+    category: "Flyer Design",
+    image: "/portfolio-assets/ivys-kids-apparel.jpg",
+    description: "Lively retail showcase poster advertising boutique children's apparel, footwear, and baby accessories in Kumasi.",
+    client: "Ivy's Kids Apparel (Suame, Kumasi)",
+    duration: "3 Days",
+    scope: ["Children's Boutique", "Retail Fashion", "Product Showcase", "Local Store Promo"],
+    challenge: "Showcasing a wide variety of clothing styles in an organized, cheerful retail format.",
+    solution: "Used playful circular product vignettes, bright energetic tones, and prominent store location directions.",
+    extraImages: []
+  },
+
+  // 38. Ibrahim Jazil Abanga - Cycling Expedition
+  {
+    id: "abanga-cycling-expedition",
+    title: "Ibrahim Jazil Abanga - 600km Independence Cycling Expedition",
+    category: "Graphic Design",
+    image: "/portfolio-assets/abanga-cycling-expedition.jpg",
+    description: "Commemorative sports poster chronicling the epic Tamale to Accra 600+ km solo cycling journey celebrating Ghana Independence.",
+    client: "Ibrahim Jazil Abanga",
+    duration: "4 Days",
+    scope: ["Sports Poster", "Endurance Cycling", "National Pride", "Commemorative Design"],
+    challenge: "Capturing the sheer physical grit and patriotic spirit of a cross-country 600-kilometer bicycle tour.",
+    solution: "Structured dynamic motion lines, route milestone markers, and the Ghanaian red-gold-green triumph ribbon.",
+    extraImages: []
+  },
+
+  // 39. TESCON Bole NMTC Freshers Welcome
+  {
+    id: "tescon-bole-nmtc-orientation",
+    title: "TESCON Bole NMTC Freshers Welcome & Orientation",
+    category: "Campaign Design",
+    image: "/portfolio-assets/tescon-bole-nmtc-orientation.jpg",
+    description: "Orientation welcome banner ushering freshmen into TESCON at Bole Nursing and Midwifery Training College.",
+    client: "TESCON Bole NMTC Chapter",
+    duration: "3 Days",
+    scope: ["Campus Politics", "Freshers Orientation", "Nursing College", "Student Union"],
+    challenge: "Welcoming healthcare students while building grassroots partisan fellowship.",
+    solution: "Combined professional medical motifs with bold party identity and welcoming leadership portraits.",
+    extraImages: []
+  },
+
+  // 40. Fargone Apparel & Luxury
+  {
+    id: "fargone-luxury-streetwear",
+    title: "Fargone Apparel & Luxury Urban Streetwear Suite",
+    category: "Branding & Identity",
+    image: "/portfolio-assets/fargone-luxury-brand.jpg",
+    description: "Modern streetwear fashion lookbook and free delivery promotional banners for Kumasi's premium urban brand.",
+    client: "Fargone Apparel",
+    duration: "4 Days",
+    scope: ["Urban Streetwear", "Brand Lookbook", "Free Delivery Campaign", "Fashion Marketing"],
+    challenge: "Communicating street credibility alongside boutique luxury customer service perks.",
+    solution: "Designed moody monochromatic urban textures with vibrant red delivery promo badges.",
+    extraImages: [
+      "/portfolio-assets/fargone-free-delivery-promo.jpg"
+    ]
+  },
+
+  // 41. Nyuuri Diana Sonnoma (Sung) - GNUTS National PRO
+  {
+    id: "sung-gnuts-pro-campaign",
+    title: "Nyuuri Diana Sonnoma (Sung) - GNUTS National P.R.O Hopeful '26",
+    category: "Campaign Design",
+    image: "/portfolio-assets/sung-gnuts-pro-main.jpg",
+    description: "Bold student leadership campaign posters articulating vision and advocacy for the GNUTS National Public Relations Officer position.",
+    client: "Nyuuri Diana Sonnoma Campaign",
+    duration: "5 Days",
+    scope: ["National Executive", "Public Relations Officer", "Student Advocacy", "Union Elections"],
+    challenge: "Projecting communicative eloquence and trustworthy union representation to delegates across Ghana.",
+    solution: "Framed dignified, confident executive portraiture with sharp campaign slogans and institutional green-and-gold palettes.",
+    extraImages: [
+      "/portfolio-assets/sung-gnuts-pro-endorsement.jpg"
+    ]
+  },
+
+  // 42. Ramadan & Islamic Spiritual Heritage Collection
+  {
+    id: "ramadan-islamic-heritage",
+    title: "Ramadan Mubarak & Islamic Spiritual Heritage Collection",
+    category: "Social Media Design",
+    image: "/portfolio-assets/ramadan-kareem-crescent.jpg",
+    description: "Luxurious Islamic calligraphy and serene crescent-themed greeting posters celebrating Ramadan Kareem and spiritual devotion.",
+    client: "Islamic Cultural & Spiritual Community",
+    duration: "4 Days",
+    scope: ["Ramadan Kareem", "Spiritual Heritage", "Arabic Calligraphy", "Holiday Greetings"],
+    challenge: "Crafting contemplative spiritual art that inspires peace and introspection during the Holy Month.",
+    solution: "Curated luminous gold lanterns, ornate Arabic geometric patterns, and midnight-blue starscapes.",
+    extraImages: [
+      "/portfolio-assets/ramadan-mubarak-peace.jpg",
+      "/portfolio-assets/jannah-ramadan-reflection.jpg"
+    ]
+  },
+
+  // 43. Young Patriotic Elites & Civic Leadership Spotlight
+  {
+    id: "ype-civic-leadership",
+    title: "Young Patriotic Elites Regional Appointments & Leadership",
+    category: "Political Design",
+    image: "/portfolio-assets/goode-ernest-bono-east.jpg",
+    description: "Prestigious political appointment and regional executive congratulations banners for Young Patriotic Elites coordinators.",
+    client: "Young Patriotic Elites (YPE)",
+    duration: "3 Days",
+    scope: ["Regional Appointments", "Civic Leadership", "Political Executive", "Official Gazetting"],
+    challenge: "Formulating an authoritative appointment announcement reflecting national governance prestige.",
+    solution: "Incorporated crisp party iconography, official appointment titling, and polished studio portraits.",
+    extraImages: [
+      "/portfolio-assets/ype-jenatu-bashiru.jpg"
+    ]
+  },
+
+  // 44. Civic Milestones & Birthday Tributes
+  {
+    id: "civic-milestones-tributes",
+    title: "Distinguished Civic Leaders Milestone Celebrations",
+    category: "Graphic Design",
+    image: "/portfolio-assets/aikins-birthday-executive.jpg",
+    description: "Royal milestone celebration flyers and congratulatory banners commemorating municipal leaders and association directors.",
+    client: "Civic & Professional Associations",
+    duration: "4 Days",
+    scope: ["Executive Birthdays", "Civic Honors", "Association Tributes", "Commemorative Posters"],
+    challenge: "Honoring veteran public servants with respectful, elegant celebration media.",
+    solution: "Designed regal gold-and-black commemorative layouts adorned with warm celebratory well-wishes.",
+    extraImages: [
+      "/portfolio-assets/naspa-regional-birthday.jpg",
+      "/portfolio-assets/mayor-tribute-final.jpg",
+      "/portfolio-assets/ziblim-birthday-portrait.jpg"
+    ]
+  },
+
+  // 45. Faith, Gratitude & Community Fellowship
+  {
+    id: "faith-gratitude-fellowship",
+    title: "Heaven Gate Ministry & Faith Community Fellowship",
+    category: "Graphic Design",
+    image: "/portfolio-assets/heaven-gate-ministry.jpg",
+    description: "Uplifting church service announcements, fellowship invitations, and corporate gratitude cards designed with heartfelt warmth.",
+    client: "Community Ministries & Churches",
+    duration: "3 Days",
+    scope: ["Church Ministry", "Fellowship Invitation", "Corporate Gratitude", "Spiritual Events"],
+    challenge: "Welcoming newcomers with open warmth while conveying sacred worship reverence.",
+    solution: "Created radiant atmospheric lighting, comforting spiritual typography, and heartfelt thank-you motifs.",
+    extraImages: [
+      "/portfolio-assets/church-welcome-fellowship.jpg",
+      "/portfolio-assets/gratitude-thank-you-card.jpg"
+    ]
   }
 ];
 
