@@ -13,7 +13,7 @@ import Portfolio from './components/Portfolio';
 import WhyChooseUs from './components/WhyChooseUs';
 import Testimonials from './components/Testimonials';
 import ContactStudio from './components/ContactStudio';
-import ClientTrustTicker from './components/ClientTrustTicker';
+import DesignAudit from './components/DesignAudit';
 import FinalCTA from './components/FinalCTA';
 import WhatsAppButton from './components/WhatsAppButton';
 import DBCommitNotifier from './components/DBCommitNotifier';
@@ -95,32 +95,34 @@ export default function App() {
             {/* Section 1: Hero Landing Arena */}
             <Hero />
 
-            {/* Section 2: Social Proof Metrics & Client Trust Ticker */}
-            <ClientTrustTicker />
-
-            {/* Section 3: Filterable Category Case Studies & Portfolio (Work Visible Upfront) */}
-            <ScrollReveal>
-              <Portfolio />
-            </ScrollReveal>
-
-            {/* Section 4: Agency Specialized Services Grid */}
+            {/* Section 2: Agency Specialized Services Grid */}
             <ScrollReveal>
               <Services />
             </ScrollReveal>
 
-            {/* Section 5: Brand Strategic Value Pillars & Engineering Standards */}
+            {/* Section 3: Filterable Categories Masonry Portfolio */}
+            <ScrollReveal>
+              <Portfolio />
+            </ScrollReveal>
+
+            {/* Section 4: Brand Strategic Value Pillars */}
             <ScrollReveal>
               <WhyChooseUs />
             </ScrollReveal>
 
-            {/* Section 6: Star Rated Customer Carousel Reviews */}
+            {/* Section 5: Star Rated Customer Carousel Reviews */}
             <ScrollReveal>
               <Testimonials />
             </ScrollReveal>
 
-            {/* Section 7: Unified Consultation Hub, Direct Phone/WhatsApp, & Studio Coordinates */}
+            {/* Section 6: Accra Studio Coordinates & Social Impact */}
             <ScrollReveal>
               <ContactStudio />
+            </ScrollReveal>
+
+            {/* Section 7: Free Brand Design Audit Lead Generation Form */}
+            <ScrollReveal>
+              <DesignAudit />
             </ScrollReveal>
 
             {/* Section 8: Highly Aesthetic Gradient Call To Action */}

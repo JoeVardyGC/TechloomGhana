@@ -135,7 +135,7 @@ export const contactSettingsConverter: FirestoreDataConverter<ContactSettings> =
   fromFirestore(snapshot: QueryDocumentSnapshot): ContactSettings {
     const data = snapshot.data();
     return {
-      email: String(data.email || 'hello@techloom.tech'),
+      email: String(data.email || 'techloomghana@yahoo.com'),
       phone: String(data.phone || '+233 256 259 336'),
       location: String(data.location || 'Accra, Ghana'),
       openingHours: String(data.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)'),

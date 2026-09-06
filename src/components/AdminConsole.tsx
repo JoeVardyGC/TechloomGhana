@@ -436,7 +436,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
 
   // Contact form state initialized from context
   const [contactForm, setContactForm] = useState<ContactSettings>({
-    email: settings?.email || 'hello@techloom.tech',
+    email: settings?.email || 'techloomghana@yahoo.com',
     phone: settings?.phone || '+233 256 259 336',
     location: settings?.location || 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana',
     openingHours: settings?.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)',
@@ -478,7 +478,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
   useEffect(() => {
     if (settings) {
       setContactForm({
-        email: settings.email || 'hello@techloom.tech',
+        email: settings.email || 'techloomghana@yahoo.com',
         phone: settings.phone || '+233 256 259 336',
         location: settings.location || 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana',
         openingHours: settings.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)',
@@ -2185,7 +2185,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                                     });
                                   } else {
                                     await updateSettings({
-                                      email: 'hello@techloom.tech',
+                                      email: 'techloomghana@yahoo.com',
                                       phone: '+233 256 259 336',
                                       location: 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana',
                                       openingHours: 'Monday – Saturday (08:30 – 19:00 GHS)',

@@ -133,7 +133,7 @@ export default function Footer() {
               <Mail className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
               <div>
                 <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Official Email</span>
-                <a href={`mailto:${settings?.email || 'hello@techloom.tech'}`} className="text-white hover:text-brand-cyan transition-colors text-xs">{settings?.email || 'hello@techloom.tech'}</a>
+                <a href={`mailto:${settings?.email || 'techloomghana@yahoo.com'}`} className="text-white hover:text-brand-cyan transition-colors text-xs">{settings?.email || 'techloomghana@yahoo.com'}</a>
               </div>
             </div>
 

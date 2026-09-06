@@ -52,7 +52,7 @@ export async function seedDefaultDataIfEmpty(force = false) {
 
       if (!contactSnap || !contactSnap.exists()) {
         await setDoc(contactDocRef, {
-          email: "hello@techloom.tech",
+          email: "techloomghana@yahoo.com",
           phone: "+233 256 259 336",
           location: "TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana",
           openingHours: "Monday – Saturday (08:30 – 19:00 GHS)",
