@@ -13,7 +13,7 @@ export interface PortfolioItem {
   image: string;
   description: string;
   client: string;
-  duration: string;
+  duration?: string;
   scope: string[];
   challenge: string;
   solution: string;

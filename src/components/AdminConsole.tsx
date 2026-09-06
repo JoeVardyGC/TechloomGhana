@@ -424,7 +424,6 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
     image: '',
     description: '',
     client: '',
-    duration: '',
     challenge: '',
     solution: '',
     projectLink: '',
@@ -659,7 +658,6 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
       image: project.image,
       description: project.description,
       client: project.client,
-      duration: project.duration,
       challenge: project.challenge,
       solution: project.solution,
       projectLink: project.projectLink || '',
@@ -706,7 +704,6 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
           image: '',
           description: '',
           client: '',
-          duration: '',
           challenge: '',
           solution: '',
           projectLink: '',
@@ -1842,7 +1839,6 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                                 image: '',
                                 description: '',
                                 client: '',
-                                duration: '',
                                 challenge: '',
                                 solution: '',
                                 projectLink: ''
@@ -1899,28 +1895,15 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-1">
-                          <label className="text-[9px] font-mono font-bold text-slate-400 uppercase">Client Brand Name</label>
-                          <input
-                            type="text"
-                            placeholder="e.g. Zenith Tech"
-                            value={newPortfolio.client}
-                            onChange={(e) => setNewPortfolio({ ...newPortfolio, client: e.target.value })}
-                            className="w-full bg-white border border-slate-200 rounded-xl px-3 h-11 text-xs text-slate-800"
-                          />
-                        </div>
-
-                        <div className="space-y-1">
-                          <label className="text-[9px] font-mono font-bold text-slate-400 uppercase">Execution Duration Term</label>
-                          <input
-                            type="text"
-                            placeholder="e.g. 4 Weeks"
-                            value={newPortfolio.duration}
-                            onChange={(e) => setNewPortfolio({ ...newPortfolio, duration: e.target.value })}
-                            className="w-full bg-white border border-slate-200 rounded-xl px-3 h-11 text-xs text-slate-800"
-                          />
-                        </div>
+                      <div className="space-y-1">
+                        <label className="text-[9px] font-mono font-bold text-slate-400 uppercase">Client Brand Name</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. Zenith Tech"
+                          value={newPortfolio.client}
+                          onChange={(e) => setNewPortfolio({ ...newPortfolio, client: e.target.value })}
+                          className="w-full bg-white border border-slate-200 rounded-xl px-3 h-11 text-xs text-slate-800"
+                        />
                       </div>
 
                       <div className="col-span-1 md:col-span-2">
@@ -2254,7 +2237,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                                   <span className="text-xs font-bold text-slate-900 leading-none">{project.title}</span>
                                   <span className="text-[8px] font-mono bg-blue-50 text-brand-blue px-2 py-0.5 rounded font-bold uppercase leading-none">{project.category}</span>
                                 </div>
-                                <p className="text-[10px] text-slate-400 font-light mt-1">Client: {project.client} | Duration: {project.duration}</p>
+                                <p className="text-[10px] text-slate-400 font-light mt-1">Client: {project.client}</p>
                               </div>
                             </div>
                             <div className="flex items-center gap-1.5 shrink-0">
