@@ -1,0 +1,159 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global safety net: default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Role-based helper: check for authenticated administrator emails
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == 'joevardy2004@gmail.com' ||
+        request.auth.token.email == 'admin@techloom.tech' ||
+        request.auth.token.email == 'abubakarsadikmusah2004@gmail.com' ||
+        request.auth.token.email == 'jannahblisselle@gmail.com'
+      );
+    }
+
+    // Baseline helper functions
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Collection: leadInquiries (Contact & Brand Consultation messages)
+    match /leadInquiries/{inquiryId} {
+      allow create: if isValidInquiry(incoming());
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Collection: leadAudits
+    match /leadAudits/{auditId} {
+      allow create: if isValidId(auditId) && isValidAudit(incoming());
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Collection: portfolio
+    match /portfolio/{projectId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isValidId(projectId) && isValidPortfolio(incoming());
+      allow delete: if isAdmin() && isValidId(projectId);
+    }
+
+    // Collection: services
+    match /services/{serviceId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isValidId(serviceId) && isValidService(incoming());
+      allow delete: if isAdmin() && isValidId(serviceId);
+    }
+
+    // Collection: settings
+    match /settings/{settingId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isValidId(settingId) && isValidSettings(incoming());
+      allow delete: if isAdmin() && isValidId(settingId);
+    }
+
+    // Collection: testimonials
+    match /testimonials/{testimonialId} {
+      allow read: if true;
+      allow create: if isValidId(testimonialId) && isValidTestimonial(incoming());
+      allow update, delete: if isAdmin() && isValidId(testimonialId);
+    }
+
+    // Collection: skills
+    match /skills/{skillId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isValidId(skillId) && isValidSkill(incoming());
+      allow delete: if isAdmin() && isValidId(skillId);
+    }
+
+    // Validators
+    function isValidInquiry(data) {
+      return data.keys().hasAll(['name', 'email', 'message'])
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 200
+        && data.email is string && data.email.size() > 0 && data.email.size() <= 150
+        && data.message is string && data.message.size() > 0 && data.message.size() <= 5000;
+    }
+
+    function isValidAudit(data) {
+      return data.keys().hasAll(['name', 'businessName', 'whatsappNumber', 'email', 'industry', 'createdAt'])
+        && data.keys().size() == 6
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 200
+        && data.businessName is string && data.businessName.size() > 0 && data.businessName.size() <= 200
+        && data.whatsappNumber is string && data.whatsappNumber.size() > 0 && data.whatsappNumber.size() <= 100
+        && data.email is string && data.email.size() > 0 && data.email.size() <= 150
+        && data.industry is string && data.industry.size() > 0 && data.industry.size() <= 100
+        && (data.createdAt is timestamp || data.createdAt is string);
+    }
+
+    function isValidPortfolio(data) {
+      return data.keys().hasAll(['id', 'title', 'category', 'image', 'description', 'client', 'duration', 'scope', 'challenge', 'solution'])
+        && data.keys().size() >= 10 && data.keys().size() <= 13
+        && data.id is string && data.id.size() > 0 && data.id.size() <= 128
+        && data.title is string && data.title.size() > 0 && data.title.size() <= 200
+        && data.category is string && data.category.size() > 0 && data.category.size() <= 100
+        && data.image is string && data.image.size() > 0 && data.image.size() <= 25000000
+        && data.description is string && data.description.size() > 0 && data.description.size() <= 2000
+        && data.client is string && data.client.size() > 0 && data.client.size() <= 200
+        && data.duration is string && data.duration.size() > 0 && data.duration.size() <= 100
+        && data.scope is list && data.scope.size() <= 20
+        && data.challenge is string && data.challenge.size() > 0 && data.challenge.size() <= 3000
+        && data.solution is string && data.solution.size() > 0 && data.solution.size() <= 3000
+        && (!data.keys().hasAll(['extraImages']) || (data.extraImages is list && data.extraImages.size() <= 20))
+        && (!data.keys().hasAll(['projectLink']) || (data.projectLink is string && data.projectLink.size() <= 2000))
+        && (!data.keys().hasAll(['githubLink']) || (data.githubLink is string && data.githubLink.size() <= 2000));
+    }
+
+    function isValidService(data) {
+      return data.keys().hasAll(['id', 'title', 'description', 'iconName', 'details'])
+        && data.keys().size() == 5
+        && data.id is string && data.id.size() > 0 && data.id.size() <= 128
+        && data.title is string && data.title.size() > 0 && data.title.size() <= 200
+        && data.description is string && data.description.size() > 0 && data.description.size() <= 1000
+        && data.iconName is string && data.iconName.size() > 0 && data.iconName.size() <= 100
+        && data.details is list && data.details.size() <= 20;
+    }
+
+    function isValidSettings(data) {
+      return data.keys().hasAll(['email', 'phone', 'location', 'openingHours', 'avgResponseTime', 'socialImpactText', 'agencySlogan'])
+        && data.email is string && data.email.size() > 0
+        && data.phone is string && data.phone.size() > 0
+        && data.location is string && data.location.size() > 0
+        && data.openingHours is string && data.openingHours.size() > 0
+        && data.avgResponseTime is string && data.avgResponseTime.size() > 0
+        && data.socialImpactText is string && data.socialImpactText.size() > 0
+        && data.agencySlogan is string && data.agencySlogan.size() > 0;
+    }
+
+    function isValidSkill(data) {
+      return data.keys().hasAll(['id', 'title', 'description', 'iconName', 'percentage'])
+        && data.id is string && data.id.size() > 0 && data.id.size() <= 128
+        && data.title is string && data.title.size() > 0 && data.title.size() <= 200
+        && data.description is string && data.description.size() <= 1000
+        && data.iconName is string && data.iconName.size() <= 100
+        && (data.percentage is int || data.percentage is float) && data.percentage >= 0 && data.percentage <= 100;
+    }
+
+    function isValidTestimonial(data) {
+      return data.keys().hasAll(['id', 'name', 'role', 'company', 'quote', 'rating', 'avatar', 'createdAt'])
+        && data.keys().size() == 8
+        && data.id is string && data.id.size() > 0 && data.id.size() <= 128
+        && data.name is string && data.name.size() > 0 && data.name.size() <= 150
+        && data.role is string && data.role.size() > 0 && data.role.size() <= 150
+        && data.company is string && data.company.size() > 0 && data.company.size() <= 150
+        && data.quote is string && data.quote.size() > 0 && data.quote.size() <= 1000
+        && data.rating is int && data.rating >= 1 && data.rating <= 5
+        && data.avatar is string && data.avatar.size() <= 1000
+        && (data.createdAt is timestamp || data.createdAt is string);
+    }
+  }
+}

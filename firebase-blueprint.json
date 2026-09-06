@@ -1,0 +1,289 @@
+{
+  "entities": {
+    "LeadAudit": {
+      "title": "LeadAudit",
+      "description": "A submitted brand design audit lead request",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The requester's full name"
+        },
+        "businessName": {
+          "type": "string",
+          "description": "The name of the business or brand audited"
+        },
+        "whatsappNumber": {
+          "type": "string",
+          "description": "WhatsApp contact coordinates"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Primary communication email"
+        },
+        "industry": {
+          "type": "string",
+          "description": "Product or industry sector selection"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Submission time timestamp"
+        }
+      },
+      "required": ["name", "businessName", "whatsappNumber", "email", "industry", "createdAt"]
+    },
+    "PortfolioItem": {
+      "title": "PortfolioItem",
+      "description": "A customized portfolio showcase card",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique project identifier key"
+        },
+        "title": {
+          "type": "string",
+          "description": "Name of the project"
+        },
+        "category": {
+          "type": "string",
+          "description": "Primary visual design discipline"
+        },
+        "image": {
+          "type": "string",
+          "description": "The project preview image URL"
+        },
+        "description": {
+          "type": "string",
+          "description": "Summarized overview of the visual project"
+        },
+        "client": {
+          "type": "string",
+          "description": "The client business name"
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration of the branding effort"
+        },
+        "scope": {
+          "type": "array",
+          "description": "List of core deliverables"
+        },
+        "challenge": {
+          "type": "string",
+          "description": "The background business challenge"
+        },
+        "solution": {
+          "type": "string",
+          "description": "The custom visual solution"
+        },
+        "extraImages": {
+          "type": "array",
+          "description": "Showcase portfolio extra images list"
+        },
+        "projectLink": {
+          "type": "string",
+          "description": "Dynamic web/Behance external coordinate hyperlink"
+        },
+        "githubLink": {
+          "type": "string",
+          "description": "Dynamic GitHub source code repository URL"
+        }
+      },
+      "required": ["id", "title", "category", "image", "description", "client", "duration", "scope", "challenge", "solution"]
+    },
+    "Service": {
+      "title": "Service",
+      "description": "An agency specialized specialized service grid card",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique service slug identifier key"
+        },
+        "title": {
+          "type": "string",
+          "description": "Visual service card title banner"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed explanation of the visual specialization"
+        },
+        "iconName": {
+          "type": "string",
+          "description": "Lucide-React corresponding slug icon identity"
+        },
+        "details": {
+          "type": "array",
+          "description": "Sub-bullets detailing service features and standards"
+        }
+      },
+      "required": ["id", "title", "description", "iconName", "details"]
+    },
+    "ContactSettings": {
+      "title": "ContactSettings",
+      "description": "Central dynamic business coordinate mappings",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Primary agency correspondence email"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Direct WhatsApp & cellular helpline"
+        },
+        "location": {
+          "type": "string",
+          "description": "Physical headquarters layout coordinate address"
+        },
+        "openingHours": {
+          "type": "string",
+          "description": "Standard response operations hours"
+        },
+        "avgResponseTime": {
+          "type": "string",
+          "description": "Under what duration the team responds to leads"
+        },
+        "socialImpactText": {
+          "type": "string",
+          "description": "Outline details of foundation contribution"
+        },
+        "agencySlogan": {
+          "type": "string",
+          "description": "High-standard motto text displayed in sections"
+        },
+        "heroCardImage1": {
+          "type": "string",
+          "description": "Carousel slide 1 custom picture url"
+        },
+        "heroCardText1": {
+          "type": "string",
+          "description": "Carousel slide 1 custom description"
+        },
+        "heroCardImage2": {
+          "type": "string",
+          "description": "Carousel slide 2 custom picture url"
+        },
+        "heroCardText2": {
+          "type": "string",
+          "description": "Carousel slide 2 custom description"
+        },
+        "heroCardImage3": {
+          "type": "string",
+          "description": "Carousel slide 3 custom picture url"
+        },
+        "heroCardText3": {
+          "type": "string",
+          "description": "Carousel slide 3 custom description"
+        },
+        "heroCardImage4": {
+          "type": "string",
+          "description": "Carousel slide 4 custom picture url"
+        },
+        "heroCardText4": {
+          "type": "string",
+          "description": "Carousel slide 4 custom description"
+        }
+      },
+      "required": ["email", "phone", "location", "openingHours", "avgResponseTime", "socialImpactText", "agencySlogan"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "A rating feedback card detailing client experiences",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique review index"
+        },
+        "name": {
+          "type": "string",
+          "description": "The client contact reviewer full name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Chief Executive Officer or corporate title representation"
+        },
+        "company": {
+          "type": "string",
+          "description": "Audited business name associated with user review"
+        },
+        "quote": {
+          "type": "string",
+          "description": "Paragraph review testimonial text"
+        },
+        "rating": {
+          "type": "integer",
+          "description": "Rating score value out of maximum 5 stars"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "Image link representation of reviewer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date-time submission timestamp"
+        }
+      },
+      "required": ["id", "name", "role", "company", "quote", "rating", "avatar"]
+    },
+    "Skill": {
+      "title": "Skill",
+      "description": "Expert proficiency metrics featuring animated circular gauges",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the technical skill"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the proficiency or service item"
+        },
+        "description": {
+          "type": "string",
+          "description": "A description outlining the skill mastery details"
+        },
+        "iconName": {
+          "type": "string",
+          "description": "A lucide icon tag reference"
+        },
+        "percentage": {
+          "type": "integer",
+          "description": "A score from 0-100 indicating tech proficiency"
+        }
+      },
+      "required": ["id", "title", "description", "iconName", "percentage"]
+    }
+  },
+  "firestore": {
+    "/leadAudits/{auditId}": {
+      "schema": "LeadAudit",
+      "description": "Secure repository for lead design audits"
+    },
+    "/portfolio/{projectId}": {
+      "schema": "PortfolioItem",
+      "description": "Secure repository for portfolio case archives"
+    },
+    "/services/{serviceId}": {
+      "schema": "Service",
+      "description": "Secure repository for agency specializations"
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": "Testimonial",
+      "description": "Interactive repository for rating reviews"
+    },
+    "/settings/{settingId}": {
+      "schema": "ContactSettings",
+      "description": "Dynamic coordinate parameters configuration"
+    },
+    "/skills/{skillId}": {
+      "schema": "Skill",
+      "description": "Technical proficiency levels"
+    }
+  }
+}
