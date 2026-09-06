@@ -1,4 +1,4 @@
-import { ArrowUp, Palette, Award, Layers, Sparkles, Mail, MapPin, Phone, Github, Twitter, Linkedin, Instagram, Facebook, Youtube } from 'lucide-react';
+import { ArrowUp, Palette, Award, Layers, Sparkles, Mail, MapPin, Phone, PhoneCall, MessageSquare, Github, Twitter, Linkedin, Instagram, Facebook, Youtube } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext';
 
@@ -138,10 +138,18 @@ export default function Footer() {
             </div>
 
             <div className="flex items-start gap-2.5">
-              <Phone className="w-4.5 h-4.5 text-brand-blue shrink-0 mt-0.5" />
+              <PhoneCall className="w-4.5 h-4.5 text-brand-blue shrink-0 mt-0.5" />
               <div>
-                <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">WhatsApp / Line</span>
-                <a href={`https://wa.me/${(settings?.phone || '+233 256 259 336').replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="text-white hover:text-emerald-400 transition-colors">{settings?.phone || '+233 256 259 336'}</a>
+                <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Direct Voice Call</span>
+                <a href={`tel:${(settings?.phone || '+233 256 259 336').replace(/[^0-9+]/g, '')}`} className="text-white hover:text-brand-cyan transition-colors">{settings?.phone || '+233 256 259 336'}</a>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-2.5">
+              <MessageSquare className="w-4.5 h-4.5 text-emerald-400 shrink-0 mt-0.5" />
+              <div>
+                <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Instant WhatsApp</span>
+                <a href={`https://wa.me/${(settings?.phone || '+233 256 259 336').replace(/[^0-9]/g, '')}?text=Hello%20Techloom%20Ghana,%20I'd%20like%20to%20discuss%20a%20project`} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium">Start Chat &rarr;</a>
               </div>
             </div>
 

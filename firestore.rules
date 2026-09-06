@@ -81,7 +81,8 @@ service cloud.firestore {
       return data.keys().hasAll(['name', 'email', 'message'])
         && data.name is string && data.name.size() > 0 && data.name.size() <= 200
         && data.email is string && data.email.size() > 0 && data.email.size() <= 150
-        && data.message is string && data.message.size() > 0 && data.message.size() <= 5000;
+        && data.message is string && data.message.size() > 0 && data.message.size() <= 5000
+        && (!('phone' in data) || (data.phone is string && data.phone.size() <= 100));
     }
 
     function isValidAudit(data) {

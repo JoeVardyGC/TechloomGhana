@@ -17,13 +17,17 @@ async function startServer() {
   // API ROUTE: Send Brand Consultation / Contact Message
   app.post("/api/send-consultation", async (req, res) => {
     try {
-      const { name, email, message } = req.body;
+      const { name, email, phone, message } = req.body;
 
       if (!name || !email || !message) {
         return res.status(400).json({
           error: "Missing required contact parameters (name, email, message)."
         });
       }
+
+      const cleanPhone = phone ? String(phone).trim() : 'Not provided';
+      const cleanDigits = cleanPhone.replace(/[^0-9]/g, '');
+      const whatsappCallLink = cleanDigits ? `https://wa.me/${cleanDigits}` : '#';
 
       const smtpHost = process.env.SMTP_HOST || "smtp.mail.yahoo.com";
       const smtpPort = parseInt(process.env.SMTP_PORT || "587", 10);
@@ -41,6 +45,7 @@ async function startServer() {
           <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
             <p style="margin: 0 0 12px 0; font-size: 14px;"><strong style="color: #64748b;">Sender Name:</strong> <span style="color: #0f172a; font-weight: 600;">${name}</span></p>
             <p style="margin: 0 0 12px 0; font-size: 14px;"><strong style="color: #64748b;">Sender Email:</strong> <a href="mailto:${email}" style="color: #3b82f6; text-decoration: none; font-weight: 600;">${email}</a></p>
+            <p style="margin: 0 0 12px 0; font-size: 14px;"><strong style="color: #64748b;">Sender Phone / WhatsApp:</strong> <a href="tel:${cleanPhone}" style="color: #10b981; text-decoration: none; font-weight: 600;">${cleanPhone}</a> ${cleanDigits ? `(<a href="${whatsappCallLink}" style="color: #10b981; text-decoration: underline;">WhatsApp Chat</a>)` : ''}</p>
             <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 15px 0;" />
             <p style="margin: 0; font-size: 14px; line-height: 1.6;"><strong style="color: #64748b; display: block; margin-bottom: 6px;">Message content:</strong></p>
             <blockquote style="margin: 0; padding: 12px 16px; background-color: #f8fafc; border-left: 4px solid #3b82f6; border-radius: 4px; font-style: italic; color: #334155; font-size: 13.5px;">
@@ -60,7 +65,7 @@ async function startServer() {
         console.warn("⚠️ SMTP credentials (SMTP_USER / SMTP_PASS) not configured in .env variables.");
         console.warn("⚠️ Simulation Mock Deliveries:");
         console.warn(`[Inquiry To]: techloomgh@yahoo.com`);
-        console.warn(`[Sender]: ${name} <${email}>`);
+        console.warn(`[Sender]: ${name} <${email}>, Phone: ${cleanPhone}`);
         console.warn(`[Content Summary]: Message: ${message}`);
         console.warn("=========================================================================");
         
