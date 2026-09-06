@@ -29,8 +29,8 @@ async function startServer() {
       const cleanDigits = cleanPhone.replace(/[^0-9]/g, '');
       const clientWhatsAppLink = cleanDigits ? `https://wa.me/${cleanDigits}` : '#';
 
-      const adminEmail = process.env.ADMIN_EMAIL || "techloomghana@yahoo.com";
-      const targetWhatsAppNumber = "+233 256 259 336";
+      const adminEmail = process.env.ADMIN_EMAIL || "techloomgh@yahoo.com";
+      const targetWhatsAppNumber = "+233 256 259 336 / +233 504 041 694";
       const targetWhatsAppDigits = "233256259336";
 
       // Formatted WhatsApp sample text
@@ -79,7 +79,7 @@ async function startServer() {
       const smtpUser = process.env.SMTP_USER;
       const smtpPass = process.env.SMTP_PASS;
 
-      // HTML template for the Admin (techloomghana@yahoo.com)
+      // HTML template for the Admin (techloomgh@yahoo.com)
       const adminHtml = `
         <div style="font-family: 'Inter', system-ui, -apple-system, sans-serif; max-width: 600px; margin: 0 auto; padding: 25px; border: 1px solid #e2e8f0; border-radius: 16px; background-color: #fafbfd; color: #1e293b;">
           <div style="margin-bottom: 25px; border-bottom: 2px solid #0A84FF; padding-bottom: 15px;">
@@ -142,7 +142,7 @@ async function startServer() {
         socketTimeout: 5000,
       } as any);
 
-      // Send the email to techloomghana@yahoo.com asynchronously in the background.
+      // Send the email to techloomgh@yahoo.com asynchronously in the background.
       transporter.sendMail({
         from: `"Techloom Contact Portal" <${smtpUser}>`,
         to: adminEmail,

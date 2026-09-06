@@ -6,8 +6,9 @@ export default function ContactStudio() {
   const { settings } = useApp();
 
   // Fallbacks for pristine safety during synchronization
-  const email = settings?.email || 'techloomghana@yahoo.com';
+  const email = settings?.email || 'techloomgh@yahoo.com';
   const phone = settings?.phone || '+233 256 259 336';
+  const secondaryPhone = settings?.secondaryPhone || '+233 504 041 694';
   const location = settings?.location || 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana';
   const openingHours = settings?.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)';
   const avgResponseTime = settings?.avgResponseTime || 'Average response: under 12 hours for new submissions.';
@@ -20,6 +21,7 @@ export default function ContactStudio() {
   // Format clean whatsapp link out
   const queryText = encodeURIComponent('Hi TechLoom, I would like to consult regarding a design, branding or high-speed platform project.');
   const whatsappUrl = `https://wa.me/${phone.replace(/[^0-9]/g, '')}?text=${queryText}`;
+  const secondaryWhatsappUrl = `https://wa.me/${secondaryPhone.replace(/[^0-9]/g, '')}?text=${queryText}`;
 
   return (
     <section id="contact-studio" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden border-t border-slate-100 dark:border-slate-850 transition-colors duration-300">
@@ -135,7 +137,7 @@ export default function ContactStudio() {
                   <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
                 </a>
 
-                {/* WhatsApp & Line */}
+                {/* WhatsApp & Primary Line */}
                 <a
                   href={whatsappUrl}
                   target="_blank"
@@ -146,8 +148,25 @@ export default function ContactStudio() {
                     <Phone className="w-5 h-5 stroke-[1.8]" />
                   </div>
                   <div className="flex-1 leading-snug truncate font-bold">
-                    <span className="block text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">WhatsApp / Line Contact</span>
+                    <span className="block text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">Primary Line / WhatsApp</span>
                     <span className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors block truncate">{phone}</span>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                </a>
+
+                {/* Secondary Contact Line */}
+                <a
+                  href={secondaryWhatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-4 p-3.5 bg-slate-950/40 rounded-2xl border border-white/5 hover:border-emerald-500/40 transition-all cursor-pointer"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                    <Phone className="w-5 h-5 stroke-[1.8]" />
+                  </div>
+                  <div className="flex-1 leading-snug truncate font-bold">
+                    <span className="block text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">Secondary Line / WhatsApp</span>
+                    <span className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors block truncate">{secondaryPhone}</span>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
                 </a>

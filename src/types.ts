@@ -36,6 +36,7 @@ export interface Testimonial {
 export interface ContactSettings {
   email: string;
   phone: string;
+  secondaryPhone?: string;
   location: string;
   openingHours: string;
   avgResponseTime: string;

@@ -133,15 +133,16 @@ export default function Footer() {
               <Mail className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
               <div>
                 <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Official Email</span>
-                <a href={`mailto:${settings?.email || 'techloomghana@yahoo.com'}`} className="text-white hover:text-brand-cyan transition-colors text-xs">{settings?.email || 'techloomghana@yahoo.com'}</a>
+                <a href={`mailto:${settings?.email || 'techloomgh@yahoo.com'}`} className="text-white hover:text-brand-cyan transition-colors text-xs">{settings?.email || 'techloomgh@yahoo.com'}</a>
               </div>
             </div>
 
             <div className="flex items-start gap-2.5">
               <PhoneCall className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
-              <div>
-                <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Direct Voice Call</span>
-                <a href={`tel:${(settings?.phone || '+233 256 259 336').replace(/[^0-9+]/g, '')}`} className="text-white hover:text-brand-cyan transition-colors text-xs">{settings?.phone || '+233 256 259 336'}</a>
+              <div className="space-y-0.5">
+                <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Direct Voice Calls</span>
+                <a href={`tel:${(settings?.phone || '+233 256 259 336').replace(/[^0-9+]/g, '')}`} className="text-white hover:text-brand-cyan transition-colors text-xs block">{settings?.phone || '+233 256 259 336'}</a>
+                <a href={`tel:${(settings?.secondaryPhone || '+233 504 041 694').replace(/[^0-9+]/g, '')}`} className="text-white hover:text-brand-cyan transition-colors text-xs block">{settings?.secondaryPhone || '+233 504 041 694'}</a>
               </div>
             </div>
 
@@ -149,7 +150,11 @@ export default function Footer() {
               <MessageSquare className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
               <div>
                 <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Instant WhatsApp</span>
-                <a href={`https://wa.me/${(settings?.phone || '+233 256 259 336').replace(/[^0-9]/g, '')}?text=Hello%20Techloom%20Ghana,%20I'd%20like%20to%20discuss%20a%20project`} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors text-xs font-medium">Start Chat &rarr;</a>
+                <div className="flex items-center gap-2 text-xs">
+                  <a href={`https://wa.me/${(settings?.phone || '+233 256 259 336').replace(/[^0-9]/g, '')}?text=Hello%20Techloom%20Ghana,%20I'd%20like%20to%20discuss%20a%20project`} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium">Line 1 &rarr;</a>
+                  <span className="text-slate-600">•</span>
+                  <a href={`https://wa.me/${(settings?.secondaryPhone || '+233 504 041 694').replace(/[^0-9]/g, '')}?text=Hello%20Techloom%20Ghana,%20I'd%20like%20to%20discuss%20a%20project`} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium">Line 2 &rarr;</a>
+                </div>
               </div>
             </div>
 

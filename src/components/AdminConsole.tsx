@@ -436,8 +436,9 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
 
   // Contact form state initialized from context
   const [contactForm, setContactForm] = useState<ContactSettings>({
-    email: settings?.email || 'techloomghana@yahoo.com',
+    email: settings?.email || 'techloomgh@yahoo.com',
     phone: settings?.phone || '+233 256 259 336',
+    secondaryPhone: settings?.secondaryPhone || '+233 504 041 694',
     location: settings?.location || 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana',
     openingHours: settings?.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)',
     avgResponseTime: settings?.avgResponseTime || 'Average response: under 12 hours for new submissions.',
@@ -478,8 +479,9 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
   useEffect(() => {
     if (settings) {
       setContactForm({
-        email: settings.email || 'techloomghana@yahoo.com',
+        email: settings.email || 'techloomgh@yahoo.com',
         phone: settings.phone || '+233 256 259 336',
+        secondaryPhone: settings.secondaryPhone || '+233 504 041 694',
         location: settings.location || 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana',
         openingHours: settings.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)',
         avgResponseTime: settings.avgResponseTime || 'Average response: under 12 hours for new submissions.',
@@ -1286,11 +1288,23 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
 
                       {/* Phone */}
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">WhatsApp Hotline Number</label>
+                        <label className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">Primary WhatsApp Hotline Number</label>
                         <input
                           type="text"
                           value={contactForm.phone}
                           onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                          className="w-full bg-slate-50 focus:bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-brand-blue transition-all"
+                        />
+                      </div>
+
+                      {/* Secondary Phone */}
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">Secondary WhatsApp / Contact Line</label>
+                        <input
+                          type="text"
+                          value={contactForm.secondaryPhone || ''}
+                          onChange={(e) => setContactForm({ ...contactForm, secondaryPhone: e.target.value })}
+                          placeholder="+233 504 041 694"
                           className="w-full bg-slate-50 focus:bg-white border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:border-brand-blue transition-all"
                         />
                       </div>
@@ -2185,8 +2199,9 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                                     });
                                   } else {
                                     await updateSettings({
-                                      email: 'techloomghana@yahoo.com',
+                                      email: 'techloomgh@yahoo.com',
                                       phone: '+233 256 259 336',
+                                      secondaryPhone: '+233 504 041 694',
                                       location: 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana',
                                       openingHours: 'Monday – Saturday (08:30 – 19:00 GHS)',
                                       avgResponseTime: 'Average response: under 12 hours for new submissions.',

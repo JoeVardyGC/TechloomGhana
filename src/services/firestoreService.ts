@@ -96,6 +96,7 @@ export const contactSettingsConverter: FirestoreDataConverter<ContactSettings> =
     return {
       email: settings.email,
       phone: settings.phone,
+      secondaryPhone: settings.secondaryPhone || '+233 504 041 694',
       location: settings.location,
       openingHours: settings.openingHours,
       avgResponseTime: settings.avgResponseTime,
@@ -135,8 +136,9 @@ export const contactSettingsConverter: FirestoreDataConverter<ContactSettings> =
   fromFirestore(snapshot: QueryDocumentSnapshot): ContactSettings {
     const data = snapshot.data();
     return {
-      email: String(data.email || 'techloomghana@yahoo.com'),
+      email: String(data.email || 'techloomgh@yahoo.com'),
       phone: String(data.phone || '+233 256 259 336'),
+      secondaryPhone: String(data.secondaryPhone || '+233 504 041 694'),
       location: String(data.location || 'Accra, Ghana'),
       openingHours: String(data.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)'),
       avgResponseTime: String(data.avgResponseTime || 'under 12 hours'),
@@ -306,6 +308,9 @@ export function validateContactSettingsSchema(settings: ContactSettings): void {
   }
   if (typeof settings.phone !== 'string' || settings.phone.length > 50) {
     throw new Error('Schema Violation: phone contact details is required and must be under 50 characters.');
+  }
+  if (settings.secondaryPhone && (typeof settings.secondaryPhone !== 'string' || settings.secondaryPhone.length > 50)) {
+    throw new Error('Schema Violation: secondaryPhone must be under 50 characters.');
   }
   if (typeof settings.location !== 'string' || settings.location.length > 500) {
     throw new Error('Schema Violation: location address string must remain under 500 characters.');

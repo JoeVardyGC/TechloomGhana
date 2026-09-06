@@ -130,6 +130,7 @@ export default function DesignAudit() {
     `Sent from Techloom Ghana Portal`
   );
   const directWhatsAppUrl = `https://wa.me/233256259336?text=${whatsappMessageSample}`;
+  const secondaryWhatsAppUrl = `https://wa.me/233504041694?text=${whatsappMessageSample}`;
 
   return (
     <section id="audit" className="py-24 bg-slate-50 dark:bg-slate-950/80 relative overflow-hidden transition-colors duration-300">
@@ -162,7 +163,7 @@ export default function DesignAudit() {
                   <CheckCircle className="w-4 h-4" />
                 </div>
                 <p className="text-xs text-slate-500 dark:text-slate-400 leading-normal">
-                  <strong className="text-slate-700 dark:text-slate-200">Direct Delivery</strong>: Your message is sent straight to our inbox (<code className="text-brand-blue">techloomghana@yahoo.com</code>) and WhatsApp team.
+                  <strong className="text-slate-700 dark:text-slate-200">Direct Delivery</strong>: Your message is sent straight to our inbox (<code className="text-brand-blue">techloomgh@yahoo.com</code>) and WhatsApp team.
                 </p>
               </div>
 
@@ -364,20 +365,30 @@ export default function DesignAudit() {
                         Submitted
                       </h2>
                       <p className="text-slate-600 dark:text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                        Your inquiry has been submitted! Our team will receive it at <strong className="text-brand-blue">techloomghana@yahoo.com</strong> and via our WhatsApp notification line (<strong className="text-emerald-500">+233 256 259 336</strong>).
+                        Your inquiry has been submitted! Our team will receive it at <strong className="text-brand-blue">techloomgh@yahoo.com</strong> and via our WhatsApp notification lines (<strong className="text-emerald-500">+233 256 259 336</strong> / <strong className="text-emerald-500">+233 504 041 694</strong>).
                       </p>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                    <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 pt-2">
                       {/* Optional WhatsApp Quick Sample Chat */}
                       <a
                         href={directWhatsAppUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-5 py-3 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+                        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
                       >
                         <MessageSquare className="w-4 h-4" />
-                        <span>Open Chat on WhatsApp</span>
+                        <span>Chat Line 1 (+233 256 259 336)</span>
+                      </a>
+
+                      <a
+                        href={secondaryWhatsAppUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+                      >
+                        <MessageSquare className="w-4 h-4" />
+                        <span>Chat Line 2 (+233 504 041 694)</span>
                       </a>
 
                       <button
