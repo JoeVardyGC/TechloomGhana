@@ -43,15 +43,15 @@ export default function Footer() {
   ];
 
   return (
-    <footer id="footer" className="bg-[#0b0f19] text-[#e2e8f0] pt-20 pb-10 border-t border-slate-900 relative">
+    <footer id="footer" className="bg-[#0b0f19] text-[#e2e8f0] pt-14 pb-8 border-t border-slate-900 relative">
       
       {/* Decorative gradient glowing orb */}
       <div className="absolute top-0 left-1/4 w-80 h-80 bg-brand-blue/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-slate-900">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-slate-900">
         
         {/* Column 1: Techloom Bio Summary */}
-        <div className="lg:col-span-4 space-y-6">
+        <div className="lg:col-span-4 space-y-4">
           {/* Logo block */}
           <div className="flex items-center gap-2">
             <div>
@@ -124,40 +124,40 @@ export default function Footer() {
         </div>
 
         {/* Column 4: Contact Details */}
-        <div className="lg:col-span-3 space-y-5">
+        <div className="lg:col-span-3 space-y-3.5">
           <span className="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
             Communications Hub
           </span>
-          <div className="space-y-3.5 text-sm font-light text-slate-400">
+          <div className="space-y-2.5 text-sm font-light text-slate-400">
             <div className="flex items-start gap-2.5">
-              <Mail className="w-4.5 h-4.5 text-brand-blue shrink-0 mt-0.5" />
+              <Mail className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
               <div>
                 <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Official Email</span>
-                <a href={`mailto:${settings?.email || 'hello@techloom.tech'}`} className="text-white hover:text-brand-cyan transition-colors">{settings?.email || 'hello@techloom.tech'}</a>
+                <a href={`mailto:${settings?.email || 'hello@techloom.tech'}`} className="text-white hover:text-brand-cyan transition-colors text-xs">{settings?.email || 'hello@techloom.tech'}</a>
               </div>
             </div>
 
             <div className="flex items-start gap-2.5">
-              <PhoneCall className="w-4.5 h-4.5 text-brand-blue shrink-0 mt-0.5" />
+              <PhoneCall className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
               <div>
                 <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Direct Voice Call</span>
-                <a href={`tel:${(settings?.phone || '+233 256 259 336').replace(/[^0-9+]/g, '')}`} className="text-white hover:text-brand-cyan transition-colors">{settings?.phone || '+233 256 259 336'}</a>
+                <a href={`tel:${(settings?.phone || '+233 256 259 336').replace(/[^0-9+]/g, '')}`} className="text-white hover:text-brand-cyan transition-colors text-xs">{settings?.phone || '+233 256 259 336'}</a>
               </div>
             </div>
 
             <div className="flex items-start gap-2.5">
-              <MessageSquare className="w-4.5 h-4.5 text-emerald-400 shrink-0 mt-0.5" />
+              <MessageSquare className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
               <div>
                 <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Instant WhatsApp</span>
-                <a href={`https://wa.me/${(settings?.phone || '+233 256 259 336').replace(/[^0-9]/g, '')}?text=Hello%20Techloom%20Ghana,%20I'd%20like%20to%20discuss%20a%20project`} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium">Start Chat &rarr;</a>
+                <a href={`https://wa.me/${(settings?.phone || '+233 256 259 336').replace(/[^0-9]/g, '')}?text=Hello%20Techloom%20Ghana,%20I'd%20like%20to%20discuss%20a%20project`} target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 transition-colors text-xs font-medium">Start Chat &rarr;</a>
               </div>
             </div>
 
             <div className="flex items-start gap-2.5">
-              <MapPin className="w-4.5 h-4.5 text-brand-blue shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-brand-blue shrink-0 mt-0.5" />
               <div>
                 <span className="block text-[10px] font-mono uppercase text-slate-500 font-bold">Studio Hub</span>
-                <span className="text-white leading-snug break-words">
+                <span className="text-white leading-relaxed text-xs break-words">
                   {settings?.location || 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana'}
                 </span>
               </div>

@@ -87,11 +87,11 @@ export default function Hero() {
       primary: '#00C2FF',
       gradient: 'from-[#0A84FF] to-[#00C2FF]',
       accentBg: {
-        light: 'bg-blue-50/80 text-brand-blue border-blue-200/60',
+        light: 'bg-blue-50 text-brand-blue border-blue-200',
         dark: 'bg-[#00C2FF]/10 text-[#00C2FF] border-[#00C2FF]/20'
       },
       glow: {
-        light: 'shadow-[0_0_40px_rgba(10,132,255,0.12)]',
+        light: 'shadow-[0_0_30px_rgba(10,132,255,0.18)]',
         dark: 'shadow-[0_0_40px_rgba(0,194,255,0.22)]'
       },
       accentText: {
@@ -103,47 +103,47 @@ export default function Hero() {
       primary: '#9D4EDD',
       gradient: 'from-[#9D4EDD] to-[#FF6EE6]',
       accentBg: {
-        light: 'bg-purple-50/80 text-purple-600 border-purple-200/60',
+        light: 'bg-purple-50 text-purple-700 border-purple-200',
         dark: 'bg-[#9D4EDD]/10 text-[#9D4EDD] border-[#9D4EDD]/20'
       },
       glow: {
-        light: 'shadow-[0_0_40px_rgba(168,85,247,0.12)]',
+        light: 'shadow-[0_0_30px_rgba(168,85,247,0.18)]',
         dark: 'shadow-[0_0_40px_rgba(157,78,221,0.22)]'
       },
       accentText: {
-        light: 'text-purple-600',
+        light: 'text-purple-700',
         dark: 'text-[#9D4EDD]'
       }
     },
     emerald: {
-      primary: '#00F5D4',
-      gradient: 'from-[#00F5D4] to-[#01BEA6]',
+      primary: '#059669',
+      gradient: 'from-[#059669] to-[#10b981]',
       accentBg: {
-        light: 'bg-teal-50/80 text-teal-600 border-teal-200/60',
+        light: 'bg-emerald-50 text-emerald-800 border-emerald-200',
         dark: 'bg-[#00F5D4]/10 text-[#00F5D4] border-[#00F5D4]/20'
       },
       glow: {
-        light: 'shadow-[0_0_40px_rgba(20,184,166,0.12)]',
+        light: 'shadow-[0_0_30px_rgba(16,185,129,0.18)]',
         dark: 'shadow-[0_0_40px_rgba(0,245,212,0.22)]'
       },
       accentText: {
-        light: 'text-teal-600',
+        light: 'text-emerald-800',
         dark: 'text-[#00F5D4]'
       }
     },
     rose: {
-      primary: '#FF5E7E',
-      gradient: 'from-[#FF5E7E] to-[#FF9F43]',
+      primary: '#e11d48',
+      gradient: 'from-[#e11d48] to-[#f43f5e]',
       accentBg: {
-        light: 'bg-rose-50/80 text-rose-600 border-rose-200/60',
+        light: 'bg-rose-50 text-rose-800 border-rose-200',
         dark: 'bg-[#FF5E7E]/10 text-[#FF5E7E] border-[#FF5E7E]/20'
       },
       glow: {
-        light: 'shadow-[0_0_40px_rgba(244,63,94,0.12)]',
+        light: 'shadow-[0_0_30px_rgba(244,63,94,0.18)]',
         dark: 'shadow-[0_0_40px_rgba(255,94,126,0.22)]'
       },
       accentText: {
-        light: 'text-rose-600',
+        light: 'text-rose-800',
         dark: 'text-[#FF5E7E]'
       }
     },
@@ -295,9 +295,11 @@ export default function Hero() {
 
               {/* Master Display Heading mimicking Image Structure */}
               <div className="space-y-4 w-full">
-                <h1 className="font-sans font-extrabold text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.09] text-balance transition-colors duration-500 text-slate-900 dark:text-white">
-                  {settings?.heroTitleLine1 || "Design That Makes"}
-                  <span className="block mt-1">{settings?.heroTitleLine2 || "Your Brand Impossible To Ignore."}</span>
+                <h1 className="font-display font-black text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.09] text-balance text-slate-950 dark:text-white transition-colors duration-300">
+                  <span className="block">{settings?.heroTitleLine1 || "Design That Makes"}</span>
+                  <span className="block mt-1.5 bg-gradient-to-r from-brand-blue to-brand-cyan bg-clip-text text-transparent dark:from-brand-cyan dark:to-white">
+                    {settings?.heroTitleLine2 || "Your Brand Impossible To Ignore."}
+                  </span>
                 </h1>
                 
                 {/* Static thin accent spacer line matching image horizontal divider */}
@@ -307,9 +309,7 @@ export default function Hero() {
               </div>
 
                {/* Elegant narrative tailored beautifully for the studio background or customizable */}
-              <p className={`text-base sm:text-lg leading-relaxed max-w-2xl font-light font-sans transition-colors duration-500 ${
-                isDark ? 'text-slate-300' : 'text-slate-600'
-              }`}>
+              <p className="text-base sm:text-lg leading-relaxed max-w-2xl font-normal font-sans text-slate-700 dark:text-slate-300 transition-colors duration-300">
                 {settings?.heroDescription || "We custom-engineer premium visual branding, high-speed digital platforms, and high-converting marketing flyers crafted to position your enterprise ahead of the competition."}
               </p>
 
@@ -317,22 +317,22 @@ export default function Hero() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto pt-2">
                 <button
                   onClick={() => scrollToSection('audit')}
-                  className={`group flex items-center justify-center gap-2.5 bg-gradient-to-r ${
+                  className={`group inline-flex items-center justify-center gap-2.5 bg-gradient-to-r ${
                     themeColors[activeTheme].gradient
-                  } text-slate-950 font-black text-xs uppercase tracking-widest px-8 h-12 rounded-full shadow-lg ${
+                  } text-white font-bold text-xs uppercase tracking-widest px-8 h-12 rounded-full shadow-lg ${
                     isDark ? themeColors[activeTheme].glow.dark : themeColors[activeTheme].glow.light
                   } hover:scale-[1.02] active:scale-95 transition-all cursor-pointer`}
                 >
-                  <span className="text-white">Get Started</span>
-                  <div className="w-5 h-5 rounded-full bg-slate-950/10 flex items-center justify-center">
+                  <span className="text-white font-bold tracking-wider">Get Started</span>
+                  <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
                     <ArrowRight className="w-3.5 h-3.5 text-white transition-transform group-hover:translate-x-0.5" />
                   </div>
                 </button>
               </div>
 
               {/* Connect Social bar with perfectly matching outlines */}
-              <div className="flex items-center gap-3 pt-6 border-t w-full transition-colors duration-500 border-white/5 dark:border-white/5">
-                <span className="text-[10px] uppercase font-mono tracking-widest text-slate-400 dark:text-slate-500 pr-2">Connect Studio:</span>
+              <div className="flex items-center gap-3 pt-6 border-t w-full border-slate-200 dark:border-white/10 transition-colors duration-300">
+                <span className="text-[11px] uppercase font-mono tracking-wider font-semibold text-slate-600 dark:text-slate-400 pr-2">Connect Studio:</span>
                 {[
                   { icon: Facebook, href: settings?.facebookLink || '#', label: 'Facebook Link' },
                   { icon: Twitter, href: settings?.twitterLink || '#', label: 'Twitter X Link' },
@@ -342,11 +342,7 @@ export default function Hero() {
                     key={idx}
                     href={s.href}
                     aria-label={s.label}
-                    className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all hover:scale-105 ${
-                      isDark 
-                        ? 'border-white/10 hover:border-white/30 bg-white/5 text-slate-400 hover:text-white' 
-                        : 'border-slate-200 hover:border-slate-350 bg-slate-50 text-slate-550 hover:text-slate-900'
-                    }`}
+                    className="w-10 h-10 rounded-full border border-slate-200 hover:border-brand-blue/50 bg-slate-100/80 hover:bg-white text-slate-700 hover:text-brand-blue dark:border-white/10 dark:hover:border-white/30 dark:bg-white/5 dark:text-slate-300 dark:hover:text-white flex items-center justify-center transition-all hover:scale-105 shadow-xs"
                   >
                     <s.icon className="w-4 h-4" />
                   </a>
@@ -372,19 +368,11 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.4 }}
-                    className={`relative border rounded-[28px] p-5 shadow-2xl hover:border-slate-400/20 transition-all group overflow-hidden ${
-                      isDark 
-                        ? 'bg-slate-950/50 border-white/10 hover:border-white/20 text-white' 
-                        : 'bg-white/80 border-slate-200 hover:border-slate-300 text-slate-900'
-                    }`}
+                    className="relative border rounded-[28px] p-5 shadow-xl hover:border-slate-300 dark:hover:border-white/20 transition-all group overflow-hidden bg-white dark:bg-slate-900/80 border-slate-200/90 dark:border-white/10"
                   >
                     {/* Arrow up-right external trigger indicator matching image layout exactly */}
                     <div className="absolute top-5 right-5 z-20">
-                      <div className={`w-10 h-10 rounded-full border flex items-center justify-center hover:scale-110 active:scale-95 transition-all backdrop-blur-md cursor-pointer ${
-                        isDark 
-                          ? 'bg-slate-900/80 border-white/15 text-white' 
-                          : 'bg-white/90 border-slate-200 shadow-sm text-slate-800'
-                      }`}>
+                      <div className="w-10 h-10 rounded-full border border-slate-200 dark:border-white/15 bg-slate-100/90 hover:bg-white dark:bg-slate-900/80 dark:hover:bg-slate-800 text-slate-800 dark:text-white flex items-center justify-center hover:scale-110 active:scale-95 transition-all backdrop-blur-md cursor-pointer shadow-xs">
                         <ArrowUpRight className={`w-5 h-5 ${
                           isDark ? themeColors[activeTheme].accentText.dark : themeColors[activeTheme].accentText.light
                         }`} />
@@ -392,21 +380,17 @@ export default function Hero() {
                     </div>
 
                     {/* Main image container with exact matching round edges */}
-                    <div className={`relative aspect-[3/2] w-full rounded-2xl overflow-hidden bg-slate-900 border ${
-                      isDark ? 'border-white/10' : 'border-slate-100 shadow-sm'
-                    }`}>
+                    <div className="relative aspect-[3/2] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-200/80 dark:border-white/10 shadow-xs">
                       <img
                         src={slides[activeSlide].image}
                         alt={`Design Showcase Exhibit ${activeSlide + 1}`}
-                        className="w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-[1200ms]"
+                        className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-[1200ms]"
                         referrerPolicy="no-referrer"
                       />
                     </div>
 
                     {/* Subtext mapping exactly under the visual card */}
-                    <p className={`text-xs leading-relaxed font-light mt-4 px-1 min-h-[50px] ${
-                      isDark ? 'text-slate-300' : 'text-slate-600'
-                    }`}>
+                    <p className="text-xs leading-relaxed font-normal mt-4 px-1 min-h-[48px] text-slate-700 dark:text-slate-300 font-sans">
                       {slides[activeSlide].text}
                     </p>
                   </motion.div>
@@ -440,11 +424,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className={`relative border rounded-[28px] p-6 shadow-2xl transition-all flex flex-col justify-between ${
-                  isDark 
-                    ? 'bg-gradient-to-br from-slate-900/80 to-slate-950/75 border-white/10 text-white hover:border-white/20' 
-                    : 'bg-gradient-to-br from-white to-slate-50/90 border-slate-200 text-slate-900 hover:border-slate-350 shadow-md'
-                }`}
+                className="relative border rounded-[28px] p-6 shadow-xl transition-all flex flex-col justify-between bg-slate-50/90 dark:bg-gradient-to-br dark:from-slate-900/80 dark:to-slate-950/75 border-slate-200/90 dark:border-white/10"
               >
                 <div className="space-y-4">
                   {/* Performance stars badge in top portion of metric card */}
@@ -452,18 +432,16 @@ export default function Hero() {
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
                       isDark ? themeColors[activeTheme].accentBg.dark : themeColors[activeTheme].accentBg.light
                     }`}>
-                      <Star className="w-4 h-4 fill-current text-amber-400" />
+                      <Star className="w-4 h-4 fill-current text-amber-500" />
                     </div>
-                    <span className={`text-[10px] font-mono tracking-widest font-bold uppercase ${
-                      isDark ? 'text-slate-400' : 'text-slate-500'
-                    }`}>Verified Performance</span>
+                    <span className="text-[10px] font-mono tracking-widest font-bold uppercase text-slate-600 dark:text-slate-400">
+                      Verified Performance
+                    </span>
                   </div>
 
                   {/* Dynamic Performance details */}
                   <div className="space-y-1">
-                    <h3 className={`text-4xl sm:text-5xl font-extrabold tracking-tighter ${
-                      isDark ? 'text-white' : 'text-slate-950'
-                    }`}>
+                    <h3 className="text-4xl sm:text-5xl font-black tracking-tight text-slate-950 dark:text-white">
                       {settings?.metricNumber || "50+"}
                     </h3>
                     <h4 className={`text-sm font-bold tracking-tight ${
@@ -473,22 +451,16 @@ export default function Hero() {
                     </h4>
                   </div>
 
-                  <p className={`text-xs leading-relaxed font-light ${
-                    isDark ? 'text-slate-400' : 'text-slate-600'
-                  }`}>
+                  <p className="text-xs leading-relaxed font-normal text-slate-700 dark:text-slate-400 font-sans">
                     {settings?.metricDescription || "Precision-engineered branding, flyers, and digital platforms across diverse industries."}
                   </p>
                 </div>
 
                 {/* Card footer details linking into client audit workflow */}
-                <div className={`mt-5 border-t pt-4 flex justify-between items-center ${
-                  isDark ? 'border-white/5' : 'border-slate-100'
-                }`}>
+                <div className="mt-5 border-t border-slate-200/80 dark:border-white/10 pt-4 flex justify-between items-center">
                   <button
                     onClick={() => scrollToSection('audit')}
-                    className={`flex items-center gap-2 text-xs font-bold transition-colors uppercase tracking-widest cursor-pointer ${
-                      isDark ? 'text-white hover:text-slate-300' : 'text-slate-900 hover:text-[#00A3FF]'
-                    }`}
+                    className="flex items-center gap-2 text-xs font-bold transition-colors uppercase tracking-widest cursor-pointer text-slate-900 hover:text-brand-blue dark:text-white dark:hover:text-brand-cyan"
                   >
                     <span>Get Started</span>
                     <ArrowUpRight className={`w-4 h-4 ${
@@ -496,11 +468,7 @@ export default function Hero() {
                     }`} />
                   </button>
                   
-                  <span className={`text-[8px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-md border ${
-                    isDark 
-                      ? 'bg-white/5 border-white/5 text-slate-500' 
-                      : 'bg-slate-100 border-slate-200/40 text-slate-600'
-                  }`}>
+                  <span className="text-[9px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-md border bg-slate-200/60 border-slate-300/60 text-slate-700 dark:bg-white/5 dark:border-white/10 dark:text-slate-400 font-semibold">
                     Secure Custody
                   </span>
                 </div>

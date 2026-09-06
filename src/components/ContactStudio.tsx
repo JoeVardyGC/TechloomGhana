@@ -130,59 +130,59 @@ export default function ContactStudio() {
   };
 
   return (
-    <section id="audit" className="py-24 bg-white dark:bg-slate-950 relative overflow-hidden transition-colors duration-300 border-t border-slate-100 dark:border-slate-850">
+    <section id="audit" className="py-16 sm:py-20 bg-white dark:bg-slate-950 relative overflow-hidden transition-colors duration-300 border-t border-slate-100 dark:border-slate-850">
       {/* Visual background accents (ibelick inspired) */}
       <div className="absolute top-[20%] right-[-100px] w-96 h-96 bg-brand-cyan/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-[-100px] w-80 h-80 bg-brand-blue/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
           <span className="text-xs font-bold tracking-widest text-brand-blue uppercase px-4 py-1.5 bg-brand-blue/5 dark:bg-brand-blue/10 rounded-full inline-block">
             Accra Studio & Global Consultation
           </span>
-          <h2 className="font-display font-[900] text-3xl sm:text-5xl text-slate-900 dark:text-white tracking-tight leading-tight">
+          <h2 className="font-display font-black text-3xl sm:text-5xl text-slate-900 dark:text-white tracking-tight leading-tight">
             Have a Project?{' '}
             <span className="blue-gradient-text font-black">Let's Connect</span>
           </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-lg font-light leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg font-normal leading-relaxed">
             Reach out directly by phone, WhatsApp, or email—or send us your project details below for a free creative consultation within 12 hours.
           </p>
         </div>
 
         {/* Master 2-Column Split Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* LEFT COLUMN: Coordinates, Direct Phone, WhatsApp & Social Impact (5 Cols) */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-4">
             
             {/* Quick Contact Channels Card */}
-            <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl border border-slate-800">
-              <div className="space-y-1">
-                <span className="block text-[10px] font-mono uppercase tracking-widest text-brand-cyan">
+            <div className="bg-slate-900 text-white rounded-2xl p-5 sm:p-6 space-y-4 shadow-xl border border-slate-800">
+              <div className="space-y-0.5">
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-brand-cyan font-bold">
                   Direct Communications
                 </span>
-                <h3 className="font-display font-extrabold text-xl text-white">
+                <h3 className="font-display font-bold text-lg text-white">
                   Get in Touch Instantly
                 </h3>
               </div>
 
-              <div className="space-y-3.5">
+              <div className="space-y-2.5">
                 
                 {/* 1. Direct Phone Call Button */}
                 <a
                   href={telUrl}
-                  className="group flex items-center gap-4 p-3.5 bg-slate-950/50 hover:bg-brand-blue/15 rounded-2xl border border-white/10 hover:border-brand-blue/40 transition-all cursor-pointer"
+                  className="group flex items-center gap-3.5 p-3 bg-slate-950/60 hover:bg-brand-blue/15 rounded-xl border border-white/10 hover:border-brand-blue/40 transition-all cursor-pointer"
                   title={`Call ${phone}`}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-brand-blue/15 flex items-center justify-center text-brand-cyan shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                    <Phone className="w-5 h-5 stroke-[1.8]" />
+                  <div className="w-9 h-9 rounded-lg bg-brand-blue/15 flex items-center justify-center text-brand-cyan shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                    <Phone className="w-4.5 h-4.5 stroke-[1.8]" />
                   </div>
-                  <div className="flex-1 leading-snug truncate">
+                  <div className="flex-1 leading-tight truncate">
                     <span className="block text-[9px] font-mono uppercase tracking-wider text-slate-400">Direct Phone Call</span>
-                    <span className="text-sm font-semibold text-white group-hover:text-brand-cyan transition-colors block truncate">{phone}</span>
+                    <span className="text-xs sm:text-sm font-semibold text-white group-hover:text-brand-cyan transition-colors block truncate">{phone}</span>
                   </div>
-                  <span className="text-[10px] font-mono font-bold bg-brand-blue/20 text-brand-cyan px-2 py-0.5 rounded uppercase shrink-0">Call Now</span>
+                  <span className="text-[9px] font-mono font-bold bg-brand-blue/20 text-brand-cyan px-2 py-0.5 rounded uppercase shrink-0">Call Now</span>
                 </a>
 
                 {/* 2. Direct WhatsApp Chat Button */}
@@ -190,42 +190,42 @@ export default function ContactStudio() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-3.5 bg-slate-950/50 hover:bg-emerald-500/15 rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all cursor-pointer"
+                  className="group flex items-center gap-3.5 p-3 bg-slate-950/60 hover:bg-emerald-500/15 rounded-xl border border-white/10 hover:border-emerald-500/40 transition-all cursor-pointer"
                   title="Chat on WhatsApp"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
-                    <MessageSquare className="w-5 h-5 stroke-[1.8]" />
+                  <div className="w-9 h-9 rounded-lg bg-emerald-500/15 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                    <MessageSquare className="w-4.5 h-4.5 stroke-[1.8]" />
                   </div>
-                  <div className="flex-1 leading-snug truncate">
+                  <div className="flex-1 leading-tight truncate">
                     <span className="block text-[9px] font-mono uppercase tracking-wider text-slate-400">WhatsApp Direct Line</span>
-                    <span className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors block truncate">{phone}</span>
+                    <span className="text-xs sm:text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors block truncate">{phone}</span>
                   </div>
-                  <span className="text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded uppercase shrink-0">Chat</span>
+                  <span className="text-[9px] font-mono font-bold bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded uppercase shrink-0">Chat</span>
                 </a>
 
                 {/* 3. Official Email with Click-To-Copy */}
-                <div className="group flex items-center gap-4 p-3.5 bg-slate-950/50 hover:bg-slate-800/80 rounded-2xl border border-white/10 hover:border-brand-blue/40 transition-all">
+                <div className="group flex items-center gap-3.5 p-3 bg-slate-950/60 hover:bg-slate-800/80 rounded-xl border border-white/10 hover:border-brand-blue/40 transition-all">
                   <a
                     href={`mailto:${email}`}
-                    className="w-10 h-10 rounded-xl bg-brand-blue/15 flex items-center justify-center text-brand-blue shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-colors cursor-pointer"
+                    className="w-9 h-9 rounded-lg bg-brand-blue/15 flex items-center justify-center text-brand-blue shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-colors cursor-pointer"
                     title={`Email ${email}`}
                   >
-                    <Mail className="w-5 h-5 stroke-[1.8]" />
+                    <Mail className="w-4.5 h-4.5 stroke-[1.8]" />
                   </a>
                   <a
                     href={`mailto:${email}`}
-                    className="flex-1 leading-snug truncate cursor-pointer"
+                    className="flex-1 leading-tight truncate cursor-pointer"
                   >
                     <span className="block text-[9px] font-mono uppercase tracking-wider text-slate-400">Official Email</span>
-                    <span className="text-sm font-semibold text-white group-hover:text-brand-cyan transition-colors block truncate">{email}</span>
+                    <span className="text-xs sm:text-sm font-semibold text-white group-hover:text-brand-cyan transition-colors block truncate">{email}</span>
                   </a>
                   <button
                     onClick={handleCopyEmail}
-                    className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-all cursor-pointer shrink-0"
+                    className="p-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-all cursor-pointer shrink-0"
                     title="Copy Email Address"
                     aria-label="Copy Email"
                   >
-                    {copiedEmail ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                    {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                   </button>
                 </div>
 
@@ -233,35 +233,35 @@ export default function ContactStudio() {
             </div>
 
             {/* Studio Physical Location & Hours */}
-            <div className="bg-slate-50 dark:bg-slate-900/60 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-brand-cyan/10 flex items-center justify-center text-brand-cyan shrink-0">
-                  <MapPin className="w-5 h-5" />
+            <div className="bg-slate-50/90 dark:bg-slate-900/60 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-5 space-y-3">
+              <div className="flex items-start gap-3.5">
+                <div className="w-9 h-9 rounded-lg bg-brand-cyan/10 flex items-center justify-center text-brand-cyan shrink-0">
+                  <MapPin className="w-4.5 h-4.5" />
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <h4 className="font-display font-bold text-sm text-slate-900 dark:text-white">Accra Studio Hub</h4>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">{location}</p>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed break-words">{location}</p>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-2 border-t border-slate-200/60 dark:border-slate-800 text-xs">
-                <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-amber-500" />
-                  {openingHours}
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-2.5 border-t border-slate-200/70 dark:border-slate-800 text-xs">
+                <span className="text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                  <span>{openingHours}</span>
                 </span>
-                <span className="font-mono text-[10px] font-bold text-brand-blue bg-brand-blue/5 dark:bg-brand-blue/10 px-2 py-0.5 rounded">
+                <span className="font-mono text-[10px] font-semibold text-brand-blue bg-brand-blue/5 dark:bg-brand-blue/10 px-2 py-0.5 rounded">
                   {avgResponseTime}
                 </span>
               </div>
             </div>
 
             {/* 10% Foundation Banner */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-brand-blue to-brand-cyan text-white rounded-3xl p-6 shadow-xl space-y-2">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold tracking-wider uppercase">
-                <Heart className="w-4 h-4 fill-white/30" />
+            <div className="relative overflow-hidden bg-gradient-to-br from-brand-blue to-brand-cyan text-white rounded-2xl p-4 sm:p-5 shadow-lg space-y-1.5">
+              <div className="flex items-center gap-2 text-[11px] font-mono font-bold tracking-wider uppercase">
+                <Heart className="w-3.5 h-3.5 fill-white/30" />
                 <span>10% Social Impact Investment</span>
               </div>
-              <p className="text-xs text-white/90 leading-relaxed font-light">
+              <p className="text-xs text-white/95 leading-relaxed font-normal">
                 {socialImpactText}
               </p>
             </div>
@@ -269,12 +269,12 @@ export default function ContactStudio() {
           </div>
 
           {/* RIGHT COLUMN: The Interactive Consultation Request Form (7 Cols) */}
-          <div className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 sm:p-10 shadow-xl relative">
-            <div className="mb-6 space-y-2">
-              <h3 className="font-display font-extrabold text-2xl text-slate-900 dark:text-white tracking-tight">
+          <div className="lg:col-span-7 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 p-6 sm:p-7 shadow-xl relative">
+            <div className="mb-5 space-y-1">
+              <h3 className="font-display font-bold text-xl sm:text-2xl text-slate-900 dark:text-white tracking-tight">
                 Request Free Brand Consultation
               </h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400 font-light leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-normal leading-relaxed">
                 Tell us about your brand goals or upcoming website launch. We'll review your project and get back to you with custom insights and a tailored timeline.
               </p>
             </div>
