@@ -83,284 +83,425 @@ export const SERVICES: Service[] = [
 
 export const PORTFOLIO: PortfolioItem[] = [
   {
-    "id": "elan-noir-flyer",
-    "title": "Élan Noir Exclusive Brand & Event Showcase",
-    "category": "Flyer Design",
-    "image": "/portfolio-assets/elan-noir-flyer.jpg",
-    "description": "High-impact luxury event and brand flyer crafted with sleek typography, deep contrasting tones, and modern editorial flair.",
-    "client": "Élan Noir Collection",
-    "duration": "1 Week",
-    "scope": [
-      "Flyer Design",
-      "Typography Curation",
-      "Social Media Poster",
-      "Editorial Layout"
-    ],
-    "challenge": "Élan Noir needed a sophisticated marketing asset that immediately conveyed elite luxury and distinguished their launch from ordinary party promotions.",
-    "solution": "Engineered a minimalist dark-mode poster layout utilizing refined sans-serif pairing, subtle geometric grid accents, and high-converting visual hierarchy.",
-    "extraImages": []
+    id: "elan-noir-flyer",
+    title: "Élan Noir Exclusive Salon & Braiding Studio",
+    category: "Flyer Design",
+    image: "/portfolio-assets/elan-noir-flyer.jpg",
+    description: "High-fashion unisex braiding, cornrows, and knotless styling promotional flyer designed for effortless elegance.",
+    client: "Élan Noir Studio",
+    duration: "3 Days",
+    scope: ["Flyer Design", "Beauty & Salon", "Editorial Layout"],
+    challenge: "Communicating luxury aesthetics and full-service unisex haircare.",
+    solution: "Crafted a rich dark-mode visual with vibrant pink accents, model photography, and clear service breakdown.",
+    extraImages: []
   },
   {
-    "id": "gourmet-food-flyer",
-    "title": "Savory Delights Gourmet Restaurant Promotion",
-    "category": "Flyer Design",
-    "image": "/portfolio-assets/food-flyer-design.jpg",
-    "description": "Mouth-watering, dynamic culinary flyer layout designed to drive takeout and dine-in orders across Accra.",
-    "client": "Savory Bites Ghana",
-    "duration": "3 Days",
-    "scope": [
-      "Culinary Flyer",
-      "Food Photography Styling",
-      "Social Media Ad",
-      "Discount Promo Layout"
-    ],
-    "challenge": "The restaurant needed to boost weekend order volume and highlight specialty dishes with vibrant, appetizing visuals.",
-    "solution": "Formulated a warm, rich culinary layout with bold pricing badges, clear call-to-actions, and focal food imagery that spiked engagement.",
-    "extraImages": []
-  },
-  {
-    "id": "ttu-wocom-janice-campaign",
-    "title": "TTU Women's Commissioner 2026 Leadership Campaign | Janice",
-    "category": "Campaign Design",
-    "image": "/portfolio-assets/ttu-wocom-26-main.jpg",
-    "description": "Comprehensive campus election brand identity and multi-stage campaign rollout formulated for TTU WOCOM 2026.",
-    "client": "Janice for TTU WOCOM",
-    "duration": "3 Weeks",
-    "scope": [
-      "Campaign Identity",
-      "Official Portraits",
-      "Policy Manifestos",
-      "Countdown Posters",
-      "Social Media Rollout"
-    ],
-    "challenge": "Janice required a strong, authentic visual identity that resonated across diverse student faculties and established leadership credibility.",
-    "solution": "Designed a vibrant purple-and-gold visual system featuring polished portraiture, empowering policy typography, and consistent multi-format campaign banners.",
-    "extraImages": [
+    id: "ttu-wocom-janice-campaign",
+    title: "TTU Women's Commissioner 2026 Leadership Campaign | Janice",
+    category: "Campaign Design",
+    image: "/portfolio-assets/ttu-wocom-26-main.jpg",
+    description: "Empowering female leadership with high-impact election posters, vetting announcements, and policy manifesto showcases.",
+    client: "Janice for TTU WOCOM",
+    duration: "2 Weeks",
+    scope: ["Campaign Identity", "Official Portraits", "Policy Manifestos", "Countdown Posters"],
+    challenge: "Establishing leadership credibility and high visibility across TTU faculties.",
+    solution: "Formulated a unified purple-and-gold visual identity with crisp portraiture and empowering typography.",
+    extraImages: [
       "/portfolio-assets/ttu-wocom-26-janice-official.jpg",
       "/portfolio-assets/ttu-wocom-26-janice-1.jpg",
       "/portfolio-assets/ttu-wocom-26-janice-2.jpg"
     ]
   },
   {
-    "id": "jessica-leadership-campaign",
-    "title": "Jessica Student Leadership & Vetting Day Campaign",
-    "category": "Campaign Design",
-    "image": "/portfolio-assets/jessica-leadership-main.jpg",
-    "description": "Complete election visual campaign suite spanning official candidacy announcement, vetting countdowns, and policy vision.",
-    "client": "Jessica Leadership Team",
-    "duration": "2 Weeks",
-    "scope": [
-      "Election Branding",
-      "Vetting Announcement",
-      "Policy Posters",
-      "Digital Campaign Assets"
-    ],
-    "challenge": "Stand out in a competitive student union race with distinctive, memorable visual assets that inspire student voter turnout.",
-    "solution": "Crafted a multi-part visual narrative with high-contrast portrait retouching, crisp campaign sloganeering, and energetic layout architecture.",
-    "extraImages": [
-      "/portfolio-assets/jessica-vetting-day.jpg",
+    id: "gnuts-tech-summit",
+    title: "GNUTS National Tech Summit & TVET Exhibition",
+    category: "Event Design",
+    image: "/portfolio-assets/gnuts-summit-banner-1.jpg",
+    description: "From skills to solutions: driving innovation and sustainable livelihood through TVET with national keynote leaders.",
+    client: "Ghana National Union of Technical Students (GNUTS)",
+    duration: "10 Days",
+    scope: ["National Summit", "TVET Education", "Speaker Banners", "Sponsor Showcase"],
+    challenge: "Packaging a multi-stakeholder national convention featuring government ministers, educators, and union delegates.",
+    solution: "Architected a cohesive green-and-gold visual theme with prominent speaker profiles and national sponsor attribution.",
+    extraImages: [
+      "/portfolio-assets/gnuts-summit-banner-2.jpg",
+      "/portfolio-assets/gnuts-choose-tvet.jpg",
+      "/portfolio-assets/gnuts-director-general.jpg"
+    ]
+  },
+  {
+    id: "bliss-elle-fashion",
+    title: "Bliss Elle Chic & Confident Modest Fashion Collection",
+    category: "Flyer Design",
+    image: "/portfolio-assets/bliss-elle-eid-luxury.jpg",
+    description: "Eid Ul-Adha luxury wardrobe collection and modest fashion promotional flyers highlighting style, elegance, and confidence.",
+    client: "Bliss Elle Ghana",
+    duration: "4 Days",
+    scope: ["Modest Fashion", "Luxury Boutique", "Eid Celebration", "E-Commerce Promo"],
+    challenge: "Designing festive holiday fashion campaigns that balance traditional modesty with high-end luxury appeal.",
+    solution: "Produced warm, inviting boutique compositions with regal typography, festive Eid Mubarak motifs, and direct WhatsApp ordering.",
+    extraImages: [
+      "/portfolio-assets/bliss-elle-portrait.jpg"
+    ]
+  },
+  {
+    id: "karim-abubakari-campaign",
+    title: "Abdul Karim Abubakari - Youth Development First Campaign",
+    category: "Political Design",
+    image: "/portfolio-assets/karim-abubakari-incoming.jpg",
+    description: "Vibrant political campaign posters mobilizing youth empowerment and regional grassroots leadership.",
+    client: "NDC Northern Regional Youth Wing",
+    duration: "1 Week",
+    scope: ["Political Campaign", "Youth Empowerment", "Election Branding", "Grassroots Mobilization"],
+    challenge: "Generating viral curiosity and anticipation ahead of official regional youth executive declaration.",
+    solution: "Deployed high-contrast teaser imagery with bold typography, symbolic umbrella motifs, and electric color gradients.",
+    extraImages: [
+      "/portfolio-assets/karim-abubakari-main.jpg"
+    ]
+  },
+  {
+    id: "royal-rangers-camp",
+    title: "Royal Rangers National Youth Camp Experience",
+    category: "Event Design",
+    image: "/portfolio-assets/royal-rangers-camp.jpg",
+    description: "Raised to serve and lead: a high-energy youth convention celebrating fellowship, leadership discipline, and spiritual growth.",
+    client: "Assemblies of God Sekondi District",
+    duration: "5 Days",
+    scope: ["Youth Camp", "Fellowship", "Conference Poster", "Outdoor Adventure"],
+    challenge: "Attracting youth and young men across the district with an adventurous, inspirational camp aesthetic.",
+    solution: "Structured dynamic signage-style event details with outdoor camp photography, Scripture callouts, and clean registration coordinates.",
+    extraImages: []
+  },
+  {
+    id: "jessica-leadership-campaign",
+    title: "Jessica Student Leadership & Vetting Day Campaign",
+    category: "Campaign Design",
+    image: "/portfolio-assets/jessica-vetting-day.jpg",
+    description: "Comprehensive 5-piece election campaign suite spanning vetting announcements, portrait banners, and manifesto points.",
+    client: "Jessica for SRC",
+    duration: "2 Weeks",
+    scope: ["Campus Politics", "Election Campaign", "Vetting Posters", "Policy Manifesto"],
+    challenge: "Building an authentic, inspiring candidate narrative that stood out in high-pressure campus elections.",
+    solution: "Designed crisp, elegant portrait posters highlighting character, policy priorities, and campaign accountability.",
+    extraImages: [
       "/portfolio-assets/jessica-vetting-series-1.jpg",
+      "/portfolio-assets/jessica-leadership-main.jpg",
       "/portfolio-assets/jessica-campaign-portrait.jpg",
       "/portfolio-assets/jessica-campaign-policy.jpg"
     ]
   },
   {
-    "id": "royal-rangers-camp",
-    "title": "Royal Rangers National Youth Camp Experience",
-    "category": "Event Design",
-    "image": "/portfolio-assets/royal-rangers-camp.jpg",
-    "description": "Dynamic, adventure-themed national camp promotional flyer engineering youth participation across regions.",
-    "client": "Royal Rangers Ghana",
-    "duration": "1 Week",
-    "scope": [
-      "Event Poster",
-      "Registration Campaign",
-      "Print Banners",
-      "Social Media Teasers"
-    ],
-    "challenge": "Inspire young leaders and parents with an adventurous, structured, and trustworthy camp branding concept.",
-    "solution": "Integrated bold wilderness and camp motifs with professional typography, clear registration details, and national flag accents.",
-    "extraImages": []
+    id: "gourmet-food-flyer",
+    title: "Frandees Yogo & Gourmet Food Visual Promotion",
+    category: "Flyer Design",
+    image: "/portfolio-assets/frandees-yogo.jpg",
+    description: "Vibrant culinary marketing flyers designed to stimulate appetite and boost fast-casual dining orders.",
+    client: "Frandees Delights",
+    duration: "3 Days",
+    scope: ["Culinary Marketing", "Food Flyer", "Social Media Promo", "Appetite Appeal"],
+    challenge: "Promoting refreshing treats and specialty menu items with eye-catching culinary energy.",
+    solution: "Used bold fruit textures, delicious product cutouts, and punchy promotional badge layouts.",
+    extraImages: [
+      "/portfolio-assets/food-flyer-design.jpg"
+    ]
   },
   {
-    "id": "mufti-homecoming-campaign",
-    "title": "Mufti Homecoming & Academic Milestone Celebration",
-    "category": "Event Design",
-    "image": "/portfolio-assets/mufti-homecoming.jpg",
-    "description": "Vibrant celebratory event flyer celebrating student community achievements and homecoming festivities.",
-    "client": "Mufti Association",
-    "duration": "5 Days",
-    "scope": [
-      "Homecoming Banner",
-      "Exams Finale Flyer",
-      "Commemorative Posters",
-      "Instagram Stories"
-    ],
-    "challenge": "Unify student energy around end-of-semester celebration and homecoming networking events.",
-    "solution": "Blended dynamic stage lighting gradients with bold 3D typography and structured event timelines.",
-    "extraImages": [
+    id: "kaea-ashanti-regional",
+    title: "KAEA Regional Leadership Conference & Official Apparel",
+    category: "Branding & Identity",
+    image: "/portfolio-assets/kaea-region-final.jpg",
+    description: "Holistic brand identity and event suite encompassing regional conference flyers and branded apparel mockups.",
+    client: "KAEA National Association",
+    duration: "10 Days",
+    scope: ["Corporate Identity", "Regional Conference", "Apparel Design", "Merchandise Mockup"],
+    challenge: "Delivering a cohesive visual presentation for both digital event marketing and physical merchandise.",
+    solution: "Created authoritative badge emblems, clean conference announcement posters, and realistic 3D t-shirt apparel mockups.",
+    extraImages: [
+      "/portfolio-assets/kaea-region-2.jpg",
+      "/portfolio-assets/kaea-tshirt-mockup.jpg",
+      "/portfolio-assets/kaea-congratulations.jpg"
+    ]
+  },
+  {
+    id: "honorable-fynn-philanthropy",
+    title: "Comrade & Hon. Fynn Public Service & Milestone Series",
+    category: "Political Design",
+    image: "/portfolio-assets/honorable-fynn-main.jpg",
+    description: "Civic leadership media series highlighting community health donations, milestone celebrations, and public service.",
+    client: "Hon. Fynn Foundation",
+    duration: "1 Week",
+    scope: ["Civic Leadership", "Philanthropy", "Public Affairs", "Community Welfare"],
+    challenge: "Documenting grassroots charity donations and milestone events with dignity and civic reverence.",
+    solution: "Formulated distinguished editorial flyers with deep regal color palettes and professional photojournalistic styling.",
+    extraImages: [
+      "/portfolio-assets/comrade-fynn-donations.jpg",
+      "/portfolio-assets/honorable-fynn-bday.jpg",
+      "/portfolio-assets/honorable-fynn-thanks.jpg"
+    ]
+  },
+  {
+    id: "immanuel-leadership-series",
+    title: "Immanuel Student Governance & Vision Series",
+    category: "Campaign Design",
+    image: "/portfolio-assets/immanuel-numbered-1.jpg",
+    description: "Numbered policy campaign posters establishing candidate credibility and structural campus reform.",
+    client: "Immanuel for Student Representative",
+    duration: "1 Week",
+    scope: ["Manifesto Series", "Student Union", "Policy Posters", "Voter Education"],
+    challenge: "Presenting multiple complex policy planks in a readable, sequential series that students would easily digest.",
+    solution: "Employed bold numbered badge sequencing, clean typography hierarchy, and approachable leadership portraiture.",
+    extraImages: [
+      "/portfolio-assets/immanuel-numbered-2.jpg",
+      "/portfolio-assets/immanuel-leadership-main.jpg"
+    ]
+  },
+  {
+    id: "tein-national-tertiary",
+    title: "TEIN Tertiary Institutions Network Political Campaign",
+    category: "Political Design",
+    image: "/portfolio-assets/tein-final-poster.jpg",
+    description: "High-octane student political mobilization graphics uniting campus branches across the country.",
+    client: "TEIN Ghana",
+    duration: "5 Days",
+    scope: ["Tertiary Network", "Mobilization", "Party Graphics", "Student Politics"],
+    challenge: "Creating electrifying campaign posters for university youth rallies.",
+    solution: "Engineered bold diagonal layouts, iconic party iconography, and rallying slogan banners.",
+    extraImages: [
+      "/portfolio-assets/tein-variation-2.jpg",
+      "/portfolio-assets/tein-variation-4.jpg"
+    ]
+  },
+  {
+    id: "mufti-academic-celebration",
+    title: "Mufti Academic Completion & Exam Farewell Series",
+    category: "Event Design",
+    image: "/portfolio-assets/mufti-homecoming.jpg",
+    description: "Celebratory graduation, homecoming, and academic examination farewell flyers full of optimism and prestige.",
+    client: "Mufti Student Council",
+    duration: "4 Days",
+    scope: ["Graduation", "Academic Milestone", "Campus Event", "Farewell Flyer"],
+    challenge: "Commemorating hard-earned academic success with celebratory sophistication.",
+    solution: "Infused golden laurel elements, graduation mortarboard themes, and proud celebratory typography.",
+    extraImages: [
       "/portfolio-assets/mufti-exams-finale.jpg"
     ]
   },
   {
-    "id": "immanuel-leadership-campaign",
-    "title": "Immanuel Student Governance & Vision Campaign",
-    "category": "Campaign Design",
-    "image": "/portfolio-assets/immanuel-leadership-main.jpg",
-    "description": "Professional political campaign design series reinforcing student governance, integrity, and proactive leadership.",
-    "client": "Immanuel Campaign Secretariat",
-    "duration": "2 Weeks",
-    "scope": [
-      "Campaign Identity",
-      "Manifesto Series",
-      "Social Media Graphics",
-      "Print Posters"
-    ],
-    "challenge": "Communicate serious governance principles in an approachable, engaging, and authoritative visual design.",
-    "solution": "Designed high-contrast portrait layouts framed with strategic blue and gold accents and concise manifesto talking points.",
-    "extraImages": [
-      "/portfolio-assets/immanuel-numbered-1.jpg",
-      "/portfolio-assets/immanuel-numbered-2.jpg"
+    id: "barima-executive-profile",
+    title: "Barima Executive Personal Brand & Civic Profile",
+    category: "Branding & Identity",
+    image: "/portfolio-assets/barima-profile-main.jpg",
+    description: "Sleek executive personal branding posters communicating poise, vision, and corporate statesmanship.",
+    client: "Barima Leadership Consultancy",
+    duration: "5 Days",
+    scope: ["Executive Identity", "Personal Branding", "Corporate Profile", "Thought Leadership"],
+    challenge: "Positioning an executive leader with contemporary elegance and institutional gravitas.",
+    solution: "Used studio portraiture, minimalist framing, and deep navy-and-gold chromatic tones.",
+    extraImages: [
+      "/portfolio-assets/barima-profile-portrait.jpg"
     ]
   },
   {
-    "id": "fo-intent-declaration",
-    "title": "F.O Official Declaration of Intent Campaign",
-    "category": "Political Design",
-    "image": "/portfolio-assets/fo-intent-declaration.jpg",
-    "description": "High-authority political intent declaration flyer establishing candidacy and leadership credentials.",
-    "client": "F.O Campaign Organization",
-    "duration": "4 Days",
-    "scope": [
-      "Intent Declaration",
-      "Campaign Slogan Layout",
-      "Social Media Graphics",
-      "PR Flyers"
-    ],
-    "challenge": "Launch a high-impact political candidacy announcement with immediate stature and gravitas.",
-    "solution": "Framed official portraiture with dignified national color accents, commanding typography, and sharp manifesto slogans.",
-    "extraImages": []
+    id: "techloom-gadget-promo",
+    title: "TechLoom Digital Hub & Premium Gadget Store Adverts",
+    category: "Social Media Design",
+    image: "/portfolio-assets/gadget-store-flyer.jpg",
+    description: "High-converting commercial advertising banners for electronics, smartphone deals, and agency creative services.",
+    client: "TechLoom Gadgets",
+    duration: "1 Week",
+    scope: ["Electronics Ad", "Social Media Marketing", "Product Flyer", "Tech Retail"],
+    challenge: "Showcasing modern smartphones and accessories in eye-catching, high-converting digital ad layouts.",
+    solution: "Implemented neon 3D lighting, crisp product renders, and immediate contact action badges.",
+    extraImages: [
+      "/portfolio-assets/techloom-brand-ad-1.jpg",
+      "/portfolio-assets/techloom-brand-ad-2.jpg",
+      "/portfolio-assets/techloom-brand-ad-3.jpg"
+    ]
   },
   {
-    "id": "babana-incoming-event",
-    "title": "Babana Live Music & Concert Experience",
-    "category": "Event Design",
-    "image": "/portfolio-assets/babana-incoming.jpg",
-    "description": "Electrifying concert and nightlife promotional flyer with neon lighting and immersive festival energy.",
-    "client": "Babana Entertainment",
-    "duration": "3 Days",
-    "scope": [
-      "Concert Flyer",
-      "Artist Feature Posters",
-      "Ticketing Graphics",
-      "Motion Teasers"
-    ],
-    "challenge": "Build viral social buzz for a major live performance and concert night in Accra.",
-    "solution": "Used neon cyan and magenta glow effects, dynamic depth of field, and bold artist branding that captured social feeds.",
-    "extraImages": []
+    id: "adom-praise-gospel",
+    title: "Adom Praise Gospel Praise & Worship Concert",
+    category: "Event Design",
+    image: "/portfolio-assets/adom-praise-main.jpg",
+    description: "Divine music concert posters crafted with uplifting lighting effects and sacred typographic majesty.",
+    client: "Adom Praise Ministries",
+    duration: "6 Days",
+    scope: ["Gospel Concert", "Live Music", "Praise & Worship", "Church Event"],
+    challenge: "Evoking deep spiritual reverence while energizing community attendance for a mega music concert.",
+    solution: "Formulated heavenly atmospheric glow effects, prominent minister portraits, and clear schedule details.",
+    extraImages: [
+      "/portfolio-assets/adom-praise-poster.jpg"
+    ]
   },
   {
-    "id": "aggrey-august-announcement",
-    "title": "Aggrey Memorial Monthly Milestone Announcement",
-    "category": "Graphic Design",
-    "image": "/portfolio-assets/aggrey-august-flyer.jpg",
-    "description": "Polished academic and institutional announcement flyer designed for campus communications.",
-    "client": "Aggrey Memorial Hall",
-    "duration": "2 Days",
-    "scope": [
-      "Notice Design",
-      "Campus Poster",
-      "Social Communication"
-    ],
-    "challenge": "Communicate official hall milestones clearly while keeping student engagement high.",
-    "solution": "Clean typographic hierarchy, official crest integration, and balanced white space for readability.",
-    "extraImages": []
+    id: "high-school-invasion",
+    title: "High School Invasion Nationwide Youth Festival",
+    category: "Event Design",
+    image: "/portfolio-assets/high-school-invasion.jpg",
+    description: "High-energy nationwide campus music festival and youth creative rave flyer pulsating with urban nightlife vibes.",
+    client: "Invasion Entertainment",
+    duration: "4 Days",
+    scope: ["Youth Rave", "Music Festival", "Entertainment", "Urban Culture"],
+    challenge: "Creating a viral, electric design that appeals directly to modern teenagers and creative youth.",
+    solution: "Combined explosive neon typography, distressed urban textures, and vibrant festival lighting.",
+    extraImages: []
   },
   {
-    "id": "naspa-regional-celebration",
-    "title": "NASPA Greater Accra Leadership Recognition Flyer",
-    "category": "Graphic Design",
-    "image": "/portfolio-assets/naspa-regional-bday.jpg",
-    "description": "Executive-level birthday and institutional leadership commemorative design for National Service personnel.",
-    "client": "NASPA Greater Accra",
-    "duration": "2 Days",
-    "scope": [
-      "Executive Flyer",
-      "Social Media Recognition",
-      "Corporate Milestone"
-    ],
-    "challenge": "Honor association leadership with executive refinement and professional association branding.",
-    "solution": "Curated elegant gold-foil textures, balanced corporate colors, and crisp typographic tributes.",
-    "extraImages": []
+    id: "prayer-forum-identity",
+    title: "The Prayer Forum Brand Identity & Annual Gathering",
+    category: "Branding & Identity",
+    image: "/portfolio-assets/prayer-forum-1.jpg",
+    description: "Reverent identity marks and spiritual conference media developed for nationwide Christian fellowship.",
+    client: "The Prayer Forum",
+    duration: "1 Week",
+    scope: ["Ministry Identity", "Spiritual Conference", "Faith Branding", "Symbolic Logo"],
+    challenge: "Establishing a recognizable spiritual emblem and unified visual identity for nationwide prayer gatherings.",
+    solution: "Crafted a bespoke symbolic identity mark and complementary flyer templates in reverent gold and deep blue.",
+    extraImages: [
+      "/portfolio-assets/prayer-forum-2.jpg"
+    ]
   },
   {
-    "id": "bruce-leadership-flyer",
-    "title": "Bruce Student Representative Council Campaign",
-    "category": "Campaign Design",
-    "image": "/portfolio-assets/bruce-leadership.jpg",
-    "description": "Energetic, modern student leadership flyer designed to rally youthful grassroots momentum.",
-    "client": "Bruce for SRC",
-    "duration": "3 Days",
-    "scope": [
-      "SRC Poster",
-      "Candidacy Announcement",
-      "Social Media Distribution"
-    ],
-    "challenge": "Connect with everyday campus students through an accessible yet highly competent design.",
-    "solution": "High-energy color framing, relatable portraiture, and bold tagline emphasizing student empowerment.",
-    "extraImages": []
+    id: "oriental-installment-furniture",
+    title: "Oriental Living Luxury Furnishings & Installment Promo",
+    category: "Flyer Design",
+    image: "/portfolio-assets/oriental-installment-1.jpg",
+    description: "Sophisticated interior decor promotional posters detailing flexible installment purchasing terms.",
+    client: "Oriental Living",
+    duration: "5 Days",
+    scope: ["Interior Design", "Furniture Sale", "Commercial Flyer", "Retail Financing"],
+    challenge: "Presenting luxury furniture packages and consumer financing plans clearly without visual clutter.",
+    solution: "Paired premium interior staging photography with clean pricing cards and distinct contact callouts.",
+    extraImages: [
+      "/portfolio-assets/oriental-installment-2.jpg"
+    ]
   },
   {
-    "id": "ekua-special-celebration",
-    "title": "Ekua Special Luxury Celebration & Birthday Flyer",
-    "category": "Graphic Design",
-    "image": "/portfolio-assets/ekua-special-celebration.jpg",
-    "description": "Chic, highly aesthetic personal branding and birthday celebratory flyer with couture elegance.",
-    "client": "Ekua Celebrations",
-    "duration": "2 Days",
-    "scope": [
-      "Celebration Flyer",
-      "Portrait Enhancement",
-      "VIP Invitation Layout"
-    ],
-    "challenge": "Create a lavish, VIP aesthetic reflecting personal style, glamor, and celebratory joy.",
-    "solution": "Soft golden glows, delicate serifs, and high-fashion photographic balance.",
-    "extraImages": []
+    id: "mugeez-entertainment-live",
+    title: "Mugeez Live Concert & Star Appearance",
+    category: "Event Design",
+    image: "/portfolio-assets/mugeez-live-1.jpg",
+    description: "Afrobeat concert poster radiating headline celebrity charisma and concert excitement.",
+    client: "Star Entertainment Ghana",
+    duration: "4 Days",
+    scope: ["Afrobeat Concert", "Celebrity Night", "Music Flyer", "Nightlife Event"],
+    challenge: "Capturing the electrifying star power of an internationally celebrated Ghanaian music icon.",
+    solution: "Designed high-contrast celebrity portraiture with vibrant club lighting and premium VIP ticketing info.",
+    extraImages: [
+      "/portfolio-assets/mugeez-live-2.jpg"
+    ]
   },
   {
-    "id": "night-of-worship-gospel",
-    "title": "Night of Worship & Divine Praise Gospel Concert",
-    "category": "Event Design",
-    "image": "/portfolio-assets/night-of-worship-gospel.jpg",
-    "description": "Atmospheric, reverent gospel worship event flyer engineered for massive community turnout.",
-    "client": "Grace Worship Ministry",
-    "duration": "4 Days",
-    "scope": [
-      "Gospel Concert Flyer",
-      "Church Banner",
-      "Minister Profiles",
-      "Social Ads"
-    ],
-    "challenge": "Capture the sacred and spiritual atmosphere of an upcoming all-night praise concert.",
-    "solution": "Deep celestial blues, golden rays, and clean schedule formatting highlighting ministers and worship leaders.",
-    "extraImages": []
+    id: "ekua-special-celebration",
+    title: "Ekua Special Royal Birthday Luxury Celebration",
+    category: "Graphic Design",
+    image: "/portfolio-assets/ekua-special-red.jpg",
+    description: "Prestigious birthday celebration announcements styled with royal scarlet, shimmering gold accents, and bespoke typography.",
+    client: "Ekua Private Client",
+    duration: "3 Days",
+    scope: ["Luxury Celebration", "Royal Birthday", "Private Event", "Gold Typography"],
+    challenge: "Designing a deeply personalized milestone celebration flyer fit for high-society gala invitations.",
+    solution: "Utilized rich crimson velvet backgrounds, intricate gold filigree, and royal serif titling.",
+    extraImages: [
+      "/portfolio-assets/ekua-special-gold.jpg"
+    ]
   },
   {
-    "id": "registration-launch-flyer",
-    "title": "Annual Summit & Registration Portal Official Announcement",
-    "category": "Flyer Design",
-    "image": "/portfolio-assets/registration-portal-flyer.jpg",
-    "description": "Clear, conversion-focused registration launch flyer facilitating rapid digital signups.",
-    "client": "Apex Initiative",
-    "duration": "2 Days",
-    "scope": [
-      "Registration Notice",
-      "QR Code / Portal Callout",
-      "Digital Flyer"
-    ],
-    "challenge": "Prompt immediate audience action to register before capacity thresholds are reached.",
-    "solution": "Prominent CTA buttons, structured date/venue grid, and mobile-optimized layouts.",
-    "extraImages": []
+    id: "bruce-src-presidential",
+    title: "Bruce Student Representative Council Presidential Campaign",
+    category: "Campaign Design",
+    image: "/portfolio-assets/bruce-src-campaign.jpg",
+    description: "Bold, forward-looking student union campaign poster projecting leadership transparency, integrity, and progress.",
+    client: "Bruce for SRC",
+    duration: "5 Days",
+    scope: ["SRC President", "Student Elections", "Leadership", "Voter Mobilization"],
+    challenge: "Conveying energetic presidential authority and pragmatic solutions to student body concerns.",
+    solution: "Engineered bold primary color contrast with inspiring candidate stance and crisp campaign branding.",
+    extraImages: []
+  },
+  {
+    id: "zulaiha-safe-journey",
+    title: "Zulaiha Safe Journey & Community Farewell Tribute",
+    category: "Graphic Design",
+    image: "/portfolio-assets/zulaiha-safe-journey.jpg",
+    description: "Heartfelt farewell announcements and travel blessing posters crafted with warmth and grace.",
+    client: "Zulaiha Community Circle",
+    duration: "3 Days",
+    scope: ["Farewell Tribute", "Blessings", "Commemoration", "Community Event"],
+    challenge: "Creating an emotionally touching and visually elegant departure announcement.",
+    solution: "Framed gentle portraiture with soft angelic clouds and prayerful typographic sentiments.",
+    extraImages: [
+      "/portfolio-assets/zulaiha-tribute.jpg"
+    ]
+  },
+  {
+    id: "d-rux-luxury-streetwear",
+    title: "D-Rux Luxury Urban Streetwear Lookbook Drop",
+    category: "Flyer Design",
+    image: "/portfolio-assets/d-rux-clothing.jpg",
+    description: "Cutting-edge urban fashion promo blending street culture aesthetics with premium couture styling.",
+    client: "D-Rux Lux Clothing",
+    duration: "4 Days",
+    scope: ["Streetwear Drop", "Apparel Marketing", "Urban Culture", "Fashion Brand"],
+    challenge: "Launching a modern streetwear brand drop that commands attention among fashion-forward youth.",
+    solution: "Applied brutalist layout principles, gritty typography, and high-fashion model poses.",
+    extraImages: []
+  },
+  {
+    id: "fo-declaration-intent",
+    title: "F.O Official Declaration of Intent Campaign",
+    category: "Political Design",
+    image: "/portfolio-assets/fo-intent-main.jpg",
+    description: "High-impact civic aspiration posters announcing candidate candidacy and visionary leadership intent.",
+    client: "F.O Campaign Secretariat",
+    duration: "5 Days",
+    scope: ["Declaration of Intent", "Political Launch", "Campaign", "Public Office"],
+    challenge: "Signaling official political readiness with solemn gravitas and broad constituency appeal.",
+    solution: "Composed authoritative full-bleed political portraits with clean institutional badge branding.",
+    extraImages: [
+      "/portfolio-assets/fo-intent-alternate.jpg"
+    ]
+  },
+  {
+    id: "sltf-education-awareness",
+    title: "Students Loan Trust Fund (SLTF) Educational Campaign",
+    category: "Graphic Design",
+    image: "/portfolio-assets/sltf-awareness.jpg",
+    description: "Public education and student financial assistance posters promoting accessible tertiary learning.",
+    client: "Students Loan Trust Fund Ghana",
+    duration: "1 Week",
+    scope: ["Higher Education", "Public Fund", "Student Support", "Government Initiative"],
+    challenge: "Communicating student loan opportunities and application procedures clearly to undergraduates.",
+    solution: "Structured approachable campus imagery with step-by-step benefit callouts and official trust fund insignia.",
+    extraImages: []
+  },
+  {
+    id: "george-ambassador-advocacy",
+    title: "Hon. George Opare Addo Civic Ambassadorial Profile",
+    category: "Political Design",
+    image: "/portfolio-assets/george-ambassador-1.jpg",
+    description: "Youth development and national civic representation posters championing youth inclusion and empowerment.",
+    client: "Civic Youth Ambassador Secretariat",
+    duration: "4 Days",
+    scope: ["Civic Ambassador", "Youth Leadership", "Public Office", "National Representation"],
+    challenge: "Showcasing civic statesmanship and dedication to Ghanaian youth empowerment.",
+    solution: "Paired dignified leadership photography with the national colors and empowering civic quotes.",
+    extraImages: [
+      "/portfolio-assets/george-ambassador-2.jpg"
+    ]
+  },
+  {
+    id: "mc-kobby-live-hosting",
+    title: "MC Kobby Event Hosting & Master of Ceremonies",
+    category: "Event Design",
+    image: "/portfolio-assets/mc-kobby-hosting.jpg",
+    description: "High-energy entertainment flyer for Ghana's premier corporate host, wedding emcee, and concert master of ceremonies.",
+    client: "MC Kobby Entertainment",
+    duration: "3 Days",
+    scope: ["Master of Ceremonies", "Wedding Emcee", "Event Entertainment", "Host Promotion"],
+    challenge: "Positioning an entertainer as a versatile, charismatic host for both high-end corporate galas and energetic concerts.",
+    solution: "Infused spotlight stage lighting, confident tuxedo styling, and bold gold-embossed typography.",
+    extraImages: []
   }
 ];
 

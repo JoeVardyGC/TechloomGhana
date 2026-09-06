@@ -86,10 +86,10 @@ export default function ProjectDetailsPage() {
       <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-brand-blue/5 via-indigo-500/2 to-transparent pointer-events-none" />
       <div className="absolute top-1/4 left-0 w-96 h-96 bg-brand-blue/3 blur-3xl rounded-full pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* TOP BAR: Navigation & Quick Actions */}
-        <div className="mb-8 flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-5">
+        <div className="mb-6 flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-4">
           <button
             onClick={handleBack}
             id="details-back-to-list-btn"
@@ -102,7 +102,7 @@ export default function ProjectDetailsPage() {
           <div className="flex items-center gap-3">
             <button
               onClick={handleShare}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-slate-800 text-xs font-bold transition shadow-2xs cursor-pointer"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200/80 dark:border-slate-800 text-xs font-bold transition shadow-2xs cursor-pointer"
             >
               {shareCopied ? (
                 <Check className="w-4 h-4 text-emerald-500 animate-scale" />
@@ -117,7 +117,7 @@ export default function ProjectDetailsPage() {
                 href={selectedProject.projectLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-blue hover:bg-brand-blue/90 text-white text-xs font-bold transition shadow-sm cursor-pointer"
+                className="flex items-center gap-2 px-4 py-1.5 rounded-xl bg-brand-blue hover:bg-brand-blue/90 text-white text-xs font-bold transition shadow-sm cursor-pointer"
               >
                 <span>Live Link</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -126,45 +126,47 @@ export default function ProjectDetailsPage() {
           </div>
         </div>
 
-        {/* MINIMAL HEADER: Clean Title, Client Tag & Commission Callout */}
-        <div className="mb-10 max-w-3xl space-y-4">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-brand-blue/10 text-brand-blue dark:bg-brand-blue/20 dark:text-blue-300 px-3 py-1 rounded-full border border-brand-blue/20">
-              {selectedProject.category}
-            </span>
-
-            {selectedProject.client && (
-              <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-800">
-                @ {selectedProject.client}
+        {/* MINIMAL HEADER: Clean Title, Tags & Quick Actions */}
+        <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="space-y-2 max-w-3xl">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-brand-blue/10 text-brand-blue dark:bg-brand-blue/20 dark:text-blue-300 px-2.5 py-0.5 rounded-full border border-brand-blue/20">
+                {selectedProject.category}
               </span>
-            )}
 
-            {slideshowImages.length > 1 && (
-              <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                {slideshowImages.length} Campaign Posters
-              </span>
-            )}
+              {selectedProject.client && (
+                <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300 px-2.5 py-0.5 rounded-full border border-slate-200 dark:border-slate-800">
+                  @ {selectedProject.client}
+                </span>
+              )}
+
+              {slideshowImages.length > 1 && (
+                <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2.5 py-0.5 rounded-full border border-emerald-500/20 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  {slideshowImages.length} Related Posters
+                </span>
+              )}
+            </div>
+
+            <h1 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 dark:text-white tracking-tight leading-tight">
+              {selectedProject.title}
+            </h1>
+
+            <p className="text-slate-600 dark:text-slate-300 text-sm font-light leading-relaxed max-w-2xl">
+              {selectedProject.description}
+            </p>
           </div>
 
-          <h1 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white tracking-tight leading-tight">
-            {selectedProject.title}
-          </h1>
-
-          <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg font-light leading-relaxed">
-            {selectedProject.description}
-          </p>
-
-          {/* Quick Direct Conversion CTA Buttons */}
-          <div className="pt-2 flex flex-wrap items-center gap-3">
+          {/* Quick Action CTA */}
+          <div className="flex items-center gap-3 shrink-0">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+              className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 fill-current" />
-              <span>Order Similar Design on WhatsApp</span>
+              <span>Order on WhatsApp</span>
             </a>
 
             <button
@@ -182,28 +184,28 @@ export default function ProjectDetailsPage() {
                   }
                 }, 200);
               }}
-              className="inline-flex items-center gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-blue dark:hover:border-brand-blue text-slate-700 dark:text-slate-200 font-bold text-sm px-5 py-3 rounded-xl shadow-xs transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-blue dark:hover:border-brand-blue text-slate-700 dark:text-slate-200 font-bold text-xs px-4 py-2.5 rounded-xl shadow-2xs transition-all cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 text-brand-blue" />
+              <Sparkles className="w-3.5 h-3.5 text-brand-blue" />
               <span>Request Custom Proposal</span>
             </button>
           </div>
         </div>
 
-        {/* HERO SHOWCASE CANVAS: High-Definition, Uncropped Flyer Presentation */}
+        {/* HERO SHOWCASE CANVAS: Enlarged, High-Definition Flyer Presentation */}
         <div className="space-y-6 mb-16">
-          <div className="relative rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xl max-w-4xl mx-auto">
+          <div className="relative rounded-3xl overflow-hidden bg-slate-950/[0.03] dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 shadow-2xl w-full mx-auto">
             
             {/* Center Canvas */}
-            <div className="relative flex items-center justify-center p-3 sm:p-6 bg-slate-950/2 dark:bg-slate-950/40">
+            <div className="relative flex items-center justify-center p-2 sm:p-6 md:p-8 min-h-[500px]">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeSlideIndex}
-                  initial={{ opacity: 0, scale: 0.98 }}
+                  initial={{ opacity: 0, scale: 0.99 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.25 }}
-                  className="relative group cursor-zoom-in flex items-center justify-center"
+                  exit={{ opacity: 0, scale: 0.99 }}
+                  transition={{ duration: 0.2 }}
+                  className="relative group cursor-zoom-in flex items-center justify-center w-full"
                   onClick={() => setLightboxIndex(activeSlideIndex)}
                 >
                   <img
@@ -213,12 +215,12 @@ export default function ProjectDetailsPage() {
                       (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
                     }}
                     referrerPolicy="no-referrer"
-                    className="max-h-[75vh] sm:max-h-[82vh] w-auto h-auto object-contain rounded-2xl shadow-sm block transition-transform duration-300 group-hover:scale-[1.01]"
+                    className="max-h-[82vh] sm:max-h-[88vh] md:max-h-[90vh] w-auto h-auto max-w-full object-contain rounded-2xl shadow-xl block transition-transform duration-300 group-hover:scale-[1.01]"
                   />
 
                   {/* Zoom Badge on Hover */}
                   <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/20 transition-all rounded-2xl flex items-center justify-center pointer-events-none">
-                    <span className="opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all text-[11px] font-bold uppercase tracking-wider font-mono bg-slate-950/80 text-white px-3.5 py-2 rounded-xl backdrop-blur-md flex items-center gap-2 border border-white/10 shadow-lg">
+                    <span className="opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all text-[11px] font-bold uppercase tracking-wider font-mono bg-slate-950/85 text-white px-4 py-2 rounded-xl backdrop-blur-md flex items-center gap-2 border border-white/15 shadow-xl">
                       <Maximize2 className="w-3.5 h-3.5 text-brand-blue" />
                       Click to View Full Size
                     </span>
@@ -231,7 +233,7 @@ export default function ProjectDetailsPage() {
                 <>
                   <button
                     onClick={() => setActiveSlideIndex((prev) => (prev === 0 ? slideshowImages.length - 1 : prev - 1))}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white backdrop-blur-md transition flex items-center justify-center border border-white/10 shadow-lg cursor-pointer"
+                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white backdrop-blur-md transition flex items-center justify-center border border-white/10 shadow-lg cursor-pointer"
                     aria-label="Previous exhibit"
                   >
                     <ChevronLeft className="w-5 h-5" />
@@ -239,7 +241,7 @@ export default function ProjectDetailsPage() {
 
                   <button
                     onClick={() => setActiveSlideIndex((prev) => (prev === slideshowImages.length - 1 ? 0 : prev + 1))}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white backdrop-blur-md transition flex items-center justify-center border border-white/10 shadow-lg cursor-pointer"
+                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-slate-900/80 hover:bg-slate-900 text-white backdrop-blur-md transition flex items-center justify-center border border-white/10 shadow-lg cursor-pointer"
                     aria-label="Next exhibit"
                   >
                     <ChevronRight className="w-5 h-5" />
@@ -258,7 +260,7 @@ export default function ProjectDetailsPage() {
 
           {/* MULTI-ASSET FILMSTRIP: Quick Clickable Variation Switcher */}
           {slideshowImages.length > 1 && (
-            <div className="max-w-4xl mx-auto space-y-2">
+            <div className="max-w-6xl mx-auto space-y-2">
               <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold px-1">
                 <span>Campaign Variations ({slideshowImages.length} Posters)</span>
                 <span>Select to Preview</span>
@@ -292,7 +294,7 @@ export default function ProjectDetailsPage() {
         </div>
 
         {/* BOTTOM CONVERSION FOOTER STRIP */}
-        <div className="max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-slate-900 to-slate-950 text-white p-8 sm:p-10 border border-slate-800 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+        <div className="max-w-6xl mx-auto rounded-3xl bg-gradient-to-br from-slate-900 to-slate-950 text-white p-8 sm:p-10 border border-slate-800 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div className="space-y-1.5 max-w-md">
             <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white">
               Need a design like this for your project?
