@@ -107,13 +107,13 @@ export default function Portfolio() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
-                  className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white shadow-sm hover:shadow-xl border border-slate-100 transition-all"
+                  className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white dark:bg-slate-900 shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-800 transition-all duration-300"
                   onClick={() => {
                     setSelectedProject(project);
                   }}
                 >
                   {/* Image Wrap */}
-                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-950">
                     <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-slate-950/30 z-10 transition-colors duration-300" />
                     <img
                       src={project.image}
@@ -126,24 +126,45 @@ export default function Portfolio() {
                     />
                     {/* Category Pill Tag */}
                     <div className="absolute top-4 left-4 z-20">
-                      <span className="text-[10px] font-bold uppercase tracking-widest bg-white/95 backdrop-blur-sm text-slate-900 px-3 py-1.5 rounded-full shadow-sm">
+                      <span className="text-[10px] font-bold uppercase tracking-widest bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-slate-900 dark:text-white px-3 py-1.5 rounded-full shadow-sm">
                         {project.category}
                       </span>
                     </div>
+
+                    {/* Multi-asset Series Counter or Client Tag */}
+                    {project.extraImages && project.extraImages.length > 0 ? (
+                      <div className="absolute top-4 right-4 z-20">
+                        <span className="text-[9px] font-mono tracking-wider font-bold uppercase inline-flex items-center gap-1.5 bg-slate-950/75 text-white px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 shadow-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse" />
+                          {project.extraImages.length + 1} Designs
+                        </span>
+                      </div>
+                    ) : project.client ? (
+                      <div className="absolute top-4 right-4 z-20">
+                        <span className="text-[9px] font-mono tracking-wider font-bold uppercase block bg-slate-950/65 text-slate-100 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 shadow-sm">
+                          @ {project.client}
+                        </span>
+                      </div>
+                    ) : null}
                   </div>
 
                   {/* Info Box */}
-                  <div className="p-6 sm:p-8 flex items-end justify-between gap-4">
-                    <div className="space-y-1.5">
-                      <h3 className="font-display font-extrabold text-lg sm:text-xl text-slate-900 group-hover:text-brand-blue transition-colors">
+                  <div className="p-6 sm:p-7 flex items-end justify-between gap-4">
+                    <div className="space-y-1">
+                      {project.client && (
+                        <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block">
+                          @ {project.client}
+                        </span>
+                      )}
+                      <h3 className="font-display font-extrabold text-base sm:text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-blue transition-colors line-clamp-1">
                         {project.title}
                       </h3>
-                      <p className="text-slate-500 text-xs sm:text-sm line-clamp-2 font-light leading-relaxed">
+                      <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm line-clamp-2 font-light leading-relaxed">
                         {project.description}
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center shrink-0 border border-slate-100 group-hover:bg-brand-blue group-hover:text-white transition-all shadow-sm">
-                      <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-white transition-colors" />
+                    <div className="w-9 h-9 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 border border-slate-100 dark:border-slate-700 group-hover:bg-brand-blue group-hover:text-white transition-all shadow-sm">
+                      <ChevronRight className="w-4 h-4 text-slate-600 dark:text-slate-300 group-hover:text-white transition-colors" />
                     </div>
                   </div>
                 </motion.div>
