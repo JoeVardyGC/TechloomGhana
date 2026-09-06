@@ -252,7 +252,7 @@ export default function ProjectDetailsPage() {
                     exit={{ opacity: 0, scale: 0.97 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=1200&q=80';
+                      (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
                     }}
                     referrerPolicy="no-referrer"
                     className="max-w-full max-h-[70vh] sm:max-h-[75vh] md:max-h-[80vh] w-auto h-auto object-contain block z-10 transition-all duration-300 rounded-3xl"

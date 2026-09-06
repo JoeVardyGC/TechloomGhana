@@ -113,16 +113,16 @@ export default function Portfolio() {
                   }}
                 >
                   {/* Image Wrap */}
-                  <div className="relative w-full overflow-hidden bg-slate-100">
-                    <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 z-10 transition-colors duration-300" />
+                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-900">
+                    <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-slate-950/30 z-10 transition-colors duration-300" />
                     <img
                       src={project.image}
                       alt={project.title}
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=1200&q=80';
+                        (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
                       }}
                       referrerPolicy="no-referrer"
-                      className="w-full h-auto block transition-transform duration-500 ease-out group-hover:scale-105"
+                      className="w-full h-full object-cover object-top block transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                     {/* Category Pill Tag */}
                     <div className="absolute top-4 left-4 z-20">
