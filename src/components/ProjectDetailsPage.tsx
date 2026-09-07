@@ -9,8 +9,7 @@ import {
   Share2,
   Check,
   Maximize2,
-  MessageCircle,
-  Sparkles
+  MessageCircle
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -126,70 +125,21 @@ export default function ProjectDetailsPage() {
           </div>
         </div>
 
-        {/* MINIMAL HEADER: Clean Title, Tags & Quick Actions */}
-        <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-2 max-w-3xl">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-brand-blue/10 text-brand-blue dark:bg-brand-blue/20 dark:text-blue-300 px-2.5 py-0.5 rounded-full border border-brand-blue/20">
-                {selectedProject.category}
-              </span>
-
-              {selectedProject.client && (
-                <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300 px-2.5 py-0.5 rounded-full border border-slate-200 dark:border-slate-800">
-                  @ {selectedProject.client}
-                </span>
-              )}
-
-              {slideshowImages.length > 1 && (
-                <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2.5 py-0.5 rounded-full border border-emerald-500/20 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  {slideshowImages.length} Related Posters
-                </span>
-              )}
-            </div>
-
-            <h1 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 dark:text-white tracking-tight leading-tight">
-              {selectedProject.title}
-            </h1>
-
-            <p className="text-slate-600 dark:text-slate-300 text-sm font-light leading-relaxed max-w-2xl">
-              {selectedProject.description}
-            </p>
+        {/* MINIMAL HEADER: Clean Title & Description */}
+        <div className="mb-6 space-y-2 max-w-4xl">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono tracking-wider font-bold uppercase bg-brand-blue/10 text-brand-blue dark:bg-brand-blue/20 dark:text-blue-300 px-2.5 py-0.5 rounded-full border border-brand-blue/20">
+              {selectedProject.category}
+            </span>
           </div>
 
-          {/* Quick Action CTA */}
-          <div className="flex items-center gap-3 shrink-0">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
-            >
-              <MessageCircle className="w-4 h-4 fill-current" />
-              <span>Order on WhatsApp</span>
-            </a>
+          <h1 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-slate-900 dark:text-white tracking-tight leading-tight">
+            {selectedProject.title}
+          </h1>
 
-            <button
-              onClick={() => {
-                setSelectedProject(null);
-                setCurrentView('home');
-                setTimeout(() => {
-                  const auditSec = document.getElementById('audit');
-                  if (auditSec) {
-                    const offset = 80;
-                    const bodyRect = document.body.getBoundingClientRect().top;
-                    const elementRect = auditSec.getBoundingClientRect().top;
-                    const elementPosition = elementRect - bodyRect;
-                    window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
-                  }
-                }, 200);
-              }}
-              className="inline-flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-brand-blue dark:hover:border-brand-blue text-slate-700 dark:text-slate-200 font-bold text-xs px-4 py-2.5 rounded-xl shadow-2xs transition-all cursor-pointer"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-brand-blue" />
-              <span>Request Custom Proposal</span>
-            </button>
-          </div>
+          <p className="text-slate-600 dark:text-slate-300 text-sm font-light leading-relaxed max-w-3xl">
+            {selectedProject.description}
+          </p>
         </div>
 
         {/* HERO SHOWCASE CANVAS: Enlarged, High-Definition Flyer Presentation */}

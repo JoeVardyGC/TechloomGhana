@@ -193,21 +193,6 @@ export default function PortfolioPage() {
                       </span>
                     </div>
 
-                    {/* Multi-asset Series Counter or Client Tag */}
-                    {project.extraImages && project.extraImages.length > 0 ? (
-                      <div className="absolute top-4 right-4 z-20">
-                        <span className="text-[9px] font-mono tracking-wider font-bold uppercase inline-flex items-center gap-1.5 bg-slate-950/75 text-white px-2.5 py-1.5 rounded-lg backdrop-blur-md border border-white/10 shadow-xs">
-                          <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse" />
-                          {project.extraImages.length + 1} Designs
-                        </span>
-                      </div>
-                    ) : project.client ? (
-                      <div className="absolute top-4 right-4 z-20">
-                        <span className="text-[9px] font-mono tracking-wider font-bold uppercase block bg-slate-900/60 text-slate-100 px-2.5 py-1 rounded-md backdrop-blur-md border border-white/5">
-                          @ {project.client}
-                        </span>
-                      </div>
-                    ) : null}
                   </div>
 
                   {/* Project Info Panel */}

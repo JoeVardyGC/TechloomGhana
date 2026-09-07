@@ -717,6 +717,58 @@ export const PORTFOLIO: PortfolioItem[] = [
     challenge: "Creating an electrifying, high-energy fitness and gym branding flyer that inspires clients to pursue peak physical conditioning.",
     solution: "Utilized high-intensity fire and amber lighting effects, dynamic athletic photography, and clear service highlights covering personal training, supplements, and nutrition plans.",
     scope: ["Fitness & Wellness Branding", "Athlete Marketing", "Promotional Poster"]
+  },
+  {
+    id: "gnuts-official-portal-web",
+    title: "GNUTS - Ghana National Union of Technical Students Official Web Portal",
+    category: "Website Design",
+    image: "/portfolio-assets/gnuts-national-portal-web.jpg",
+    extraImages: [],
+    client: "GNUTS National Secretariat",
+    description: "Modern, high-performance national union portal connecting over 200,000+ technical and TVET university students across Ghana with real-time news, scholarship portals, and leadership governance.",
+    projectLink: "https://gnutsorg.vercel.app/",
+    challenge: "GNUTS required an authoritative, modern digital headquarters capable of unifying communications across 10+ technical universities, distributing scholarship announcements, and handling high-traffic student queries.",
+    solution: "Engineered a lightning-fast, mobile-first responsive web portal featuring institutional statistics, executive event management, automated announcements, and dynamic student opportunity listings.",
+    scope: ["UI/UX Architecture", "Frontend Web Engineering", "CMS Integration", "Performance Optimization"]
+  },
+  {
+    id: "bliss-elle-ghana-ecommerce-web",
+    title: "Maison Bliss Elle Ghana - Luxury Footwear & Handbags E-Commerce",
+    category: "Website Design",
+    image: "/portfolio-assets/bliss-elle-ghana-ecommerce-web.jpg",
+    extraImages: [],
+    client: "Bliss Elle Ghana (Accra \u2022 Kumasi)",
+    description: "Bespoke digital luxury storefront for sovereign footwears and handbags, delivering an opulent shopping journey for high-end fashion clientele in Accra and Kumasi.",
+    projectLink: "https://blisselleghana.netlify.app/",
+    challenge: "Creating an ethereal, ultra-luxury digital buying experience that reflects high-fashion haute couture aesthetics while ensuring fast catalogue loading and seamless ordering.",
+    solution: "Crafted a dark emerald brand aesthetic featuring bespoke typography, fluid micro-interactions, curated product galleries, and streamlined multi-currency direct ordering.",
+    scope: ["Luxury E-Commerce UI/UX", "Brand Digital Experience", "Responsive Web Design", "Product Catalogue"]
+  },
+  {
+    id: "adaptation-family-sports-web",
+    title: "Adaptation Family - Global Sports Betting Community & Predictions Hub",
+    category: "Website Design",
+    image: "/portfolio-assets/adaptation-family-portal-web.jpg",
+    extraImages: [],
+    client: "Adaptation Family Media",
+    description: "Dynamic sports community portal and analytics hub serving 90,000+ engaged followers with daily verified match predictions, booking codes, and VIP member community access.",
+    projectLink: "https://adaptationfamily.com/",
+    challenge: "Translating a viral TikTok sports media presence with millions of viewers into a credible, centralized web portal that delivers rapid match analysis and booking codes daily.",
+    solution: "Built an electrifying stadium-themed digital destination featuring live prediction feeds, booking code archives, transparent win-rate metrics, and automated community joining funnels.",
+    scope: ["High-Engagement Web Portal", "Sports Analytics Dashboard", "Community Funnel", "Mobile Responsive UI"]
+  },
+  {
+    id: "deon-recreational-centre-web",
+    title: "Deon Recreational Centre (DRC) - Premier Outdoor Adventure Oasis",
+    category: "Website Design",
+    image: "/portfolio-assets/deon-research-consult-web.jpg",
+    extraImages: [],
+    client: "Deon Recreational Centre (DRC Sakumono)",
+    description: "Engaging hospitality and outdoor adventure destination website showcasing pro Go-Karts, quad biking, poolside dining, live schedule clock, and group reservation bookings.",
+    projectLink: "https://deonrc.netlify.app/",
+    challenge: "Providing Accra families and event organizers with an intuitive online hub to explore 10+ activities, view real-time operating hours, check activity pricing, and reserve venue bookings.",
+    solution: "Developed an interactive leisure portal equipped with an active destination clock, dynamic open/closed status indicator, restaurant menus, attraction showcases, and direct reservation CTAs.",
+    scope: ["Hospitality Web Design", "Activity Desk & Pricing UI", "Interactive Facility Maps", "Direct Booking Engine"]
   }
 ];
 

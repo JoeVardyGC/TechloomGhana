@@ -131,31 +131,11 @@ export default function Portfolio() {
                       </span>
                     </div>
 
-                    {/* Multi-asset Series Counter or Client Tag */}
-                    {project.extraImages && project.extraImages.length > 0 ? (
-                      <div className="absolute top-4 right-4 z-20">
-                        <span className="text-[9px] font-mono tracking-wider font-bold uppercase inline-flex items-center gap-1.5 bg-slate-950/75 text-white px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 shadow-sm">
-                          <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse" />
-                          {project.extraImages.length + 1} Designs
-                        </span>
-                      </div>
-                    ) : project.client ? (
-                      <div className="absolute top-4 right-4 z-20">
-                        <span className="text-[9px] font-mono tracking-wider font-bold uppercase block bg-slate-950/65 text-slate-100 px-2.5 py-1.5 rounded-full backdrop-blur-md border border-white/10 shadow-sm">
-                          @ {project.client}
-                        </span>
-                      </div>
-                    ) : null}
                   </div>
 
                   {/* Info Box */}
                   <div className="p-6 sm:p-7 flex items-end justify-between gap-4">
                     <div className="space-y-1">
-                      {project.client && (
-                        <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block">
-                          @ {project.client}
-                        </span>
-                      )}
                       <h3 className="font-display font-extrabold text-base sm:text-lg text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-blue transition-colors line-clamp-1">
                         {project.title}
                       </h3>
