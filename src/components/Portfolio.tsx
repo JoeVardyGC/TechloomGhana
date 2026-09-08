@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronRight, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ChevronRight, ArrowUpRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { PortfolioItem } from '../types';
 import WebProjectCard from './WebProjectCard';
@@ -144,10 +144,9 @@ export default function Portfolio() {
         {/* Header Block */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-blue/5 dark:bg-brand-blue/10 border border-brand-blue/10 rounded-full">
-              <Sparkles className="w-3.5 h-3.5 text-brand-blue" />
+            <div className="inline-flex items-center px-3 py-1 bg-brand-blue/5 dark:bg-brand-blue/10 border border-brand-blue/10 rounded-full">
               <span className="text-xs font-bold tracking-widest text-brand-blue uppercase">
-                Selected Work
+                Our Works
               </span>
             </div>
             <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 dark:text-white tracking-tight leading-tight">
