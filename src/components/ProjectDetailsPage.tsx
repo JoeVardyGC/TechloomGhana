@@ -3,14 +3,15 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
   ExternalLink, 
-  X, 
-  ChevronRight, 
+  ChevronRight,
   ChevronLeft,
   Share2,
   Check,
   Maximize2
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import ProgressiveImage from './ProgressiveImage';
+import LightboxModal from './LightboxModal';
 
 export default function ProjectDetailsPage() {
   const { portfolio, selectedProject, setSelectedProject, currentView, setCurrentView, showToast } = useApp();
@@ -23,22 +24,6 @@ export default function ProjectDetailsPage() {
     window.scrollTo({ top: 0, behavior: 'instant' });
     setActiveSlideIndex(0);
   }, [selectedProject]);
-
-  // Support left/right arrow keys for lightbox navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (lightboxIndex === null) return;
-      if (e.key === 'ArrowRight') {
-        handleLightboxNext();
-      } else if (e.key === 'ArrowLeft') {
-        handleLightboxPrev();
-      } else if (e.key === 'Escape') {
-        setLightboxIndex(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxIndex]);
 
   if (!selectedProject) return null;
 
@@ -65,16 +50,6 @@ export default function ProjectDetailsPage() {
     }).catch(() => {
       showToast("Failed to copy link.", "error");
     });
-  };
-
-  const handleLightboxNext = () => {
-    if (lightboxIndex === null) return;
-    setLightboxIndex((prev) => (prev === null || prev === slideshowImages.length - 1 ? 0 : prev + 1));
-  };
-
-  const handleLightboxPrev = () => {
-    if (lightboxIndex === null) return;
-    setLightboxIndex((prev) => (prev === null || prev === 0 ? slideshowImages.length - 1 : prev - 1));
   };
 
   const whatsappMessage = encodeURIComponent(
@@ -161,13 +136,10 @@ export default function ProjectDetailsPage() {
                   className="relative group cursor-zoom-in flex items-center justify-center w-full"
                   onClick={() => setLightboxIndex(activeSlideIndex)}
                 >
-                  <img
+                  <ProgressiveImage
                     src={slideshowImages[activeSlideIndex] || selectedProject.image}
                     alt={`${selectedProject.title} Exhibit ${activeSlideIndex + 1}`}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
-                    }}
-                    referrerPolicy="no-referrer"
+                    wrapperClassName="max-h-[82vh] sm:max-h-[88vh] md:max-h-[90vh] flex items-center justify-center"
                     className="max-h-[82vh] sm:max-h-[88vh] md:max-h-[90vh] w-auto h-auto max-w-full object-contain rounded-2xl shadow-xl block transition-transform duration-300 group-hover:scale-[1.01]"
                   />
 
@@ -175,7 +147,7 @@ export default function ProjectDetailsPage() {
                   <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/20 transition-all rounded-2xl flex items-center justify-center pointer-events-none">
                     <span className="opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all text-[11px] font-bold uppercase tracking-wider font-mono bg-slate-950/85 text-white px-4 py-2 rounded-xl backdrop-blur-md flex items-center gap-2 border border-white/15 shadow-xl">
                       <Maximize2 className="w-3.5 h-3.5 text-brand-blue" />
-                      Click to View Full Size
+                      Click to View Full Size &amp; Zoom
                     </span>
                   </div>
                 </motion.div>
@@ -236,11 +208,11 @@ export default function ProjectDetailsPage() {
                         : 'border-slate-200 dark:border-slate-800 opacity-60 hover:opacity-100'
                     }`}
                   >
-                    <img
+                    <ProgressiveImage
                       src={img}
                       alt={`Variation ${idx + 1}`}
+                      wrapperClassName="w-full h-full"
                       className="w-full h-full object-cover object-top"
-                      referrerPolicy="no-referrer"
                     />
                     <span className="absolute bottom-1 right-1 text-[9px] font-mono font-bold bg-black/80 text-white px-1.5 py-0.5 rounded-sm">
                       {selectedProject.category === 'Website Design' ? `S${idx + 1}` : `#${idx + 1}`}
@@ -307,13 +279,10 @@ export default function ProjectDetailsPage() {
                     className="w-72 sm:w-80 shrink-0 snap-start group cursor-pointer bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col border border-slate-100 dark:border-slate-800 hover:border-brand-blue/30"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-950">
-                      <img
+                      <ProgressiveImage
                         src={p.image}
                         alt={p.title}
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
-                        }}
-                        referrerPolicy="no-referrer"
+                        wrapperClassName="w-full h-full"
                         className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute top-3 left-3">
@@ -381,120 +350,18 @@ export default function ProjectDetailsPage() {
       </div>
 
       {/* LIGHTBOX FULL SCREEN INTERACTIVE THEATER MODAL */}
-      <AnimatePresence>
-        {lightboxIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] bg-slate-950/98 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6"
-            onClick={() => setLightboxIndex(null)}
-          >
-            {/* Top Lightbox Bar */}
-            <div className="flex items-center justify-between gap-4 w-full text-white z-10 p-2 sm:p-4 bg-slate-950/40 backdrop-blur-xs rounded-2xl">
-              <div className="flex items-center gap-3">
-                <span className="text-[10px] font-mono bg-brand-blue px-3 py-1 rounded-md font-bold uppercase tracking-wider">
-                  Theater Mode
-                </span>
-                <span className="text-xs font-bold text-slate-300 hidden sm:inline-block">
-                  {selectedProject.title}
-                </span>
-              </div>
-
-              {/* Theater Mode counter */}
-              <span className="text-xs font-mono font-bold text-slate-400">
-                Exhibit {lightboxIndex + 1} of {slideshowImages.length}
-              </span>
-
-              <button
-                onClick={() => setLightboxIndex(null)}
-                className="p-2 rounded-full bg-white/5 text-white hover:bg-white/10 hover:scale-105 active:scale-95 transition-all cursor-pointer border border-white/10 flex items-center justify-center"
-                aria-label="Close Lightbox"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Immersive Slide Canvas */}
-            <div className="relative w-full flex-1 flex items-center justify-center p-4">
-              {slideshowImages.length > 1 && (
-                <>
-                  {/* Left arrow controls */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleLightboxPrev();
-                    }}
-                    className="absolute left-2 sm:left-4 z-50 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white transition flex items-center justify-center cursor-pointer active:scale-95"
-                    aria-label="Previous exhibit"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-
-                  {/* Right arrow controls */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleLightboxNext();
-                    }}
-                    className="absolute right-2 sm:right-4 z-50 w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white transition flex items-center justify-center cursor-pointer active:scale-95"
-                    aria-label="Next exhibit"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </>
-              )}
-
-              {/* Centered Image */}
-              <motion.div
-                key={lightboxIndex}
-                initial={{ scale: 0.96, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.96, opacity: 0 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="max-w-6xl max-h-[75vh] sm:max-h-[80vh] overflow-hidden rounded-2xl relative border border-slate-800 shadow-2xl bg-slate-950 flex items-center justify-center"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <img 
-                  src={slideshowImages[lightboxIndex] || selectedProject.image} 
-                  alt={`Enlarged exhibit frame #${lightboxIndex + 1}`} 
-                  className="max-w-full max-h-[75vh] sm:max-h-[80vh] object-contain block mx-auto rounded-xl"
-                  referrerPolicy="no-referrer"
-                />
-              </motion.div>
-            </div>
-
-            {/* Bottom filmstrip thumbnail row inside Lightbox */}
-            {slideshowImages.length > 1 && (
-              <div 
-                className="w-full flex justify-center py-4 bg-slate-950/50 backdrop-blur-xs border-t border-slate-900/60 z-10 px-4"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="flex gap-2.5 overflow-x-auto max-w-4xl scrollbar-thin py-1 select-none">
-                  {slideshowImages.map((img, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setLightboxIndex(idx)}
-                      className={`relative w-14 h-10 rounded-md overflow-hidden border shrink-0 transition cursor-pointer ${
-                        lightboxIndex === idx 
-                          ? 'border-brand-blue ring-1 ring-brand-blue/30 scale-102 opacity-100' 
-                          : 'border-transparent opacity-40 hover:opacity-100'
-                      }`}
-                    >
-                      <img 
-                        src={img} 
-                        alt={`Lightbox Filmstrip Thumbnail ${idx + 1}`} 
-                        className="w-full h-full object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {lightboxIndex !== null && (
+        <LightboxModal
+          isOpen={lightboxIndex !== null}
+          onClose={() => setLightboxIndex(null)}
+          images={slideshowImages}
+          initialIndex={lightboxIndex}
+          projectTitle={selectedProject.title}
+          projectCategory={selectedProject.category}
+          clientName={selectedProject.client}
+          projectLink={selectedProject.projectLink}
+        />
+      )}
     </div>
   );
 }

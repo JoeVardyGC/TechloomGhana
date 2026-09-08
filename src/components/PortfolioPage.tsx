@@ -5,12 +5,13 @@ import {
   ChevronRight, 
   SlidersHorizontal,
   FolderOpen,
-  Globe,
-  Palette
+  Maximize2
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { PortfolioItem } from '../types';
 import WebProjectCard from './WebProjectCard';
+import ProgressiveImage from './ProgressiveImage';
+import LightboxModal from './LightboxModal';
 
 export default function PortfolioPage() {
   const { 
@@ -23,6 +24,7 @@ export default function PortfolioPage() {
   } = useApp();
 
   const [activeFilter, setActiveFilter] = useState<string>(portfolioInitialFilter || 'All');
+  const [lightboxProject, setLightboxProject] = useState<PortfolioItem | null>(null);
 
   // Sync with portfolioInitialFilter when navigated from homepage buttons
   useEffect(() => {
@@ -296,23 +298,32 @@ export default function PortfolioPage() {
                       >
                         {/* Image wrapper */}
                         <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-950">
-                          <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-slate-950/25 z-10 transition-colors duration-300" />
-                          <img
+                          <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-slate-950/20 z-10 transition-colors duration-300 pointer-events-none" />
+                          <ProgressiveImage
                             src={project.image}
                             alt={project.title}
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
-                            }}
-                            referrerPolicy="no-referrer"
+                            wrapperClassName="w-full h-full"
                             className="w-full h-full object-cover object-top block transition-transform duration-500 ease-out group-hover:scale-105"
                           />
                           
                           {/* Category tag */}
-                          <div className="absolute top-4 left-4 z-20">
+                          <div className="absolute top-4 left-4 z-20 pointer-events-none">
                             <span className="text-[10px] font-bold uppercase tracking-widest bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-slate-900 dark:text-white px-3.5 py-1.5 rounded-lg shadow-xs">
                               {project.category}
                             </span>
                           </div>
+
+                          {/* Quick Zoom / Uncropped Lightbox Action Button */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setLightboxProject(project);
+                            }}
+                            title="Quick Zoom & Uncropped View"
+                            className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-200 p-2.5 rounded-xl bg-slate-950/80 hover:bg-brand-blue text-white backdrop-blur-md shadow-lg cursor-pointer transform translate-y-1 group-hover:translate-y-0"
+                          >
+                            <Maximize2 className="w-4 h-4" />
+                          </button>
                         </div>
 
                         {/* Project Info Panel */}
@@ -407,21 +418,30 @@ export default function PortfolioPage() {
                             }}
                           >
                             <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-950">
-                              <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-slate-950/25 z-10 transition-colors duration-300" />
-                              <img
+                              <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-slate-950/20 z-10 transition-colors duration-300 pointer-events-none" />
+                              <ProgressiveImage
                                 src={project.image}
                                 alt={project.title}
-                                onError={(e) => {
-                                  (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
-                                }}
-                                referrerPolicy="no-referrer"
+                                wrapperClassName="w-full h-full"
                                 className="w-full h-full object-cover object-top block transition-transform duration-500 ease-out group-hover:scale-105"
                               />
-                              <div className="absolute top-4 left-4 z-20">
+                              <div className="absolute top-4 left-4 z-20 pointer-events-none">
                                 <span className="text-[10px] font-bold uppercase tracking-widest bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-slate-900 dark:text-white px-3.5 py-1.5 rounded-lg shadow-xs">
                                   {project.category}
                                 </span>
                               </div>
+
+                              {/* Quick Zoom / Uncropped Lightbox Action Button */}
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setLightboxProject(project);
+                                }}
+                                title="Quick Zoom & Uncropped View"
+                                className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-all duration-200 p-2.5 rounded-xl bg-slate-950/80 hover:bg-brand-blue text-white backdrop-blur-md shadow-lg cursor-pointer transform translate-y-1 group-hover:translate-y-0"
+                              >
+                                <Maximize2 className="w-4 h-4" />
+                              </button>
                             </div>
 
                             <div className="p-6 sm:p-8 flex items-center justify-between gap-6 flex-grow bg-white dark:bg-slate-900">
@@ -448,6 +468,19 @@ export default function PortfolioPage() {
           </div>
         )}
       </div>
+
+      {/* Uncropped High-Definition Aspect-Ratio Lightbox Modal */}
+      {lightboxProject && (
+        <LightboxModal
+          isOpen={!!lightboxProject}
+          onClose={() => setLightboxProject(null)}
+          images={[lightboxProject.image, ...(lightboxProject.extraImages || [])]}
+          projectTitle={lightboxProject.title}
+          projectCategory={lightboxProject.category}
+          clientName={lightboxProject.client}
+          projectLink={lightboxProject.projectLink}
+        />
+      )}
     </div>
   );
 }

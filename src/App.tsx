@@ -21,6 +21,7 @@ import Footer from './components/Footer';
 import ScrollReveal from './components/ScrollReveal';
 import PortfolioPage from './components/PortfolioPage';
 import ProjectDetailsPage from './components/ProjectDetailsPage';
+import ClientLogosMarquee from './components/ClientLogosMarquee';
 
 const AdminConsole = lazy(() => import('./components/AdminConsole'));
 
@@ -94,6 +95,9 @@ export default function App() {
           <>
             {/* Section 1: Hero Landing Arena */}
             <Hero />
+
+            {/* Section 1.5: Sticky / Elegant Institutional Client Logos Marquee */}
+            <ClientLogosMarquee />
 
             {/* Section 2: Agency Specialized Services Grid */}
             <ScrollReveal>
