@@ -71,6 +71,7 @@ export interface ContactSettings {
   heroCardImage4?: string;
   heroCardText4?: string;
   selectedHomepagePortfolios?: string[];
+  selectedHomepageWebPortfolios?: string[];
 }
 
 export interface WhyChooseItem {

@@ -101,6 +101,8 @@ interface AppContextType {
   setCurrentView: (view: AppView) => void;
   selectedProject: PortfolioItem | null;
   setSelectedProject: (project: PortfolioItem | null) => void;
+  portfolioInitialFilter: string | null;
+  setPortfolioInitialFilter: (filter: string | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -228,6 +230,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const [currentView, setCurrentViewState] = useState<AppView>(getInitialView);
   const [selectedProject, setSelectedProjectState] = useState<PortfolioItem | null>(null);
+  const [portfolioInitialFilter, setPortfolioInitialFilter] = useState<string | null>(null);
 
   const setCurrentView = (view: AppView) => {
     setCurrentViewState(view);
@@ -987,7 +990,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
       currentView,
       setCurrentView,
       selectedProject,
-      setSelectedProject
+      setSelectedProject,
+      portfolioInitialFilter,
+      setPortfolioInitialFilter
     }}>
       {children}
       <ToastContainer toasts={toasts} removeToast={removeToast} />

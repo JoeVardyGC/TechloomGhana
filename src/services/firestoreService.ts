@@ -129,6 +129,7 @@ export const contactSettingsConverter: FirestoreDataConverter<ContactSettings> =
       heroCardImage4: settings.heroCardImage4 || '',
       heroCardText4: settings.heroCardText4 || '',
       selectedHomepagePortfolios: settings.selectedHomepagePortfolios || [],
+      selectedHomepageWebPortfolios: settings.selectedHomepageWebPortfolios || [],
     };
   },
   fromFirestore(snapshot: QueryDocumentSnapshot): ContactSettings {
@@ -171,6 +172,7 @@ export const contactSettingsConverter: FirestoreDataConverter<ContactSettings> =
       heroCardImage4: data.heroCardImage4 ? String(data.heroCardImage4) : undefined,
       heroCardText4: data.heroCardText4 ? String(data.heroCardText4) : undefined,
       selectedHomepagePortfolios: Array.isArray(data.selectedHomepagePortfolios) ? data.selectedHomepagePortfolios.map(String) : [],
+      selectedHomepageWebPortfolios: Array.isArray(data.selectedHomepageWebPortfolios) ? data.selectedHomepageWebPortfolios.map(String) : [],
     };
   }
 };

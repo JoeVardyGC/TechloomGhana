@@ -6,14 +6,33 @@ import {
   X, 
   ChevronRight, 
   SlidersHorizontal,
-  FolderOpen
+  FolderOpen,
+  Globe,
+  Palette
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { PortfolioItem } from '../types';
+import WebProjectCard from './WebProjectCard';
 
 export default function PortfolioPage() {
-  const { portfolio, loading, setCurrentView, setSelectedProject } = useApp();
-  const [activeFilter, setActiveFilter] = useState<string>('All');
+  const { 
+    portfolio, 
+    loading, 
+    setCurrentView, 
+    setSelectedProject, 
+    portfolioInitialFilter, 
+    setPortfolioInitialFilter 
+  } = useApp();
+
+  const [activeFilter, setActiveFilter] = useState<string>(portfolioInitialFilter || 'All');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // Sync with portfolioInitialFilter when navigated from homepage buttons
+  useEffect(() => {
+    if (portfolioInitialFilter) {
+      setActiveFilter(portfolioInitialFilter);
+    }
+  }, [portfolioInitialFilter]);
 
   // Restore scroll position to exact card when returning from details view
   useEffect(() => {
@@ -59,11 +78,12 @@ export default function PortfolioPage() {
     }
   }, []);
 
-  // Compute dynamic categories
+  // Compute dynamic categories: prioritize 'Website Design' right after 'All'
   const dynamicCategories = useMemo(() => {
-    const cats = Array.from(new Set(portfolio.map(p => p.category)))
-      .filter((cat): cat is string => typeof cat === 'string' && cat.trim().length > 0);
-    return ['All', ...Array.from(new Set(['Branding', 'Flyer Design', 'Social Media Design', 'Website Design', ...cats]))];
+    const rawCats = Array.from(new Set(portfolio.map(p => p.category)))
+      .filter((cat): cat is string => typeof cat === 'string' && cat.trim().length > 0 && cat !== 'Website Design');
+    
+    return ['All', 'Website Design', ...rawCats];
   }, [portfolio]);
 
   // Filter based on both active filter tab and searchQuery
@@ -79,6 +99,17 @@ export default function PortfolioPage() {
     });
   }, [portfolio, activeFilter, searchQuery]);
 
+  // Split into Web and Graphic Design for prioritized two-tier layout
+  const webProjects = useMemo(() => {
+    return filteredProjects.filter(p => p.category === 'Website Design' || !!p.projectLink);
+  }, [filteredProjects]);
+
+  const graphicProjects = useMemo(() => {
+    return filteredProjects.filter(p => p.category !== 'Website Design');
+  }, [filteredProjects]);
+
+  const isAllOrMixed = activeFilter === 'All' && searchQuery.trim() === '';
+
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 pt-28 pb-24 transition-colors duration-300">
       
@@ -91,11 +122,12 @@ export default function PortfolioPage() {
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
           <button
             onClick={() => {
+              if (setPortfolioInitialFilter) setPortfolioInitialFilter(null);
               setCurrentView('home');
               window.scrollTo({ top: 0, behavior: 'instant' });
             }}
             id="portfolio-back-btn"
-            className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-slate-800 dark:text-slate-100 font-bold text-xs border border-slate-200/65 dark:border-slate-800 transition-all shadow-sm duration-250 cursor-pointer"
+            className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-slate-800 dark:text-slate-100 font-bold text-xs border border-slate-200 dark:border-slate-800 transition-all shadow-sm duration-200 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Home Showcase</span>
@@ -112,13 +144,13 @@ export default function PortfolioPage() {
         <div className="max-w-3xl space-y-5 mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-blue/5 dark:bg-brand-blue/10 border border-brand-blue/10 rounded-full">
             <FolderOpen className="w-3.5 h-3.5 text-brand-blue animate-pulse" />
-            <span className="text-xs font-bold tracking-widest text-brand-blue uppercase">Design Ledger</span>
+            <span className="text-xs font-bold tracking-widest text-brand-blue uppercase">Design & Code Ledger</span>
           </div>
           <h1 className="font-display font-[900] text-4xl sm:text-6xl text-slate-900 dark:text-white tracking-tight leading-none">
-            Selected Design <span className="blue-gradient-text">Masterpieces</span>
+            Selected Work & <span className="blue-gradient-text">Masterpieces</span>
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-lg sm:text-xl font-light leading-relaxed">
-            A comprehensive journal of absolute design excellence. Use the tools below to filter through our diverse disciplines and custom business solutions.
+            A comprehensive archive of software systems, web applications, and brand identity projects. Live web platforms are prioritized at the top.
           </p>
         </div>
 
@@ -129,18 +161,25 @@ export default function PortfolioPage() {
           <div className="flex flex-wrap gap-2 w-full lg:w-auto">
             {dynamicCategories.map((filter) => {
               const isActive = activeFilter === filter;
+              const isWebTab = filter === 'Website Design';
               return (
                 <button
                   key={filter}
-                  onClick={() => setActiveFilter(filter)}
+                  onClick={() => {
+                    setActiveFilter(filter);
+                    if (setPortfolioInitialFilter) setPortfolioInitialFilter(filter);
+                  }}
                   id={`page-filter-tab-${filter.toLowerCase().replace(/\s+/g, '-')}`}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex-grow sm:flex-grow-0 ${
+                  className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex-grow sm:flex-grow-0 flex items-center justify-center gap-1.5 ${
                     isActive 
-                      ? 'bg-brand-blue text-white shadow-sm dark:bg-white dark:text-slate-950' 
+                      ? isWebTab
+                        ? 'bg-emerald-600 text-white shadow-sm'
+                        : 'bg-brand-blue text-white shadow-sm dark:bg-white dark:text-slate-950' 
                       : 'bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-brand-blue dark:bg-slate-800 dark:text-slate-350 dark:hover:text-white border border-slate-200 dark:border-slate-800 hover:border-brand-blue/20'
                   }`}
                 >
-                  {filter}
+                  {isWebTab && <Globe className="w-3.5 h-3.5 shrink-0" />}
+                  <span>{filter === 'Website Design' ? 'Web & Software (4)' : filter}</span>
                 </button>
               );
             })}
@@ -191,73 +230,239 @@ export default function PortfolioPage() {
               onClick={() => {
                 setActiveFilter('All');
                 setSearchQuery('');
+                if (setPortfolioInitialFilter) setPortfolioInitialFilter(null);
               }}
               className="text-xs font-bold text-brand-blue hover:underline cursor-pointer"
             >
               Reset Filters & Search View
             </button>
           </motion.div>
-        ) : (
-          /* State C: Showcase Masonry/Grid */
-          <motion.div 
-            layout 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
-                <motion.div
-                  key={project.id}
-                  id={`portfolio-page-card-${project.id}`}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.35 }}
-                  className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white dark:bg-slate-900 shadow-xs hover:shadow-xl border border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700 transition-all duration-300"
-                  onClick={() => {
-                    setSelectedProject(project);
-                  }}
-                >
-                  {/* Image wrapper */}
-                  <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-950">
-                    <div className="absolute inset-0 bg-slate-950/15 group-hover:bg-slate-950/30 z-10 transition-colors duration-300" />
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
-                      }}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover object-top block transition-transform duration-500 ease-out group-hover:scale-105"
-                    />
-                    
-                    {/* Category tag */}
-                    <div className="absolute top-4 left-4 z-20">
-                      <span className="text-[10px] font-bold uppercase tracking-widest bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-slate-900 dark:text-white px-3.5 py-1.5 rounded-lg shadow-xs">
-                        {project.category}
-                      </span>
+        ) : isAllOrMixed ? (
+          /* State C1: Default View - Prioritize ALL Web Projects at the top, then Graphic Designs below */
+          <div className="space-y-20">
+            {/* Top Priority Tier: Web Platforms */}
+            {webProjects.length > 0 && (
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                      <Globe className="w-5 h-5" />
                     </div>
-
-                  </div>
-
-                  {/* Project Info Panel */}
-                  <div className="p-6 sm:p-8 flex items-center justify-between gap-6">
-                    <div className="space-y-2">
-                      <h3 className="font-display font-extrabold text-lg sm:text-xl text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-blue transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm line-clamp-2 font-normal leading-relaxed">
-                        {project.description}
+                    <div>
+                      <h2 className="font-display font-bold text-xl sm:text-2xl text-slate-900 dark:text-white">
+                        Web Platforms & Software Systems
+                      </h2>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        Interactive web applications, e-commerce stores, and high-performance digital portals ({webProjects.length})
                       </p>
                     </div>
-                    <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center shrink-0 border border-slate-200 dark:border-slate-800 group-hover:bg-brand-blue group-hover:text-white dark:group-hover:text-white transition-all shadow-xs">
-                      <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:text-white transition-colors" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {webProjects.map((project) => (
+                    <div key={project.id} className="h-full">
+                      <WebProjectCard
+                        id={`portfolio-page-card-${project.id}`}
+                        project={project}
+                        onSelectProject={(p) => setSelectedProject(p)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Lower Tier: Graphic Design Showcases */}
+            {graphicProjects.length > 0 && (
+              <div className="space-y-6">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2 rounded-lg bg-brand-blue/10 text-brand-blue">
+                      <Palette className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h2 className="font-display font-bold text-xl sm:text-2xl text-slate-900 dark:text-white">
+                        Graphic Design & Visual Brand Ledger
+                      </h2>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        Brand identities, promotional flyers, political campaigns, and commercial posters ({graphicProjects.length})
+                      </p>
                     </div>
                   </div>
+                </div>
+
+                <motion.div 
+                  layout 
+                  className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                  <AnimatePresence mode="popLayout">
+                    {graphicProjects.map((project) => (
+                      <motion.div
+                        key={project.id}
+                        id={`portfolio-page-card-${project.id}`}
+                        layout
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.35 }}
+                        className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white dark:bg-slate-900 shadow-xs hover:shadow-xl border border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700 transition-all duration-300 flex flex-col h-full"
+                        onClick={() => {
+                          setSelectedProject(project);
+                        }}
+                      >
+                        {/* Image wrapper */}
+                        <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-950">
+                          <div className="absolute inset-0 bg-slate-950/15 group-hover:bg-slate-950/30 z-10 transition-colors duration-300" />
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
+                            }}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-cover object-top block transition-transform duration-500 ease-out group-hover:scale-105"
+                          />
+                          
+                          {/* Category tag */}
+                          <div className="absolute top-4 left-4 z-20">
+                            <span className="text-[10px] font-bold uppercase tracking-widest bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-slate-900 dark:text-white px-3.5 py-1.5 rounded-lg shadow-xs">
+                              {project.category}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Project Info Panel */}
+                        <div className="p-6 sm:p-8 flex items-center justify-between gap-6 flex-grow bg-white dark:bg-slate-900">
+                          <div className="space-y-2">
+                            <h3 className="font-display font-extrabold text-lg sm:text-xl text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-blue transition-colors line-clamp-1">
+                              {project.title}
+                            </h3>
+                            <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm line-clamp-2 font-normal leading-relaxed">
+                              {project.description}
+                            </p>
+                          </div>
+                          <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center shrink-0 border border-slate-200 dark:border-slate-800 group-hover:bg-brand-blue group-hover:text-white dark:group-hover:text-white transition-all shadow-xs">
+                            <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:text-white transition-colors" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
                 </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+              </div>
+            )}
+          </div>
+        ) : (
+          /* State C2: Filtered / Searched View */
+          <div>
+            {/* If filtered to Website Design, render with WebProjectCard */}
+            {activeFilter === 'Website Design' ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredProjects.map((project) => (
+                  <div key={project.id} className="h-full">
+                    <WebProjectCard
+                      id={`portfolio-page-card-${project.id}`}
+                      project={project}
+                      onSelectProject={(p) => setSelectedProject(p)}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              /* If search has both web and design, prioritize web at top */
+              <div className="space-y-16">
+                {webProjects.length > 0 && (
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+                      <Globe className="w-4 h-4 text-emerald-500" />
+                      <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white">
+                        Web Platforms ({webProjects.length})
+                      </h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {webProjects.map((project) => (
+                        <div key={project.id} className="h-full">
+                          <WebProjectCard
+                            id={`portfolio-page-card-${project.id}`}
+                            project={project}
+                            onSelectProject={(p) => setSelectedProject(p)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {graphicProjects.length > 0 && (
+                  <div className="space-y-6">
+                    {webProjects.length > 0 && (
+                      <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+                        <Palette className="w-4 h-4 text-brand-blue" />
+                        <h2 className="font-display font-bold text-lg text-slate-900 dark:text-white">
+                          Design Works ({graphicProjects.length})
+                        </h2>
+                      </div>
+                    )}
+                    <motion.div 
+                      layout 
+                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    >
+                      <AnimatePresence mode="popLayout">
+                        {graphicProjects.map((project) => (
+                          <motion.div
+                            key={project.id}
+                            id={`portfolio-page-card-${project.id}`}
+                            layout
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            transition={{ duration: 0.35 }}
+                            className="group relative cursor-pointer overflow-hidden rounded-2xl bg-white dark:bg-slate-900 shadow-xs hover:shadow-xl border border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700 transition-all duration-300 flex flex-col h-full"
+                            onClick={() => {
+                              setSelectedProject(project);
+                            }}
+                          >
+                            <div className="relative w-full aspect-[4/5] overflow-hidden bg-slate-100 dark:bg-slate-950">
+                              <div className="absolute inset-0 bg-slate-950/15 group-hover:bg-slate-950/30 z-10 transition-colors duration-300" />
+                              <img
+                                src={project.image}
+                                alt={project.title}
+                                onError={(e) => {
+                                  (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
+                                }}
+                                referrerPolicy="no-referrer"
+                                className="w-full h-full object-cover object-top block transition-transform duration-500 ease-out group-hover:scale-105"
+                              />
+                              <div className="absolute top-4 left-4 z-20">
+                                <span className="text-[10px] font-bold uppercase tracking-widest bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm text-slate-900 dark:text-white px-3.5 py-1.5 rounded-lg shadow-xs">
+                                  {project.category}
+                                </span>
+                              </div>
+                            </div>
+
+                            <div className="p-6 sm:p-8 flex items-center justify-between gap-6 flex-grow bg-white dark:bg-slate-900">
+                              <div className="space-y-2">
+                                <h3 className="font-display font-extrabold text-lg sm:text-xl text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-blue transition-colors line-clamp-1">
+                                  {project.title}
+                                </h3>
+                                <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm line-clamp-2 font-normal leading-relaxed">
+                                  {project.description}
+                                </p>
+                              </div>
+                              <div className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center shrink-0 border border-slate-200 dark:border-slate-800 group-hover:bg-brand-blue group-hover:text-white dark:group-hover:text-white transition-all shadow-xs">
+                                <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:text-white transition-colors" />
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </AnimatePresence>
+                    </motion.div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>

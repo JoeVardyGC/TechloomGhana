@@ -8,7 +8,7 @@ import {
   X, Lock, ShieldCheck, Mail, Phone, MapPin, 
   Clock, Heart, Sparkles, Palette, Edit3, 
   Trash2, Plus, Check, MessageSquare, Briefcase, UserCheck, AlertCircle, ChevronRight,
-  UploadCloud, Image, Database, RefreshCw, ArrowUp, ArrowDown
+  UploadCloud, Image, Database, RefreshCw, ArrowUp, ArrowDown, Globe
 } from 'lucide-react';
 import { Service, PortfolioItem, ContactSettings, SkillItem } from '../types';
 
@@ -471,7 +471,8 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
     heroCardText3: settings?.heroCardText3 || '',
     heroCardImage4: settings?.heroCardImage4 || '',
     heroCardText4: settings?.heroCardText4 || '',
-    selectedHomepagePortfolios: settings?.selectedHomepagePortfolios || []
+    selectedHomepagePortfolios: settings?.selectedHomepagePortfolios || [],
+    selectedHomepageWebPortfolios: settings?.selectedHomepageWebPortfolios || []
   });
 
   // Sync settings when loaded from database
@@ -514,7 +515,8 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
         heroCardText3: settings.heroCardText3 || '',
         heroCardImage4: settings.heroCardImage4 || '',
         heroCardText4: settings.heroCardText4 || '',
-        selectedHomepagePortfolios: settings.selectedHomepagePortfolios || []
+        selectedHomepagePortfolios: settings.selectedHomepagePortfolios || [],
+        selectedHomepageWebPortfolios: settings.selectedHomepageWebPortfolios || []
       });
     }
   }, [settings]);
@@ -2119,14 +2121,116 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
 
                     {/* List Existing Case Studies */}
                     <div className="space-y-6">
-                      {/* Homepage Featured Showcase Selection */}
+                      {/* 1. Homepage Featured Web Platforms Selection (Top Showcase) */}
+                      <div className="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 space-y-4 shadow-md">
+                        <div className="flex flex-col gap-1.5">
+                          <div className="flex items-center gap-2">
+                            <Globe className="w-4 h-4 text-cyan-400" />
+                            <h4 className="font-display font-bold text-sm text-white">
+                              Homepage Featured Web Platforms (Top Showcase)
+                            </h4>
+                          </div>
+                          <p className="text-xs text-slate-400 leading-relaxed">
+                            Pin which live web applications appear in the top browser-frame showcase on the homepage. Defaults to top 3 web platforms if none are pinned.
+                          </p>
+                        </div>
+
+                        {/* Selection Count Indicator badge */}
+                        <div className="flex items-center gap-2">
+                          <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full ${
+                            (settings?.selectedHomepageWebPortfolios?.length || 0) > 0 
+                              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' 
+                              : 'bg-slate-800 text-slate-400 border border-slate-700'
+                          }`}>
+                            Selected: {settings?.selectedHomepageWebPortfolios?.length || 0} Web Projects Pinned
+                          </span>
+                          {settings?.selectedHomepageWebPortfolios && settings.selectedHomepageWebPortfolios.length > 0 && (
+                            <button
+                              type="button"
+                              onClick={async () => {
+                                if (settings) {
+                                  await updateSettings({
+                                    ...settings,
+                                    selectedHomepageWebPortfolios: []
+                                  });
+                                  showToast("Cleared featured homepage web selections.", "info");
+                                }
+                              }}
+                              className="text-xs text-slate-400 hover:text-rose-400 hover:underline cursor-pointer"
+                            >
+                              Reset Web Pins
+                            </button>
+                          )}
+                        </div>
+
+                        {/* Grid of web platforms */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {portfolio
+                            .filter(p => p.category === 'Website Design' || !!p.projectLink)
+                            .map((project) => {
+                              const isFeatured = settings?.selectedHomepageWebPortfolios?.includes(project.id) || false;
+                              return (
+                                <button
+                                  key={`feat-web-${project.id}`}
+                                  type="button"
+                                  onClick={async () => {
+                                    const current = settings?.selectedHomepageWebPortfolios || [];
+                                    let updated: string[] = [];
+                                    if (isFeatured) {
+                                      updated = current.filter(id => id !== project.id);
+                                    } else {
+                                      updated = [...current, project.id];
+                                    }
+
+                                    if (settings) {
+                                      await updateSettings({
+                                        ...settings,
+                                        selectedHomepageWebPortfolios: updated
+                                      });
+                                    }
+                                  }}
+                                  className={`flex items-center justify-between p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                                    isFeatured 
+                                      ? 'bg-cyan-950/40 border-cyan-500/50 text-white shadow-xs' 
+                                      : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-2.5 overflow-hidden">
+                                    <img src={project.image} alt={project.title} className="w-8 h-8 object-cover rounded bg-slate-800 shrink-0" />
+                                    <div className="overflow-hidden">
+                                      <p className="text-xs font-bold truncate leading-snug">{project.title}</p>
+                                      <p className="text-[9px] font-mono text-cyan-400 truncate">{project.projectLink || 'Web Platform'}</p>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="shrink-0 pl-2">
+                                    <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all border ${
+                                      isFeatured 
+                                        ? 'bg-cyan-500 border-cyan-500 text-slate-950' 
+                                        : 'bg-slate-800 border-slate-700'
+                                    }`}>
+                                      {isFeatured && (
+                                        <Check className="w-3.5 h-3.5 shrink-0" strokeWidth={3} />
+                                      )}
+                                    </div>
+                                  </div>
+                                </button>
+                              );
+                            })}
+                        </div>
+                      </div>
+
+                      {/* 2. Homepage Featured Graphic Design Selection (Lower Showcase) */}
                       <div className="bg-slate-50 p-5 rounded-2xl border border-slate-150 space-y-4">
                         <div className="flex flex-col gap-1.5">
-                          <h4 className="font-display font-bold text-sm text-slate-900">
-                            Homepage Featured Showcase Selection
-                          </h4>
+                          <div className="flex items-center gap-2">
+                            <Palette className="w-4 h-4 text-brand-blue" />
+                            <h4 className="font-display font-bold text-sm text-slate-900">
+                              Homepage Featured Graphic Designs (Lower Showcase)
+                            </h4>
+                          </div>
                           <p className="text-xs text-slate-500 leading-relaxed">
-                            Toggle which portfolio case studies should be displayed on the website landing page. If no projects are selected, the showcase on the home screen automatically falls back to showing your latest 4 uploaded cases.
+                            Toggle which graphic design showcases appear in the brand artistry showcase on the homepage. Defaults to top 6 design showcases if none are pinned.
                           </p>
                         </div>
 
@@ -2137,7 +2241,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                               ? 'bg-emerald-55 text-emerald-600 border border-emerald-100' 
                               : 'bg-amber-50 text-amber-600 border border-amber-100'
                           }`}>
-                            Selected: {settings?.selectedHomepagePortfolios?.length || 0} Case Studies Pinned
+                            Selected: {settings?.selectedHomepagePortfolios?.length || 0} Design Showcases Pinned
                           </span>
                           {settings?.selectedHomepagePortfolios && settings.selectedHomepagePortfolios.length > 0 && (
                             <button
@@ -2148,80 +2252,70 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                                     ...settings,
                                     selectedHomepagePortfolios: []
                                   });
-                                  showToast("Cleared featured homepage portfolio selections.", "info");
+                                  showToast("Cleared featured homepage design selections.", "info");
                                 }
                               }}
                               className="text-xs text-slate-400 hover:text-rose-500 hover:underline cursor-pointer"
                             >
-                              Reset Selections
+                              Reset Design Pins
                             </button>
                           )}
                         </div>
 
-                        {/* Grid / list of portfolios to fast toggle */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {portfolio.map((project) => {
-                            const isFeatured = settings?.selectedHomepagePortfolios?.includes(project.id) || false;
-                            return (
-                              <button
-                                key={`feat-${project.id}`}
-                                type="button"
-                                onClick={async () => {
-                                  const current = settings?.selectedHomepagePortfolios || [];
-                                  let updated: string[] = [];
-                                  if (isFeatured) {
-                                    updated = current.filter(id => id !== project.id);
-                                  } else {
-                                    updated = [...current, project.id];
-                                  }
+                        {/* Grid / list of graphic design portfolios to fast toggle */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-96 overflow-y-auto pr-1">
+                          {portfolio
+                            .filter(p => p.category !== 'Website Design')
+                            .map((project) => {
+                              const isFeatured = settings?.selectedHomepagePortfolios?.includes(project.id) || false;
+                              return (
+                                <button
+                                  key={`feat-${project.id}`}
+                                  type="button"
+                                  onClick={async () => {
+                                    const current = settings?.selectedHomepagePortfolios || [];
+                                    let updated: string[] = [];
+                                    if (isFeatured) {
+                                      updated = current.filter(id => id !== project.id);
+                                    } else {
+                                      updated = [...current, project.id];
+                                    }
 
-                                  if (settings) {
-                                    await updateSettings({
-                                      ...settings,
-                                      selectedHomepagePortfolios: updated
-                                    });
-                                  } else {
-                                    await updateSettings({
-                                      email: 'techloomgh@yahoo.com',
-                                      phone: '+233 256 259 336',
-                                      secondaryPhone: '+233 504 041 694',
-                                      location: 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana',
-                                      openingHours: 'Monday – Saturday (08:30 – 19:00 GHS)',
-                                      avgResponseTime: 'Average response: under 12 hours for new submissions.',
-                                      socialImpactText: 'Every project finances the Joe Vardy Al-Hikmah Foundation.',
-                                      agencySlogan: 'Weaving digital excellence.',
-                                      selectedHomepagePortfolios: updated
-                                    });
-                                  }
-                                }}
-                                className={`flex items-center justify-between p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                                  isFeatured 
-                                    ? 'bg-blue-50/70 border-brand-blue/30 text-slate-900 shadow-2xs' 
-                                    : 'bg-white border-slate-200 text-slate-600 hover:border-slate-350'
-                                }`}
-                              >
-                                <div className="flex items-center gap-2.5 overflow-hidden">
-                                  <img src={project.image} alt={project.title} className="w-8 h-8 object-cover rounded bg-slate-100 shrink-0" />
-                                  <div className="overflow-hidden">
-                                    <p className="text-xs font-bold truncate leading-snug">{project.title}</p>
-                                    <p className="text-[9px] font-mono uppercase tracking-wider text-slate-400 truncate">{project.category}</p>
-                                  </div>
-                                </div>
-                                
-                                <div className="shrink-0 pl-2">
-                                  <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all border ${
+                                    if (settings) {
+                                      await updateSettings({
+                                        ...settings,
+                                        selectedHomepagePortfolios: updated
+                                      });
+                                    }
+                                  }}
+                                  className={`flex items-center justify-between p-3 rounded-xl border text-left transition-all cursor-pointer ${
                                     isFeatured 
-                                      ? 'bg-brand-blue border-brand-blue text-white' 
-                                      : 'bg-white border-slate-300'
-                                  }`}>
-                                    {isFeatured && (
-                                      <Check className="w-3.5 h-3.5 shrink-0" strokeWidth={3} />
-                                    )}
+                                      ? 'bg-blue-50/70 border-brand-blue/30 text-slate-900 shadow-2xs' 
+                                      : 'bg-white border-slate-200 text-slate-600 hover:border-slate-350'
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-2.5 overflow-hidden">
+                                    <img src={project.image} alt={project.title} className="w-8 h-8 object-cover rounded bg-slate-100 shrink-0" />
+                                    <div className="overflow-hidden">
+                                      <p className="text-xs font-bold truncate leading-snug">{project.title}</p>
+                                      <p className="text-[9px] font-mono uppercase tracking-wider text-slate-400 truncate">{project.category}</p>
+                                    </div>
                                   </div>
-                                </div>
-                              </button>
-                            );
-                          })}
+                                  
+                                  <div className="shrink-0 pl-2">
+                                    <div className={`w-5 h-5 rounded-md flex items-center justify-center transition-all border ${
+                                      isFeatured 
+                                        ? 'bg-brand-blue border-brand-blue text-white' 
+                                        : 'bg-white border-slate-300'
+                                    }`}>
+                                      {isFeatured && (
+                                        <Check className="w-3.5 h-3.5 shrink-0" strokeWidth={3} />
+                                      )}
+                                    </div>
+                                  </div>
+                                </button>
+                              );
+                            })}
                         </div>
                       </div>
 
