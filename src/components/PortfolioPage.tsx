@@ -2,8 +2,6 @@ import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
-  Search, 
-  X, 
   ChevronRight, 
   SlidersHorizontal,
   FolderOpen,
@@ -25,7 +23,6 @@ export default function PortfolioPage() {
   } = useApp();
 
   const [activeFilter, setActiveFilter] = useState<string>(portfolioInitialFilter || 'All');
-  const [searchQuery, setSearchQuery] = useState<string>('');
 
   // Sync with portfolioInitialFilter when navigated from homepage buttons
   useEffect(() => {
@@ -92,25 +89,19 @@ export default function PortfolioPage() {
     return { all: portfolio.length, graphic, web };
   }, [portfolio]);
 
-  // Filter based on active filter tab and searchQuery
+  // Filter based on active filter tab
   const filteredProjects = useMemo(() => {
     return portfolio.filter(project => {
       const isWeb = isWebProject(project);
-      let matchesFilter = true;
       if (activeFilter === 'Web & Software Projects' || activeFilter === 'Website Design') {
-        matchesFilter = isWeb;
-      } else if (activeFilter === 'Graphic Design') {
-        matchesFilter = !isWeb;
+        return isWeb;
       }
-
-      const matchesSearch = searchQuery.trim() === '' || 
-        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (project.client && project.client.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (project.category && project.category.toLowerCase().includes(searchQuery.toLowerCase()));
-      return matchesFilter && matchesSearch;
+      if (activeFilter === 'Graphic Design') {
+        return !isWeb;
+      }
+      return true;
     });
-  }, [portfolio, activeFilter, searchQuery]);
+  }, [portfolio, activeFilter]);
 
   // Split into Web and Graphic Design for layout
   const webProjects = useMemo(() => {
@@ -121,7 +112,7 @@ export default function PortfolioPage() {
     return filteredProjects.filter(p => !isWebProject(p));
   }, [filteredProjects]);
 
-  const isAllOrMixed = (activeFilter === 'All') && searchQuery.trim() === '';
+  const isAllOrMixed = activeFilter === 'All';
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 pt-28 pb-24 transition-colors duration-300">
@@ -167,64 +158,36 @@ export default function PortfolioPage() {
           </p>
         </div>
 
-        {/* Utility / Search & Filters Controls Container */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-150 dark:border-slate-800 rounded-2xl p-6 shadow-xs flex flex-col lg:flex-row gap-6 justify-between items-center mb-12 transition-all">
-          
-          {/* Active Filter Tabs list (Using Primary Brand Blue) */}
-          <div className="flex flex-wrap gap-2 w-full lg:w-auto">
-            {categoryFilters.map((filter) => {
-              const isActive = activeFilter === filter || 
-                (filter === 'Web & Software Projects' && activeFilter === 'Website Design');
-              const isWebTab = filter === 'Web & Software Projects';
-              const isGraphicTab = filter === 'Graphic Design';
+        {/* Active Filter Tabs Container (Without Search & Without Category Icons) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-150 dark:border-slate-800 rounded-2xl p-5 shadow-xs flex flex-wrap gap-2.5 items-center mb-12 transition-all">
+          {categoryFilters.map((filter) => {
+            const isActive = activeFilter === filter || 
+              (filter === 'Web & Software Projects' && activeFilter === 'Website Design');
 
-              const count = filter === 'All' 
-                ? counts.all 
-                : filter === 'Graphic Design' 
-                  ? counts.graphic 
-                  : counts.web;
+            const count = filter === 'All' 
+              ? counts.all 
+              : filter === 'Graphic Design' 
+                ? counts.graphic 
+                : counts.web;
 
-              return (
-                <button
-                  key={filter}
-                  onClick={() => {
-                    setActiveFilter(filter);
-                    if (setPortfolioInitialFilter) setPortfolioInitialFilter(filter);
-                  }}
-                  id={`page-filter-tab-${filter.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
-                  className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex-grow sm:flex-grow-0 flex items-center justify-center gap-1.5 ${
-                    isActive 
-                      ? 'bg-brand-blue text-white shadow-sm' 
-                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-brand-blue dark:bg-slate-800 dark:text-slate-350 dark:hover:text-white border border-slate-200 dark:border-slate-800 hover:border-brand-blue/20'
-                  }`}
-                >
-                  {isWebTab && <Globe className="w-3.5 h-3.5 shrink-0" />}
-                  {isGraphicTab && <Palette className="w-3.5 h-3.5 shrink-0" />}
-                  <span>{filter} ({count})</span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Live Search Inputs */}
-          <div className="relative w-full lg:w-80">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-slate-400 dark:text-slate-500" />
-            <input
-              type="text"
-              placeholder="Search by title, client, or type..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 border border-slate-200 dark:border-slate-800 focus:border-brand-blue dark:focus:border-brand-blue rounded-xl pl-11 pr-4 py-3 text-xs text-slate-800 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-550 focus:outline-hidden focus:ring-1 focus:ring-brand-blue/30 transition-all font-medium"
-            />
-            {searchQuery && (
+            return (
               <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 cursor-pointer"
+                key={filter}
+                onClick={() => {
+                  setActiveFilter(filter);
+                  if (setPortfolioInitialFilter) setPortfolioInitialFilter(filter);
+                }}
+                id={`page-filter-tab-${filter.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                className={`px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex-grow sm:flex-grow-0 flex items-center justify-center ${
+                  isActive 
+                    ? 'bg-brand-blue text-white shadow-sm' 
+                    : 'bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-brand-blue dark:bg-slate-800 dark:text-slate-350 dark:hover:text-white border border-slate-200 dark:border-slate-800 hover:border-brand-blue/20'
+                }`}
               >
-                <X className="w-4 h-4" />
+                <span>{filter} ({count})</span>
               </button>
-            )}
-          </div>
+            );
+          })}
         </div>
 
         {/* State A: Loading Indicators */}
@@ -245,17 +208,16 @@ export default function PortfolioPage() {
             </div>
             <h3 className="font-display font-bold text-lg text-slate-800 dark:text-white mb-1.5">No Matching Works Found</h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto mb-6">
-              We couldn't locate any projects matching "{searchQuery}" under "{activeFilter}". Try clearing your search.
+              We couldn't locate any projects under "{activeFilter}".
             </p>
             <button
               onClick={() => {
                 setActiveFilter('All');
-                setSearchQuery('');
                 if (setPortfolioInitialFilter) setPortfolioInitialFilter(null);
               }}
               className="text-xs font-bold text-brand-blue hover:underline cursor-pointer"
             >
-              Reset Filters & Search
+              Reset to All Projects
             </button>
           </motion.div>
         ) : isAllOrMixed ? (
