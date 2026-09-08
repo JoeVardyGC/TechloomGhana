@@ -2092,15 +2092,14 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                           <input
                             type="text"
                             list="categories-list"
-                            placeholder="Select or enter custom category..."
+                            placeholder="Select category (Graphic Design or Web & Software Projects)..."
                             value={newPortfolio.category}
                             onChange={(e) => setNewPortfolio({ ...newPortfolio, category: e.target.value })}
                             className="w-full bg-white border border-slate-200 rounded-xl px-3 h-11 text-xs text-slate-800 focus:outline-none focus:border-brand-blue"
                           />
                           <datalist id="categories-list">
-                            {Array.from(new Set(['Branding', 'Flyer Design', 'Social Media Design', 'Website Design', ...portfolio.map(p => p.category)])).map(cat => (
-                              <option key={cat} value={cat} />
-                            ))}
+                            <option value="Graphic Design" />
+                            <option value="Web & Software Projects" />
                           </datalist>
                         </div>
 
@@ -2385,7 +2384,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                         {/* Grid of web platforms */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {portfolio
-                            .filter(p => p.category === 'Website Design' || !!p.projectLink)
+                            .filter(p => p.category === 'Web & Software Projects' || p.category === 'Website Design' || !!p.projectLink)
                             .map((project) => {
                               const isFeatured = settings?.selectedHomepageWebPortfolios?.includes(project.id) || false;
                               return (
@@ -2484,7 +2483,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                         {/* Grid / list of graphic design portfolios to fast toggle */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-96 overflow-y-auto pr-1">
                           {portfolio
-                            .filter(p => p.category !== 'Website Design')
+                            .filter(p => p.category !== 'Web & Software Projects' && p.category !== 'Website Design' && !p.projectLink)
                             .map((project) => {
                               const isFeatured = settings?.selectedHomepagePortfolios?.includes(project.id) || false;
                               return (

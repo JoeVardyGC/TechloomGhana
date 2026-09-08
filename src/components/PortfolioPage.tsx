@@ -78,18 +78,31 @@ export default function PortfolioPage() {
     }
   }, []);
 
-  // Dynamic Categories: 'Website Design' appears right after 'All'
-  const dynamicCategories = useMemo(() => {
-    const rawCats = Array.from(new Set(portfolio.map(p => p.category)))
-      .filter((cat): cat is string => typeof cat === 'string' && cat.trim().length > 0 && cat !== 'Website Design');
-    
-    return ['All', 'Website Design', ...rawCats];
+  const isWebProject = (p: PortfolioItem) => {
+    const cat = (p.category || '').toLowerCase().trim();
+    return cat.includes('web') || cat.includes('software') || cat.includes('app') || !!p.projectLink;
+  };
+
+  const categoryFilters = ['All', 'Graphic Design', 'Web & Software Projects'] as const;
+
+  // Counts for each category
+  const counts = useMemo(() => {
+    const web = portfolio.filter(isWebProject).length;
+    const graphic = portfolio.filter(p => !isWebProject(p)).length;
+    return { all: portfolio.length, graphic, web };
   }, [portfolio]);
 
-  // Filter based on both active filter tab and searchQuery
+  // Filter based on active filter tab and searchQuery
   const filteredProjects = useMemo(() => {
     return portfolio.filter(project => {
-      const matchesFilter = activeFilter === 'All' || project.category === activeFilter;
+      const isWeb = isWebProject(project);
+      let matchesFilter = true;
+      if (activeFilter === 'Web & Software Projects' || activeFilter === 'Website Design') {
+        matchesFilter = isWeb;
+      } else if (activeFilter === 'Graphic Design') {
+        matchesFilter = !isWeb;
+      }
+
       const matchesSearch = searchQuery.trim() === '' || 
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -101,14 +114,14 @@ export default function PortfolioPage() {
 
   // Split into Web and Graphic Design for layout
   const webProjects = useMemo(() => {
-    return filteredProjects.filter(p => p.category === 'Website Design' || !!p.projectLink);
+    return filteredProjects.filter(isWebProject);
   }, [filteredProjects]);
 
   const graphicProjects = useMemo(() => {
-    return filteredProjects.filter(p => p.category !== 'Website Design');
+    return filteredProjects.filter(p => !isWebProject(p));
   }, [filteredProjects]);
 
-  const isAllOrMixed = activeFilter === 'All' && searchQuery.trim() === '';
+  const isAllOrMixed = (activeFilter === 'All') && searchQuery.trim() === '';
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 pt-28 pb-24 transition-colors duration-300">
@@ -159,9 +172,18 @@ export default function PortfolioPage() {
           
           {/* Active Filter Tabs list (Using Primary Brand Blue) */}
           <div className="flex flex-wrap gap-2 w-full lg:w-auto">
-            {dynamicCategories.map((filter) => {
-              const isActive = activeFilter === filter;
-              const isWebTab = filter === 'Website Design';
+            {categoryFilters.map((filter) => {
+              const isActive = activeFilter === filter || 
+                (filter === 'Web & Software Projects' && activeFilter === 'Website Design');
+              const isWebTab = filter === 'Web & Software Projects';
+              const isGraphicTab = filter === 'Graphic Design';
+
+              const count = filter === 'All' 
+                ? counts.all 
+                : filter === 'Graphic Design' 
+                  ? counts.graphic 
+                  : counts.web;
+
               return (
                 <button
                   key={filter}
@@ -169,7 +191,7 @@ export default function PortfolioPage() {
                     setActiveFilter(filter);
                     if (setPortfolioInitialFilter) setPortfolioInitialFilter(filter);
                   }}
-                  id={`page-filter-tab-${filter.toLowerCase().replace(/\s+/g, '-')}`}
+                  id={`page-filter-tab-${filter.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
                   className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer flex-grow sm:flex-grow-0 flex items-center justify-center gap-1.5 ${
                     isActive 
                       ? 'bg-brand-blue text-white shadow-sm' 
@@ -177,7 +199,8 @@ export default function PortfolioPage() {
                   }`}
                 >
                   {isWebTab && <Globe className="w-3.5 h-3.5 shrink-0" />}
-                  <span>{filter === 'Website Design' ? 'Web & Software (4)' : filter}</span>
+                  {isGraphicTab && <Palette className="w-3.5 h-3.5 shrink-0" />}
+                  <span>{filter} ({count})</span>
                 </button>
               );
             })}
@@ -354,8 +377,8 @@ export default function PortfolioPage() {
         ) : (
           /* State C2: Filtered / Searched View */
           <div>
-            {/* If filtered to Website Design, render with WebProjectCard */}
-            {activeFilter === 'Website Design' ? (
+            {/* If filtered to Web & Software Projects, render with WebProjectCard */}
+            {(activeFilter === 'Web & Software Projects' || activeFilter === 'Website Design') ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredProjects.map((project) => (
                   <div key={project.id} className="h-full">

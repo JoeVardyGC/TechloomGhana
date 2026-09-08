@@ -85,7 +85,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "abanga-cycling-expedition",
     title: "Ibrahim Jazil Abanga - 600km Independence Cycling Expedition",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/abanga-cycling-expedition.jpg",
     extraImages: [],
     client: "Ibrahim Jazil Abanga",
@@ -97,7 +97,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "adom-praise-gospel",
     title: "Adom Praise - Annual Gospel Music & Worship Concert",
-    category: "Event Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/adom-praise-main.jpg",
     extraImages: ["/portfolio-assets/adom-praise-poster.jpg"],
     client: "Adom Praise Ministries",
@@ -109,7 +109,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "ammar-presidential-campaign",
     title: "Abdul Hafiz Ammar Yarimah - KsTU SRC Presidential Campaign '26",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/ammar-presidential-portrait.jpg",
     extraImages: ["/portfolio-assets/ammar-monday-motivation.jpg", "/portfolio-assets/ammar-midweek-focus.jpg", "/portfolio-assets/ammar-eid-mubarak.jpg"],
     client: "Abdul Hafiz Ammar Yarimah Campaign",
@@ -121,7 +121,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "ampofo-npp-organizer",
     title: "Ampofo Twumasi Benjamin - NPP Tano North Constituency Organizer Campaign",
-    category: "Political Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/ampofo-npp-declaration.jpg",
     extraImages: ["/portfolio-assets/ampofo-npp-grassroots.jpg"],
     client: "Ampofo Twumasi Benjamin Campaign",
@@ -133,7 +133,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "nii-baba-polo-apparel",
     title: "Nii Baba - Official Campaign Polo Shirt & 3D Apparel Mockup",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/apparel-nii-baba-polo.jpg",
     extraImages: ["/portfolio-assets/apparel-allah-nii-baba-back.jpg"],
     client: "Nii Baba Campaign",
@@ -145,7 +145,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "tjisty-streetwear-apparel",
     title: "Tjisty - Custom Urban Streetwear Apparel & Merchandise Mockup",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/apparel-tjisty-front-back.jpg",
     extraImages: [],
     client: "Tjisty Clothing",
@@ -157,7 +157,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "presidential-campaign-tshirt",
     title: "Presidential Campaign - Official Supporter T-Shirt Design",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/apparel-presidential-tshirt.jpg",
     extraImages: [],
     client: "Presidential Campaign Merchandising",
@@ -169,7 +169,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "district-convention-tshirt",
     title: "Annual District Convention - Commemorative T-Shirt Design",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/apparel-annual-district-convention-shirt.jpg",
     extraImages: [],
     client: "District Convention Committee",
@@ -181,7 +181,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "black-graphic-tee-mockup",
     title: "Urban Black Graphic Tee - 3D Apparel Showcase Mockup",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/apparel-3d-tshirt-front-black.jpg",
     extraImages: [],
     client: "TechLoom Apparel Labs",
@@ -193,7 +193,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "barima-executive-profile",
     title: "Barima - Executive Personal Branding & Leadership Profile",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/barima-profile-main.jpg",
     extraImages: ["/portfolio-assets/barima-profile-portrait.jpg"],
     client: "Barima Leadership Consultancy",
@@ -205,7 +205,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "bliss-elle-fashion",
     title: "Bliss Elle Ghana - Luxury Fashion, Footwear & Seasonal Lookbooks",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/bliss-elle-eid-luxury.jpg",
     extraImages: ["/portfolio-assets/bliss-elle-portrait.jpg", "/portfolio-assets/bliss-elle-valentines-collection.jpg", "/portfolio-assets/bliss-elle-luxury-bold-women.jpg", "/portfolio-assets/bliss-elle-wardrobe-refresh.jpg", "/portfolio-assets/bliss-elle-eid-chic-confident.jpg"],
     client: "Bliss Elle Ghana",
@@ -217,7 +217,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "bruce-src-presidential",
     title: "Bruce - Student Representative Council (SRC) Presidential Campaign",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/bruce-src-campaign.jpg",
     extraImages: [],
     client: "Bruce for SRC",
@@ -277,7 +277,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "d-rux-luxury-streetwear",
     title: "D-Rux Lux Clothing - Urban Streetwear & Apparel Drop",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/d-rux-clothing.jpg",
     extraImages: [],
     client: "D-Rux Lux Clothing",
@@ -301,7 +301,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "elan-noir-flyer",
     title: "\u00c9lan Noir - Hair Braiding Studio & Beauty Salon Promo",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/elan-noir-flyer.jpg",
     extraImages: [],
     client: "\u00c9lan Noir Studio",
@@ -349,7 +349,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "fargone-luxury-streetwear",
     title: "Fargone Apparel - Luxury Streetwear & Free Nationwide Delivery Promo",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/fargone-luxury-brand.jpg",
     extraImages: ["/portfolio-assets/fargone-free-delivery-promo.jpg"],
     client: "Fargone Apparel",
@@ -361,7 +361,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "fo-declaration-intent",
     title: "F.O - Official Declaration of Intent & Political Campaign Series",
-    category: "Political Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/fo-intent-main.jpg",
     extraImages: ["/portfolio-assets/fo-intent-alternate.jpg"],
     client: "F.O Campaign Secretariat",
@@ -373,7 +373,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "george-ambassador-advocacy",
     title: "Hon. George Opare Addo - Youth Ambassadorial Leadership Profile",
-    category: "Political Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/george-ambassador-1.jpg",
     extraImages: ["/portfolio-assets/george-ambassador-2.jpg"],
     client: "Youth Ambassadorial Secretariat",
@@ -385,7 +385,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "gnuts-official-media-suite",
     title: "GNUTS - Ghana National Union of Technical Students Official Media & Campaign Suite",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/gnuts-summit-banner-1.jpg",
     extraImages: ["/portfolio-assets/gnuts-summit-banner-2.jpg", "/portfolio-assets/gnuts-choose-tvet.jpg", "/portfolio-assets/gnuts-director-general.jpg", "/portfolio-assets/gnuts-program-outline.jpg", "/portfolio-assets/gnuts-cc-countdown.jpg", "/portfolio-assets/gnuts-cape-coast-visit.jpg", "/portfolio-assets/gnuts-easter-blessings.jpg", "/portfolio-assets/gnuts-independence-celebration.jpg", "/portfolio-assets/gnuts-dignitary-pelpuo.jpg", "/portfolio-assets/gnuts-dignitary-pablo.jpg", "/portfolio-assets/gnuts-dignitary-wiseman.jpg", "/portfolio-assets/gnuts-dignitary-linda-ocloo.jpg", "/portfolio-assets/gnuts-dignitary-haruna.jpg", "/portfolio-assets/sung-gnuts-pro-main.jpg", "/portfolio-assets/sung-gnuts-pro-endorsement.jpg", "/portfolio-assets/gnuts-womens-day.jpg", "/portfolio-assets/gnuts-cc-did-you-know.jpg", "/portfolio-assets/gnuts-cc-question-of-the-day.jpg", "/portfolio-assets/gnuts-social-media-channels.jpg", "/portfolio-assets/gnuts-president-delali-birthday.jpg", "/portfolio-assets/gnuts-cc-registration-qr.jpg", "/portfolio-assets/gnuts-tech-summit-main-flyer.jpg", "/portfolio-assets/gnuts-cc-1st-central-committee-main.jpg", "/portfolio-assets/gnuts-cc-prof-ahmed-jinapor-gtec.jpg", "/portfolio-assets/gnuts-cc-dr-eric-adzroe-tvet.jpg", "/portfolio-assets/gnuts-cc-tech-summit-tvet.jpg", "/portfolio-assets/gnuts-summit-abubakari-saana-yea.jpg", "/portfolio-assets/gnuts-summit-dr-patrick-essien-epa.jpg", "/portfolio-assets/gnuts-summit-edward-yaw-udzu-copyghana.jpg", "/portfolio-assets/gnuts-summit-gertrude-donkor-esq.jpg", "/portfolio-assets/gnuts-citation-hon-linda-ocloo.jpg", "/portfolio-assets/gnuts-citation-anthony-kwame-zu.jpg", "/portfolio-assets/gnuts-national-cs-eid-mubarak.jpg", "/portfolio-assets/gnuts-national-pro-joe-vardy-eid.jpg", "/portfolio-assets/gnuts-launching-website-soon.jpg", "/portfolio-assets/gnuts-interactive-socials.jpg"],
     client: "Ghana National Union of Technical Students (GNUTS)",
@@ -397,7 +397,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "frandees-yogo-delight",
     title: "Frandees Yogo - Fresh Frozen Yogurt & Parfait Delight",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/frandees-yogo.jpg",
     extraImages: [],
     client: "Frandees Delights",
@@ -409,7 +409,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "high-school-invasion",
     title: "High School Invasion - Nationwide Youth Campus Tour & Festival",
-    category: "Event Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/high-school-invasion.jpg",
     extraImages: [],
     client: "Invasion Entertainment",
@@ -421,7 +421,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "honorable-fynn-philanthropy",
     title: "Comrade & Hon. Fynn - Leadership Profile, Donations & Birthday Milestone",
-    category: "Political Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/honorable-fynn-main.jpg",
     extraImages: ["/portfolio-assets/comrade-fynn-donations.jpg", "/portfolio-assets/honorable-fynn-bday.jpg", "/portfolio-assets/honorable-fynn-thanks.jpg", "/portfolio-assets/comrade-fynn-profile-recovered.jpg"],
     client: "Hon. Fynn Foundation",
@@ -433,7 +433,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "immanuel-leadership-series",
     title: "Immanuel - Student Governance & Representative Leadership Series",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/immanuel-numbered-1.jpg",
     extraImages: ["/portfolio-assets/immanuel-numbered-2.jpg", "/portfolio-assets/immanuel-leadership-main.jpg"],
     client: "Immanuel for Student Representative",
@@ -445,7 +445,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "ivys-kids-apparel-suame",
     title: "Ivy's Kids Apparel - Suame Children's Boutique Promo",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/ivys-kids-apparel.jpg",
     extraImages: [],
     client: "Ivy's Kids Apparel (Suame, Kumasi)",
@@ -457,7 +457,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "jessica-leadership-campaign",
     title: "Jessica - Student Representative Council (SRC) Leadership & Vetting Campaign",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/jessica-vetting-day.jpg",
     extraImages: ["/portfolio-assets/jessica-vetting-series-1.jpg", "/portfolio-assets/jessica-leadership-main.jpg", "/portfolio-assets/jessica-campaign-portrait.jpg", "/portfolio-assets/jessica-campaign-policy.jpg"],
     client: "Jessica for SRC",
@@ -469,7 +469,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "kaea-ashanti-regional",
     title: "KAEA - Regional Leadership Conference, Official Apparel & Civic Outreach",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/kaea-region-final.jpg",
     extraImages: ["/portfolio-assets/kaea-region-2.jpg", "/portfolio-assets/kaea-tshirt-mockup.jpg", "/portfolio-assets/kaea-congratulations.jpg", "/portfolio-assets/kaea-national-naspa-secretary-campaign.jpg", "/portfolio-assets/kaea-president-naspa-birthday.jpg", "/portfolio-assets/kaea-ashanti-regional-recovered.jpg", "/portfolio-assets/kaea-tshirt-mockup-front.jpg", "/portfolio-assets/kaea-tshirt-mockup-variant.jpg", "/portfolio-assets/kaea-tshirt-mockup-final1.jpg", "/portfolio-assets/kaea-naspa-births-deaths-registration.jpg"],
     client: "KAEA National Association",
@@ -481,7 +481,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "karim-abubakari-campaign",
     title: "Abdul Karim Abubakari - Youth Development First Campaign",
-    category: "Political Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/karim-abubakari-incoming.jpg",
     extraImages: ["/portfolio-assets/karim-abubakari-main.jpg"],
     client: "Abdul Karim Abubakari Campaign",
@@ -493,7 +493,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "mc-kobby-live-hosting",
     title: "MC Kobby - Master of Ceremonies & Live Event Hosting",
-    category: "Event Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/mc-kobby-hosting.jpg",
     extraImages: [],
     client: "MC Kobby Entertainment",
@@ -505,7 +505,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "mufti-academic-celebration",
     title: "Mufti - Academic Completion, Exams Finale & Homecoming Series",
-    category: "Event Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/mufti-homecoming.jpg",
     extraImages: ["/portfolio-assets/mufti-exams-finale.jpg"],
     client: "Mufti Student Council",
@@ -517,7 +517,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "mugeez-entertainment-live",
     title: "Mugeez - Live Concert & Star Appearance Tour",
-    category: "Event Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/mugeez-live-1.jpg",
     extraImages: ["/portfolio-assets/mugeez-live-2.jpg"],
     client: "Star Entertainment Ghana",
@@ -529,7 +529,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "odartey-naspa-vp",
     title: "Ishmael Evans Nii Odartey Lamptey - NASPA Executive Campaign Series",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/odartey-naspa-regional-main.jpg",
     extraImages: ["/portfolio-assets/odartey-naspa-vote-flyer.jpg", "/portfolio-assets/ishmael-odartey-lamptey-naspa-president.jpg"],
     client: "Ishmael Evans Nii Odartey Lamptey",
@@ -541,7 +541,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "oriental-installment-furniture",
     title: "Oriental Living - Luxury Furniture & Flexible Installment Promo",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/oriental-installment-1.jpg",
     extraImages: ["/portfolio-assets/oriental-installment-2.jpg"],
     client: "Oriental Living Ghana",
@@ -553,7 +553,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "peace-consult-kstu-admissions",
     title: "The Peace Consult - KsTU Admissions & Academic Placement",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/peace-consult-kstu-admissions.jpg",
     extraImages: [],
     client: "The Peace Consult",
@@ -565,7 +565,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "prayer-forum-identity",
     title: "The Prayer Forum - Visual Identity & Annual Spiritual Gathering",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/prayer-forum-1.jpg",
     extraImages: ["/portfolio-assets/prayer-forum-2.jpg"],
     client: "The Prayer Forum",
@@ -577,7 +577,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "quran-and-co-sisters-hangout",
     title: "Qur'an & Co. - Sisters Quran Hangout at KNUST Botanical Garden",
-    category: "Social Media Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/quran-and-co-sisters-hangout.jpg",
     extraImages: [],
     client: "Qur'an & Co.",
@@ -589,7 +589,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "ramadan-islamic-heritage",
     title: "Ramadan Mubarak & Kareem - Islamic Spiritual Greetings & Reflections",
-    category: "Social Media Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/ramadan-kareem-crescent.jpg",
     extraImages: ["/portfolio-assets/ramadan-mubarak-peace.jpg", "/portfolio-assets/jannah-ramadan-reflection.jpg"],
     client: "Islamic Cultural & Spiritual Community",
@@ -601,7 +601,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "royal-rangers-camp",
     title: "Royal Rangers - National Youth Adventure Camp",
-    category: "Event Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/royal-rangers-camp.jpg",
     extraImages: [],
     client: "Assemblies of God Royal Rangers",
@@ -613,7 +613,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "sarmpa-black-soap",
     title: "Sarmpa Organic Black Soap - 100% Natural African Skincare",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/sarmpa-organics-black-soap.jpg",
     extraImages: [],
     client: "Organics Africa",
@@ -637,7 +637,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "techloom-agency-promotions",
     title: "TechLoom Ghana - Agency Brand Campaigns & Promotional Offers",
-    category: "Social Media Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/techloom-brand-ad-1.jpg",
     extraImages: ["/portfolio-assets/techloom-brand-ad-2.jpg", "/portfolio-assets/techloom-brand-ad-3.jpg", "/portfolio-assets/techloom-two-designs-promo.jpg", "/portfolio-assets/techloom-free-flyer-week.jpg", "/portfolio-assets/techloom-eid-adha-greetings.jpg", "/portfolio-assets/techloom-attention-grabbing-ads.jpg", "/portfolio-assets/techloom-design-with-tlm-promo.jpg", "/portfolio-assets/techloom-eid-mubarak-green.jpg"],
     client: "TechLoom Ghana",
@@ -649,7 +649,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "gadget-store-promo",
     title: "Smart Gadgets & Electronics Store - Promotional Sale Flyer",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/gadget-store-flyer.jpg",
     extraImages: ["/portfolio-assets/techloom-gadget-promo-recovered.jpg"],
     client: "Gadget Hub Ghana",
@@ -661,7 +661,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "kedlan-school-branding",
     title: "Kedlan Educational Complex - Institutional Brand Identity & Prospectus",
-    category: "Branding & Identity",
+    category: "Graphic Design",
     image: "/portfolio-assets/techloom-kedlan-school-branding-proposal.jpg",
     extraImages: [],
     client: "Kedlan Educational Complex",
@@ -673,7 +673,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "tein-national-tertiary",
     title: "TEIN Ghana - Tertiary Institutions Network Political Mobilization Series",
-    category: "Political Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/tein-final-poster.jpg",
     extraImages: ["/portfolio-assets/tein-variation-2.jpg", "/portfolio-assets/tein-variation-4.jpg"],
     client: "TEIN Ghana",
@@ -685,7 +685,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "tescon-bole-nmtc-orientation",
     title: "TESCON Bole NMTC - Freshers Orientation & Welcome Ceremony",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/tescon-bole-nmtc-orientation.jpg",
     extraImages: [],
     client: "TESCON Bole NMTC Chapter",
@@ -697,7 +697,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "ttu-wocom-janice-campaign",
     title: "Janice - Takoradi Technical University (TTU) Women's Commissioner Campaign '26",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/ttu-wocom-26-main.jpg",
     extraImages: ["/portfolio-assets/ttu-wocom-26-janice-official.jpg", "/portfolio-assets/ttu-wocom-26-janice-1.jpg", "/portfolio-assets/ttu-wocom-26-janice-2.jpg"],
     client: "Janice for TTU WOCOM",
@@ -709,7 +709,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "ype-civic-leadership",
     title: "Young Patriotic Elites (YPE) - Regional Leadership Appointments",
-    category: "Political Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/goode-ernest-bono-east.jpg",
     extraImages: ["/portfolio-assets/ype-jenatu-bashiru.jpg"],
     client: "Young Patriotic Elites (YPE)",
@@ -733,7 +733,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "dr-freda-prempeh-campaign",
     title: "Hon. Dr. Freda Prempeh - NPP Ahafo Regional Chairperson Campaign",
-    category: "Political Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/dr-freda-prempeh-ahafo-campaign.jpg",
     extraImages: [],
     client: "Hon. Dr. Freda Prempeh Campaign",
@@ -745,7 +745,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "lord-akum-yong-naspa-bosomtwe",
     title: "Lord Akum-Yong - Candidate for NASPA Bosomtwe President Campaign",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/lord-akum-yong-naspa-bosomtwe-campaign.jpg",
     extraImages: [],
     client: "Lord Akum-Yong Campaign",
@@ -757,7 +757,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "agbenoko-christopher-kstu-src-pro",
     title: "Agbenoko Christopher - KsTU SRC Public Relations Officer (PRO) Campaign",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/kstu-src-agbenoko-christopher-pro.jpg",
     extraImages: [],
     client: "Agbenoko Christopher Campaign",
@@ -769,7 +769,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "kstu-src-telecel-sim-registration",
     title: "Kay Collins - KsTU SRC Special Telecel Student SIM Registration",
-    category: "Campaign Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/kstu-src-kay-collins-telecel-sim.jpg",
     extraImages: [],
     client: "Kay Collins / KsTU SRC Welfare",
@@ -781,7 +781,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "pastor-james-baffoe-birthday",
     title: "Pastor James Baffoe - Birthday Celebration at Assemblies of God Peace Villa",
-    category: "Event Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/pastor-james-baffoe-birthday-peace-villa.jpg",
     extraImages: [],
     client: "Assemblies of God Peace Villa",
@@ -793,7 +793,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "adoration-framing-art",
     title: "Adoration Framing & Art - Custom Certificate & Photo Framing",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/adoration-framing-art-graduation.jpg",
     extraImages: [],
     client: "Adoration Framing & Art",
@@ -805,7 +805,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "habbys-jewelries-fragrance",
     title: "Habby's Jewelries & Fragrance - Luxury Accessories & Perfumes",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/habbys-jewelries-and-fragrance.jpg",
     extraImages: [],
     client: "Habby's Jewelries and Fragrance",
@@ -817,7 +817,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "linex-moons-lingerie",
     title: "Linex Moon's Lingerie - Luxury Intimates & Sleepwear Campaign",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/linex-moons-lingerie-campaign.jpg",
     extraImages: [],
     client: "Linex Moon's Lingerie",
@@ -829,7 +829,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "odeneho-tye-and-dye",
     title: "Odeneho Tye & Dye - Traditional Handcrafted Batik & African Fabrics",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/odeneho-tye-and-dye-kumasi.jpg",
     extraImages: [],
     client: "Odeneho Tye & Dye",
@@ -841,7 +841,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "the-political-prince-ava",
     title: "The Political Prince / AVA - Christmas & New Year Leadership Goodwill Greeting",
-    category: "Political Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/the-political-prince-ava-christmas.jpg",
     extraImages: [],
     client: "The Political Prince / AVA",
@@ -853,7 +853,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "phitness-with-phamous",
     title: "Phitness with Phamous - Personal Training & Athletic Conditioning",
-    category: "Flyer Design",
+    category: "Graphic Design",
     image: "/portfolio-assets/phitness-with-phamous-gym-training.jpg",
     extraImages: [],
     client: "Phitness with Phamous",
@@ -865,7 +865,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "gnuts-official-portal-web",
     title: "GNUTS - Ghana National Union of Technical Students Official National Portal",
-    category: "Website Design",
+    category: "Web & Software Projects",
     image: "/portfolio-assets/gnuts-national-portal-web.jpg",
     extraImages: ["/portfolio-assets/gnuts-portal-about-leadership.jpg", "/portfolio-assets/gnuts-portal-resources-tvet.jpg", "/portfolio-assets/gnuts-portal-mobile-responsive.jpg"],
     client: "GNUTS National Secretariat (Republic of Ghana)",
@@ -878,7 +878,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "bliss-elle-ghana-ecommerce-web",
     title: "Maison Bliss Elle Ghana - Luxury Footwear & Handbags E-Commerce",
-    category: "Website Design",
+    category: "Web & Software Projects",
     image: "/portfolio-assets/bliss-elle-ghana-ecommerce-web.jpg",
     extraImages: ["/portfolio-assets/bliss-elle-luxury-catalogue.jpg", "/portfolio-assets/bliss-elle-handbags-collection.jpg", "/portfolio-assets/bliss-elle-mobile-storefront.jpg"],
     client: "Bliss Elle Ghana (Accra \u2022 Kumasi)",
@@ -891,7 +891,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "adaptation-family-sports-web",
     title: "Adaptation Family - Global Sports Betting Community & Predictions Hub",
-    category: "Website Design",
+    category: "Web & Software Projects",
     image: "/portfolio-assets/adaptation-family-portal-web.jpg",
     extraImages: ["/portfolio-assets/adaptation-family-booking-codes.jpg", "/portfolio-assets/adaptation-family-vip-analytics.jpg", "/portfolio-assets/adaptation-family-mobile-experience.jpg"],
     client: "Adaptation Family Media",
@@ -904,7 +904,7 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: "deon-recreational-centre-web",
     title: "Deon Recreational Centre (DRC) - Premier Outdoor Adventure Oasis",
-    category: "Website Design",
+    category: "Web & Software Projects",
     image: "/portfolio-assets/deon-research-consult-web.jpg",
     extraImages: ["/portfolio-assets/deonrc-attractions-gokart-pricing.jpg", "/portfolio-assets/deonrc-poolside-events-amenities.jpg", "/portfolio-assets/deonrc-mobile-booking-guide.jpg"],
     client: "Deon Recreational Centre (DRC Sakumono)",

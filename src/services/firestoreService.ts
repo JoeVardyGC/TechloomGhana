@@ -51,10 +51,14 @@ export const serviceConverter: FirestoreDataConverter<Service> = {
  */
 export const portfolioConverter: FirestoreDataConverter<PortfolioItem> = {
   toFirestore(item: PortfolioItem): DocumentData {
+    const rawCat = (item.category || '').toLowerCase().trim();
+    const isWeb = rawCat.includes('web') || rawCat.includes('software') || rawCat.includes('app') || !!item.projectLink;
+    const category = isWeb ? 'Web & Software Projects' : 'Graphic Design';
+
     const payload: DocumentData = {
       id: item.id,
       title: item.title,
-      category: item.category,
+      category,
       image: item.image,
       description: item.description,
       client: item.client,
@@ -69,10 +73,14 @@ export const portfolioConverter: FirestoreDataConverter<PortfolioItem> = {
   },
   fromFirestore(snapshot: QueryDocumentSnapshot): PortfolioItem {
     const data = snapshot.data();
+    const rawCat = String(data.category || '').toLowerCase().trim();
+    const isWeb = rawCat.includes('web') || rawCat.includes('software') || rawCat.includes('app') || !!data.projectLink;
+    const category = isWeb ? 'Web & Software Projects' : 'Graphic Design';
+
     return {
       id: snapshot.id,
       title: String(data.title || ''),
-      category: data.category || 'Branding',
+      category,
       image: String(data.image || ''),
       description: String(data.description || ''),
       client: String(data.client || ''),
