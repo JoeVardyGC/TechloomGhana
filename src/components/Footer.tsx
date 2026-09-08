@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext';
 
 export default function Footer() {
-  const { settings, setCurrentView } = useApp();
+  const { settings } = useApp();
   const currentYear = new Date().getFullYear();
 
   const handleScrollToTop = () => {
@@ -174,20 +174,10 @@ export default function Footer() {
 
       {/* Footer Bottom Credentials and Scroll-To-Top button */}
       <div className="max-w-7xl mx-auto px-6 pt-10 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-center sm:text-left">
+        <div className="flex items-center text-center sm:text-left">
           <p className="text-xs text-slate-500 font-light">
             &copy; {currentYear} Techloom Agency Inc. All rights reserved.
           </p>
-          <a
-            href="/admin"
-            onClick={(e) => {
-              e.preventDefault();
-              setCurrentView('admin');
-            }}
-            className="text-[11px] font-mono text-slate-500 hover:text-brand-cyan transition-colors cursor-pointer"
-          >
-            Admin Portal
-          </a>
         </div>
 
         {/* Back back up button */}
