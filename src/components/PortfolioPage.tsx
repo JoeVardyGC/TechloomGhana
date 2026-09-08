@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
@@ -14,6 +14,50 @@ export default function PortfolioPage() {
   const { portfolio, loading, setCurrentView, setSelectedProject } = useApp();
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // Restore scroll position to exact card when returning from details view
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const raw = sessionStorage.getItem('techloom_return_target');
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      if (data && data.projectId && data.view === 'portfolio') {
+        let attempts = 0;
+        const interval = setInterval(() => {
+          attempts++;
+          const cardEl = document.getElementById(`portfolio-page-card-${data.projectId}`);
+          if (cardEl) {
+            clearInterval(interval);
+            const navOffset = 90;
+            const elementPosition = cardEl.getBoundingClientRect().top + window.pageYOffset;
+            const targetPosition = Math.max(0, elementPosition - navOffset);
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+
+            cardEl.classList.add('ring-4', 'ring-brand-blue/50', 'ring-offset-4', 'transition-all', 'duration-500');
+            setTimeout(() => {
+              cardEl.classList.remove('ring-4', 'ring-brand-blue/50', 'ring-offset-4');
+            }, 2000);
+
+            try {
+              sessionStorage.removeItem('techloom_return_target');
+            } catch (e) {}
+          } else if (attempts >= 25) {
+            clearInterval(interval);
+            if (typeof data.scrollY === 'number' && data.scrollY > 0) {
+              window.scrollTo({ top: data.scrollY, behavior: 'smooth' });
+            }
+            try {
+              sessionStorage.removeItem('techloom_return_target');
+            } catch (e) {}
+          }
+        }, 40);
+        return () => clearInterval(interval);
+      }
+    } catch (e) {
+      console.error("Portfolio page scroll restoration error:", e);
+    }
+  }, []);
 
   // Compute dynamic categories
   const dynamicCategories = useMemo(() => {
@@ -163,6 +207,7 @@ export default function PortfolioPage() {
               {filteredProjects.map((project) => (
                 <motion.div
                   key={project.id}
+                  id={`portfolio-page-card-${project.id}`}
                   layout
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ExternalLink, X, Clock, User, CheckCircle2, ChevronRight, Briefcase, ChevronLeft } from 'lucide-react';
 import { useApp } from '../context/AppContext';
@@ -8,6 +8,50 @@ export default function Portfolio() {
   const { portfolio, settings, loading, setCurrentView, setSelectedProject } = useApp();
   const [activeFilter, setActiveFilter] = useState<string>('All');
   const [simulatedLoading, setSimulatedLoading] = useState<boolean>(false);
+
+  // Restore scroll position to exact card when returning from details view
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const raw = sessionStorage.getItem('techloom_return_target');
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      if (data && data.projectId && (data.view === 'home' || !data.view)) {
+        let attempts = 0;
+        const interval = setInterval(() => {
+          attempts++;
+          const cardEl = document.getElementById(`portfolio-card-${data.projectId}`);
+          if (cardEl) {
+            clearInterval(interval);
+            const navOffset = 90;
+            const elementPosition = cardEl.getBoundingClientRect().top + window.pageYOffset;
+            const targetPosition = Math.max(0, elementPosition - navOffset);
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+
+            cardEl.classList.add('ring-4', 'ring-brand-blue/50', 'ring-offset-4', 'transition-all', 'duration-500');
+            setTimeout(() => {
+              cardEl.classList.remove('ring-4', 'ring-brand-blue/50', 'ring-offset-4');
+            }, 2000);
+
+            try {
+              sessionStorage.removeItem('techloom_return_target');
+            } catch (e) {}
+          } else if (attempts >= 25) {
+            clearInterval(interval);
+            if (typeof data.scrollY === 'number' && data.scrollY > 0) {
+              window.scrollTo({ top: data.scrollY, behavior: 'smooth' });
+            }
+            try {
+              sessionStorage.removeItem('techloom_return_target');
+            } catch (e) {}
+          }
+        }, 40);
+        return () => clearInterval(interval);
+      }
+    } catch (e) {
+      console.error("Home portfolio scroll restoration error:", e);
+    }
+  }, []);
 
   const selectedIds = settings?.selectedHomepagePortfolios || [];
   const selectedItems = selectedIds
@@ -102,6 +146,7 @@ export default function Portfolio() {
               {filteredProjects.map((project) => (
                 <motion.div
                   key={project.id}
+                  id={`portfolio-card-${project.id}`}
                   layout
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}

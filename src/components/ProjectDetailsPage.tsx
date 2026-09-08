@@ -50,7 +50,6 @@ export default function ProjectDetailsPage() {
 
   const handleBack = () => {
     setSelectedProject(null);
-    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   const handleShare = () => {
@@ -202,7 +201,9 @@ export default function ProjectDetailsPage() {
               {/* Slide Counter pill */}
               {slideshowImages.length > 1 && (
                 <div className="absolute bottom-4 left-6 z-20 px-3 py-1 bg-slate-950/80 backdrop-blur-md text-white border border-white/10 text-[10px] font-mono font-bold tracking-widest uppercase rounded-full">
-                  Exhibit {activeSlideIndex + 1} of {slideshowImages.length}
+                  {selectedProject.category === 'Website Design'
+                    ? `Screen ${activeSlideIndex + 1} of ${slideshowImages.length}`
+                    : `Exhibit ${activeSlideIndex + 1} of ${slideshowImages.length}`}
                 </div>
               )}
             </div>
@@ -212,7 +213,11 @@ export default function ProjectDetailsPage() {
           {slideshowImages.length > 1 && (
             <div className="max-w-6xl mx-auto space-y-2">
               <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold px-1">
-                <span>Campaign Variations ({slideshowImages.length} Posters)</span>
+                <span>
+                  {selectedProject.category === 'Website Design'
+                    ? `Website Screens & Views (${slideshowImages.length} Displays)`
+                    : `Campaign Variations (${slideshowImages.length} Posters)`}
+                </span>
                 <span>Select to Preview</span>
               </div>
 
@@ -234,7 +239,7 @@ export default function ProjectDetailsPage() {
                       referrerPolicy="no-referrer"
                     />
                     <span className="absolute bottom-1 right-1 text-[9px] font-mono font-bold bg-black/80 text-white px-1.5 py-0.5 rounded-sm">
-                      #{idx + 1}
+                      {selectedProject.category === 'Website Design' ? `S${idx + 1}` : `#${idx + 1}`}
                     </span>
                   </button>
                 ))}
@@ -247,7 +252,9 @@ export default function ProjectDetailsPage() {
         <div className="max-w-6xl mx-auto rounded-3xl bg-gradient-to-br from-slate-900 to-slate-950 text-white p-8 sm:p-10 border border-slate-800 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div className="space-y-1.5 max-w-md">
             <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white">
-              Need a design like this for your project?
+              {selectedProject.category === 'Website Design'
+                ? "Need a high-converting website like this?"
+                : "Need a design like this for your project?"}
             </h3>
             <p className="text-slate-400 text-xs sm:text-sm font-light">
               We design premium flyers, political identities, and brand campaigns that command attention across Ghana.

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useRef, ReactNode } from 'react';
 import { onSnapshot } from 'firebase/firestore';
 import { onAuthStateChanged, signInWithPopup, signOut, User, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { db, auth, googleProvider, seedDefaultDataIfEmpty } from '../lib/firebase';
@@ -243,11 +243,108 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const returnTargetRef = useRef<{ scrollY: number; projectId: string; view: AppView } | null>(null);
+
+  const restoreReturnPosition = (targetArg: { scrollY: number; projectId: string; view: AppView } | null) => {
+    if (typeof window === 'undefined') return;
+
+    let target = targetArg;
+    if (!target) {
+      try {
+        const raw = sessionStorage.getItem('techloom_return_target');
+        if (raw) target = JSON.parse(raw);
+      } catch (e) {}
+    }
+
+    if (target) {
+      // Instantly restore scroll position if saved to prevent jumping to top/hero
+      if (typeof target.scrollY === 'number' && target.scrollY > 0) {
+        window.scrollTo({ top: target.scrollY, behavior: 'instant' });
+      }
+
+      let attempts = 0;
+      const maxAttempts = 30;
+      const pollTimer = setInterval(() => {
+        attempts++;
+        const cardEl = document.getElementById(`portfolio-card-${target!.projectId}`) ||
+                       document.getElementById(`portfolio-page-card-${target!.projectId}`);
+        if (cardEl) {
+          clearInterval(pollTimer);
+          const navOffset = 90;
+          const elementPosition = cardEl.getBoundingClientRect().top + window.pageYOffset;
+          const targetPosition = Math.max(0, elementPosition - navOffset);
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+
+          cardEl.classList.add('ring-4', 'ring-brand-blue/50', 'ring-offset-4', 'transition-all', 'duration-500');
+          setTimeout(() => {
+            cardEl.classList.remove('ring-4', 'ring-brand-blue/50', 'ring-offset-4');
+          }, 2000);
+
+          try {
+            sessionStorage.removeItem('techloom_return_target');
+          } catch (e) {}
+        } else if (attempts >= maxAttempts) {
+          clearInterval(pollTimer);
+          if (typeof target!.scrollY === 'number' && target!.scrollY > 0) {
+            window.scrollTo({ top: target!.scrollY, behavior: 'smooth' });
+          }
+          try {
+            sessionStorage.removeItem('techloom_return_target');
+          } catch (e) {}
+        }
+      }, 40);
+    } else {
+      const portfolioSec = document.getElementById('portfolio');
+      if (portfolioSec) {
+        portfolioSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   const setSelectedProject = (project: PortfolioItem | null) => {
-    setSelectedProjectState(project);
-    if (project && typeof window !== 'undefined') {
-      if (window.location.pathname !== '/portfolio') {
-        window.history.pushState({ view: 'portfolio', projectId: project.id }, '', '/portfolio');
+    if (project) {
+      if (typeof window !== 'undefined') {
+        const scrollPos = window.scrollY || window.pageYOffset || 0;
+        const targetData = {
+          scrollY: scrollPos,
+          projectId: project.id,
+          view: currentView
+        };
+        returnTargetRef.current = targetData;
+        try {
+          sessionStorage.setItem('techloom_return_target', JSON.stringify(targetData));
+        } catch (e) {}
+
+        if (window.location.pathname !== '/portfolio') {
+          window.history.pushState({ view: 'portfolio', projectId: project.id }, '', '/portfolio');
+        }
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+      setSelectedProjectState(project);
+    } else {
+      const target = returnTargetRef.current || (() => {
+        try {
+          const raw = sessionStorage.getItem('techloom_return_target');
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) {
+          return null;
+        }
+      })();
+
+      setSelectedProjectState(null);
+      if (target) {
+        if (currentView !== target.view) {
+          setCurrentViewState(target.view);
+        }
+        if (typeof window !== 'undefined') {
+          const targetPath = target.view === 'portfolio' ? '/portfolio' : '/';
+          if (window.location.pathname !== targetPath) {
+            window.history.replaceState({ view: target.view }, '', targetPath);
+          }
+        }
+        restoreReturnPosition(target);
+      } else {
+        restoreReturnPosition(null);
       }
     }
   };
@@ -255,14 +352,30 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.toLowerCase();
+      const target = returnTargetRef.current || (() => {
+        try {
+          const raw = sessionStorage.getItem('techloom_return_target');
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) {
+          return null;
+        }
+      })();
+
       if (path === '/admin' || path.startsWith('/admin/')) {
         setCurrentViewState('admin');
         setSelectedProjectState(null);
       } else if (path === '/portfolio' || path.startsWith('/portfolio/')) {
         setCurrentViewState('portfolio');
+        setSelectedProjectState(null);
+        if (target && target.view === 'portfolio') {
+          restoreReturnPosition(target);
+        }
       } else {
         setCurrentViewState('home');
         setSelectedProjectState(null);
+        if (target) {
+          restoreReturnPosition(target);
+        }
       }
     };
 
