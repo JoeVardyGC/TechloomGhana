@@ -135,19 +135,6 @@ export default function DesignAudit() {
     }, 350);
   };
 
-  const whatsappMessageSample = encodeURIComponent(
-    `*NEW WEBSITE INQUIRY*\n` +
-    `--------------------------\n` +
-    `*Name:* ${formData.name}\n` +
-    `*Email:* ${formData.email}\n` +
-    `*Phone:* ${formData.phone || 'Not provided'}\n` +
-    `*Message:* ${formData.message}\n` +
-    `--------------------------\n` +
-    `Sent from Techloom Ghana Portal`
-  );
-  const directWhatsAppUrl = `https://wa.me/233256259336?text=${whatsappMessageSample}`;
-  const secondaryWhatsAppUrl = `https://wa.me/233504041694?text=${whatsappMessageSample}`;
-
   return (
     <section id="audit" className="py-24 bg-slate-50 dark:bg-slate-950/80 relative overflow-hidden transition-colors duration-300">
       {/* Visual glowing accents */}
@@ -376,54 +363,25 @@ export default function DesignAudit() {
                       <CheckCircle className="w-10 h-10" />
                     </div>
                     
-                    <div className="space-y-2 pb-2">
-                      <h2 className="font-display font-black text-4xl sm:text-5xl text-slate-900 dark:text-white tracking-tight">
-                        Submitted
+                    <div className="space-y-3 pb-2">
+                      <h2 className="font-display font-black text-3xl sm:text-4xl text-slate-900 dark:text-white tracking-tight">
+                        Inquiry Sent Successfully!
                       </h2>
                       <p className="text-slate-600 dark:text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                        Your inquiry has been submitted! Our team will receive it at <strong className="text-brand-blue">techloomgh@yahoo.com</strong> and via our WhatsApp notification lines (<strong className="text-emerald-500">+233 256 259 336</strong> / <strong className="text-emerald-500">+233 504 041 694</strong>).
+                        Thank you for reaching out! Your inquiry has been sent directly to our team. We will review your project requirements and get back to you shortly.
                       </p>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 pt-2">
-                      {/* Direct Email Client fallback */}
-                      <a
-                        href={`mailto:techloomgh@yahoo.com?subject=${encodeURIComponent(`Inquiry from ${formData.name || 'Website Client'}`)}&body=${encodeURIComponent(formData.message || '')}`}
-                        className="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue/90 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
-                      >
-                        <Mail className="w-4 h-4" />
-                        <span>Email techloomgh@yahoo.com</span>
-                      </a>
-
-                      {/* Optional WhatsApp Quick Sample Chat */}
-                      <a
-                        href={directWhatsAppUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
-                      >
-                        <MessageSquare className="w-4 h-4" />
-                        <span>Chat Line 1 (+233 256 259 336)</span>
-                      </a>
-
-                      <a
-                        href={secondaryWhatsAppUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
-                      >
-                        <MessageSquare className="w-4 h-4" />
-                        <span>Chat Line 2 (+233 504 041 694)</span>
-                      </a>
-
+                    <div className="flex items-center justify-center pt-3">
                       <button
                         onClick={() => {
                           setFormData({ name: '', email: '', phone: '', message: '' });
                           setState('IDLE');
                         }}
-                        className="text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-brand-blue bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 px-5 py-3 rounded-xl transition-colors cursor-pointer"
+                        className="text-xs font-bold text-white bg-brand-blue hover:bg-brand-blue/90 px-7 py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center gap-2"
                       >
-                        Submit Another Inquiry
+                        <CheckCircle className="w-4 h-4" />
+                        <span>Send Another Inquiry</span>
                       </button>
                     </div>
                   </motion.div>

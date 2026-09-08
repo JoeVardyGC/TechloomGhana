@@ -137,7 +137,7 @@ export default function PortfolioPage() {
             onClick={() => {
               if (setPortfolioInitialFilter) setPortfolioInitialFilter(null);
               setCurrentView('home');
-              window.scrollTo({ top: 0, behavior: 'instant' });
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
             id="portfolio-back-btn"
             className="group flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-950 text-slate-800 dark:text-slate-100 font-bold text-xs border border-slate-200 dark:border-slate-800 transition-all shadow-xs duration-200 cursor-pointer"

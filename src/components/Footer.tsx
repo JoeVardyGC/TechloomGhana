@@ -178,12 +178,16 @@ export default function Footer() {
           <p className="text-xs text-slate-500 font-light">
             &copy; {currentYear} Techloom Agency Inc. All rights reserved.
           </p>
-          <button
-            onClick={() => setCurrentView('admin')}
-            className="text-[11px] font-mono text-slate-600 hover:text-brand-cyan transition-colors cursor-pointer"
+          <a
+            href="/admin"
+            onClick={(e) => {
+              e.preventDefault();
+              setCurrentView('admin');
+            }}
+            className="text-[11px] font-mono text-slate-500 hover:text-brand-cyan transition-colors cursor-pointer"
           >
             Admin Portal
-          </button>
+          </a>
         </div>
 
         {/* Back back up button */}

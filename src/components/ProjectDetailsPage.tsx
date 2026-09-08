@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowLeft, 
@@ -8,13 +8,12 @@ import {
   ChevronLeft,
   Share2,
   Check,
-  Maximize2,
-  MessageCircle
+  Maximize2
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function ProjectDetailsPage() {
-  const { selectedProject, setSelectedProject, currentView, setCurrentView, showToast } = useApp();
+  const { portfolio, selectedProject, setSelectedProject, currentView, setCurrentView, showToast } = useApp();
   const [activeSlideIndex, setActiveSlideIndex] = useState<number>(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [shareCopied, setShareCopied] = useState<boolean>(false);
@@ -47,6 +46,11 @@ export default function ProjectDetailsPage() {
     selectedProject.image,
     ...(selectedProject.extraImages || [])
   ].filter((img): img is string => typeof img === 'string' && img.trim().length > 0);
+
+  const otherProjects = useMemo(() => {
+    if (!selectedProject) return [];
+    return portfolio.filter(p => p.id !== selectedProject.id);
+  }, [portfolio, selectedProject]);
 
   const handleBack = () => {
     setSelectedProject(null);
@@ -248,11 +252,101 @@ export default function ProjectDetailsPage() {
           )}
         </div>
 
+        {/* VIEW MORE PROJECTS HORIZONTAL SCROLL SECTION */}
+        {otherProjects.length > 0 && (
+          <div className="max-w-6xl mx-auto space-y-6 pt-4 pb-2">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-brand-blue font-bold">
+                  Continue Exploring
+                </span>
+                <h3 className="font-display font-extrabold text-2xl text-slate-900 dark:text-white">
+                  More Projects
+                </h3>
+              </div>
+              
+              {/* Horizontal Scroll navigation buttons */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('more-projects-scroll-track');
+                    if (el) el.scrollBy({ left: -360, behavior: 'smooth' });
+                  }}
+                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-brand-blue hover:text-white dark:hover:bg-brand-blue dark:hover:text-white text-slate-700 dark:text-slate-300 flex items-center justify-center transition cursor-pointer"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('more-projects-scroll-track');
+                    if (el) el.scrollBy({ left: 360, behavior: 'smooth' });
+                  }}
+                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-brand-blue hover:text-white dark:hover:bg-brand-blue dark:hover:text-white text-slate-700 dark:text-slate-300 flex items-center justify-center transition cursor-pointer"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* Horizontal Scroll Track */}
+            <div
+              id="more-projects-scroll-track"
+              className="flex gap-6 overflow-x-auto pb-4 pt-1 scroll-smooth scrollbar-thin snap-x snap-mandatory"
+            >
+              {otherProjects.map((p) => {
+                const isWeb = (p.category || '').toLowerCase().includes('web') || (p.category || '').toLowerCase().includes('software') || !!p.projectLink;
+                return (
+                  <div
+                    key={p.id}
+                    onClick={() => {
+                      setSelectedProject(p);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="w-72 sm:w-80 shrink-0 snap-start group cursor-pointer bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col border border-slate-100 dark:border-slate-800 hover:border-brand-blue/30"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden bg-slate-100 dark:bg-slate-950">
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = '/portfolio-assets/elan-noir-flyer.jpg';
+                        }}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <span className="text-[9px] font-mono font-bold uppercase tracking-wider bg-white/90 dark:bg-slate-900/90 text-slate-800 dark:text-white px-2.5 py-1 rounded-md shadow-xs backdrop-blur-xs">
+                          {isWeb ? 'Web & Software' : 'Graphic Design'}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-4 flex items-center justify-between gap-3 bg-white dark:bg-slate-900">
+                      <div className="truncate">
+                        <h4 className="font-display font-bold text-sm text-slate-900 dark:text-white group-hover:text-brand-blue transition-colors truncate">
+                          {p.title}
+                        </h4>
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
+                          {p.client || (isWeb ? 'Web Platform' : 'Visual Design')}
+                        </p>
+                      </div>
+                      <div className="w-8 h-8 rounded-lg bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <ChevronRight className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* BOTTOM CONVERSION FOOTER STRIP */}
         <div className="max-w-6xl mx-auto rounded-3xl bg-gradient-to-br from-slate-900 to-slate-950 text-white p-8 sm:p-10 border border-slate-800 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
           <div className="space-y-1.5 max-w-md">
             <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white">
-              {selectedProject.category === 'Website Design'
+              {selectedProject.category === 'Website Design' || (selectedProject.category || '').toLowerCase().includes('web')
                 ? "Need a high-converting website like this?"
                 : "Need a design like this for your project?"}
             </h3>
@@ -266,9 +360,11 @@ export default function ProjectDetailsPage() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs px-6 py-3.5 rounded-xl shadow-lg transition-all cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-extrabold text-xs px-6 py-3.5 rounded-xl shadow-lg transition-all cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-white shrink-0" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
               <span>Chat on WhatsApp</span>
             </a>
 

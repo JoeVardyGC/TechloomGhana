@@ -125,8 +125,8 @@ export default function Portfolio() {
         setPortfolioInitialFilter(targetFilter);
       }
       setCurrentView('portfolio');
-      window.scrollTo({ top: 0, behavior: 'instant' });
-    }, 250);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 200);
   };
 
   return (
