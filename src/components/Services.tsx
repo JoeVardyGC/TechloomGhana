@@ -65,14 +65,14 @@ export default function Services() {
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="text-xs font-bold tracking-widest text-brand-blue uppercase px-3 py-1 bg-brand-blue/5 rounded-full inline-block">
-            Our Expertise
+            What We Do
           </span>
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight leading-tight">
-            Comprehensive Digital Solutions Designed For{' '}
-            <span className="blue-gradient-text">Impact</span>
+            Complete Design & Website Solutions That{' '}
+            <span className="blue-gradient-text">Grow Your Business</span>
           </h2>
-          <p className="text-slate-500 text-lg sm:text-xl font-light">
-            We merge premium designs with performance-driven marketing to help your enterprise capture market share.
+          <p className="text-slate-600 text-base sm:text-lg font-normal leading-relaxed">
+            We create clean flyers, professional company branding, and fast websites that make your business look trusted and win more customers.
           </p>
         </div>
 

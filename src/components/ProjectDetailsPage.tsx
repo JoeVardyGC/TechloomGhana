@@ -56,7 +56,7 @@ export default function ProjectDetailsPage() {
     const shareUrl = window.location.href;
     navigator.clipboard.writeText(shareUrl).then(() => {
       setShareCopied(true);
-      showToast("Case study link copied to clipboard!", "success");
+      showToast("Project link copied to clipboard!", "success");
       setTimeout(() => setShareCopied(false), 2000);
     }).catch(() => {
       showToast("Failed to copy link.", "error");

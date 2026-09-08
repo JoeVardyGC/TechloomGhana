@@ -56,10 +56,10 @@ export async function seedDefaultDataIfEmpty(force = false) {
           phone: "+233 256 259 336",
           secondaryPhone: "+233 504 041 694",
           location: "TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana",
-          openingHours: "Monday – Saturday (08:30 – 19:00 GHS)",
+          openingHours: "Monday – Saturday, 8:30 AM – 7:00 PM GMT",
           avgResponseTime: "Average response: under 12 hours for new submissions.",
           socialImpactText: "Every project finances the Joe Vardy Al-Hikmah Foundation, educating Accra's underserved youth in modern tech skills.",
-          agencySlogan: "Weaving digital excellence. We custom-engineer premium visual branding, high-speed platforms, and cinematically animated narratives designed to make Ghana businesses look truly world-class.",
+          agencySlogan: "We design clean flyers, professional company branding, and fast websites that make Ghanaian businesses look trusted and win more customers.",
           heroBgImage: "",
           facebookLink: "#",
           twitterLink: "#",
@@ -67,19 +67,19 @@ export async function seedDefaultDataIfEmpty(force = false) {
           youtubeLink: "#",
           linkedinLink: "#",
           githubLink: "#",
-          metricNumber: "50+",
+          metricNumber: "100+",
           metricSubtitle: "Delivered Projects",
-          metricDescription: "Precision-engineered branding, flyers, and digital platforms across diverse industries.",
-          hqTitle: "Accra Studio",
+          metricDescription: "Clean flyers, company branding, and modern websites delivered for businesses across Ghana and beyond.",
+          hqTitle: "Our Studio",
           hqSubtitle: "& Creative Hub",
           socialImpactTitle: "10% Social Impact Investment",
           socialImpactCardTitle: "Financing The Future Of Accra",
           heroTitleLine1: "Design That Makes",
           heroTitleLine2: "Your Brand Impossible To Ignore.",
-          heroDescription: "We custom-engineer premium visual branding, high-speed digital platforms, and high-converting marketing flyers crafted to position your enterprise ahead of the competition.",
+          heroDescription: "We design clean brand identities, eye-catching flyers, and fast modern websites that help Ghanaian and international businesses stand out and grow.",
           heroBadgeText: "Creative Excellence & Strategy",
           heroCardImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
-          heroCardText: "Complete visual identity frameworks, logo systems, and comprehensive brand guidelines engineered to build deep trust."
+          heroCardText: "Complete brand identity, professional logo design, and brand guidelines built to make your business trusted."
         });
         console.log('Seeded settings collection.');
       }

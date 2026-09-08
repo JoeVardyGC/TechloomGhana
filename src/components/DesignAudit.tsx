@@ -63,7 +63,7 @@ export default function DesignAudit() {
 
     setState('PROCESSING');
 
-    // Fire the Firestore save and backend email dispatch concurrently
+    // Fire the Firestore save, FormSubmit direct delivery, and local proxy concurrently
     const firestorePromise = addDoc(collection(db, 'leadInquiries'), {
       name: formData.name.trim(),
       email: formData.email.trim(),
@@ -73,6 +73,22 @@ export default function DesignAudit() {
     }).catch(err => {
       console.error('Firestore save note:', err);
     });
+
+    const formSubmitPromise = fetch('https://formsubmit.co/ajax/techloomgh@yahoo.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        _subject: `New TechLoom Client Inquiry from ${formData.name.trim()}`,
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || 'N/A',
+        message: formData.message.trim(),
+        _template: 'table'
+      })
+    }).catch(e => console.log('Formsubmit dispatch note:', e));
 
     const emailPromise = fetch('/api/send-consultation', {
       method: 'POST',
@@ -89,7 +105,7 @@ export default function DesignAudit() {
       console.error('Backend delivery notification:', emailErr);
     });
 
-    await Promise.all([firestorePromise, emailPromise]);
+    await Promise.allSettled([firestorePromise, formSubmitPromise, emailPromise]);
 
     setState('SUCCESS');
 
@@ -370,6 +386,15 @@ export default function DesignAudit() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 pt-2">
+                      {/* Direct Email Client fallback */}
+                      <a
+                        href={`mailto:techloomgh@yahoo.com?subject=${encodeURIComponent(`Inquiry from ${formData.name || 'Website Client'}`)}&body=${encodeURIComponent(formData.message || '')}`}
+                        className="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue/90 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+                      >
+                        <Mail className="w-4 h-4" />
+                        <span>Email techloomgh@yahoo.com</span>
+                      </a>
+
                       {/* Optional WhatsApp Quick Sample Chat */}
                       <a
                         href={directWhatsAppUrl}

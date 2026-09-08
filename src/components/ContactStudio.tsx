@@ -10,10 +10,10 @@ export default function ContactStudio() {
   const phone = settings?.phone || '+233 256 259 336';
   const secondaryPhone = settings?.secondaryPhone || '+233 504 041 694';
   const location = settings?.location || 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana';
-  const openingHours = settings?.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)';
+  const openingHours = settings?.openingHours || 'Monday – Saturday, 8:30 AM – 7:00 PM GMT';
   const avgResponseTime = settings?.avgResponseTime || 'Average response: under 12 hours for new submissions.';
   const socialImpactText = settings?.socialImpactText || "Every project finances the Joe Vardy Al-Hikmah Foundation, educating Accra's underserved youth in modern tech skills.";
-  const hqTitle = settings?.hqTitle || "Accra Studio";
+  const hqTitle = settings?.hqTitle || "Our Studio";
   const hqSubtitle = settings?.hqSubtitle || "& Community Hub";
   const socialImpactTitle = settings?.socialImpactTitle || "10% Social Impact Investment";
   const socialImpactCardTitle = settings?.socialImpactCardTitle || "Financing The Future Of Accra";

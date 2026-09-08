@@ -12,19 +12,19 @@ export default function Hero() {
   const slides = [
     {
       image: settings?.heroCardImage1 || settings?.heroCardImage || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
-      text: settings?.heroCardText1 || settings?.heroCardText || "Complete visual identity frameworks, modern logo systems, and comprehensive brand guidelines engineered to build deep trust."
+      text: settings?.heroCardText1 || settings?.heroCardText || "Complete brand identity, professional logo design, and brand guidelines built to make your business trusted."
     },
     {
       image: settings?.heroCardImage2 || "https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=600&q=80",
-      text: settings?.heroCardText2 || "High-impact flyer designs, corporate pitch decks, and press-ready print materials crafted to stop the scroll and drive conversions."
+      text: settings?.heroCardText2 || "High-impact flyer designs, business pitch decks, and print-ready materials made to catch attention and bring customers."
     },
     {
       image: settings?.heroCardImage3 || "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80",
-      text: settings?.heroCardText3 || "Scroll-stopping social media visual kits, custom ad templates, and motion storytelling graphics that elevate brand authority."
+      text: settings?.heroCardText3 || "Eye-catching social media posts, custom ad templates, and graphics that give your brand a strong online presence."
     },
     {
       image: settings?.heroCardImage4 || "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=600&q=80",
-      text: settings?.heroCardText4 || "State-of-the-art UI/UX design and responsive web platforms built for speed, elegance, and enterprise lead generation."
+      text: settings?.heroCardText4 || "Modern, fast, and responsive websites designed to showcase your work and get you more calls and sales."
     }
   ];
   
@@ -310,7 +310,7 @@ export default function Hero() {
 
                {/* Elegant narrative tailored beautifully for the studio background or customizable */}
               <p className="text-base sm:text-lg leading-relaxed max-w-2xl font-normal font-sans text-slate-700 dark:text-slate-300 transition-colors duration-300">
-                {settings?.heroDescription || "We custom-engineer premium visual branding, high-speed digital platforms, and high-converting marketing flyers crafted to position your enterprise ahead of the competition."}
+                {settings?.heroDescription || "We design clean brand identities, eye-catching flyers, and fast modern websites that help Ghanaian and international businesses stand out and grow."}
               </p>
 
               {/* CTA Pill Configuration from Image */}
@@ -442,7 +442,7 @@ export default function Hero() {
                   {/* Dynamic Performance details */}
                   <div className="space-y-1">
                     <h3 className="text-4xl sm:text-5xl font-black tracking-tight text-slate-950 dark:text-white">
-                      {settings?.metricNumber || "50+"}
+                      {settings?.metricNumber || "100+"}
                     </h3>
                     <h4 className={`text-sm font-bold tracking-tight ${
                       isDark ? themeColors[activeTheme].accentText.dark : themeColors[activeTheme].accentText.light
@@ -452,7 +452,7 @@ export default function Hero() {
                   </div>
 
                   <p className="text-xs leading-relaxed font-normal text-slate-700 dark:text-slate-400 font-sans">
-                    {settings?.metricDescription || "Precision-engineered branding, flyers, and digital platforms across diverse industries."}
+                    {settings?.metricDescription || "Clean flyers, company branding, and modern websites delivered for businesses across Ghana and beyond."}
                   </p>
                 </div>
 

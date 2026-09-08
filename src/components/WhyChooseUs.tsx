@@ -53,28 +53,28 @@ export default function WhyChooseUs() {
     {
       id: 'wc1',
       title: 'Creative Excellence',
-      description: 'We combine pristine artistic creativity with deliberate business strategy to deliver designs that convert.',
+      description: 'We combine eye-catching artwork with practical business sense so your designs attract real customers.',
       iconName: 'Sparkles',
       percentage: 98
     },
     {
       id: 'wc2',
       title: 'Client-Focused Approach',
-      description: 'We do not deal in generic ideas. Every line, gradient, and word is tailored specifically to your exact company goals.',
+      description: 'We listen to your vision and craft designs specifically made for your target market and goals.',
       iconName: 'UserCheck',
       percentage: 95
     },
     {
       id: 'wc3',
       title: 'Fast Turnaround',
-      description: 'We respect your speed demands. High-quality production-ready assets are delivered precisely on schedule.',
+      description: 'We respect your time. Clean, print-ready and web-ready assets are delivered strictly on schedule.',
       iconName: 'Zap',
       percentage: 92
     },
     {
       id: 'wc4',
-      title: 'Affordable Solutions',
-      description: 'Access elite agency-level quality and senior design talent without paying millions in inflated corporate agency fees.',
+      title: 'Fair & Transparent Pricing',
+      description: 'Get top-tier agency quality without paying millions in inflated agency fees.',
       iconName: 'DollarSign',
       percentage: 88
     }
@@ -90,14 +90,14 @@ export default function WhyChooseUs() {
         {/* Header Block */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
           <span className="text-xs font-bold tracking-widest text-brand-blue uppercase px-3 py-1 bg-brand-blue/5 dark:bg-brand-blue/10 rounded-full inline-block">
-            Our Stack & Expertise
+            Why Choose Techloom
           </span>
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 dark:text-white tracking-tight leading-tight">
-            Skills Built For{' '}
-            <span className="blue-gradient-text font-black">Performance</span>
+            Skills That Deliver{' '}
+            <span className="blue-gradient-text font-black">Real Results</span>
           </h2>
-          <p className="text-slate-500 dark:text-slate-400 text-lg font-light leading-relaxed">
-            We don't settle for basic knowledge. Every technology in our stack is honed for efficiency, precision, and high-performance execution.
+          <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg font-normal leading-relaxed">
+            We use modern design and coding tools to give you reliable work, fast delivery, and designs that truly stand out.
           </p>
         </div>
 

@@ -27,8 +27,8 @@ export default function Footer() {
 
   const navLinks = [
     { name: 'Services Index', id: 'services' },
-    { name: 'Case Studies', id: 'portfolio' },
-    { name: 'Success Pillars', id: 'why-us' },
+    { name: 'Our Work & Portfolio', id: 'portfolio' },
+    { name: 'Why Choose Us', id: 'why-us' },
     { name: 'Our Timeline', id: 'process' },
     { name: 'Customer Praise', id: 'testimonials' },
   ];
@@ -65,7 +65,7 @@ export default function Footer() {
           </div>
 
           <p className="text-slate-400 text-sm leading-relaxed font-light font-sans">
-            {settings?.agencySlogan || "Weaving digital excellence. We custom-engineer premium visual branding, high-speed platforms, and cinematically animated narratives designed to make Ghana businesses look truly world-class."}
+            {settings?.agencySlogan || "We design clean flyers, professional company branding, and fast websites that make Ghanaian businesses look trusted and win more customers."}
           </p>
 
           {/* Social Icons row */}
@@ -94,7 +94,7 @@ export default function Footer() {
         {/* Column 2: Quick Links */}
         <div className="lg:col-span-2.5 space-y-5">
           <span className="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
-            Structure Maps
+            Quick Links
           </span>
           <div className="flex flex-col gap-2.5">
             {navLinks.map((link) => (

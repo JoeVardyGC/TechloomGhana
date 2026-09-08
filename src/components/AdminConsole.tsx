@@ -8,9 +8,18 @@ import {
   X, Lock, ShieldCheck, Mail, Phone, MapPin, 
   Clock, Heart, Sparkles, Palette, Edit3, 
   Trash2, Plus, Check, MessageSquare, Briefcase, UserCheck, AlertCircle, ChevronRight,
-  UploadCloud, Image, Database, RefreshCw, ArrowUp, ArrowDown, Globe
+  UploadCloud, Image, Database, RefreshCw, ArrowUp, ArrowDown, Globe, Inbox
 } from 'lucide-react';
 import { Service, PortfolioItem, ContactSettings, SkillItem } from '../types';
+
+export interface LeadInquiry {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  createdAt?: any;
+}
 
 interface ImageUploadProps {
   id: string;
@@ -268,7 +277,50 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
 
   const handleClose = onClose || (() => setCurrentView('home'));
 
-  const [activeTab, setActiveTab] = useState<'contact' | 'services' | 'portfolio' | 'testimonials' | 'skills' | 'migration'>('contact');
+  const [activeTab, setActiveTab] = useState<'contact' | 'inquiries' | 'services' | 'portfolio' | 'testimonials' | 'skills' | 'migration'>('contact');
+
+  // Client Inquiries State
+  const [inquiries, setInquiries] = useState<LeadInquiry[]>([]);
+  const [isLoadingInquiries, setIsLoadingInquiries] = useState(false);
+
+  const fetchInquiries = async () => {
+    setIsLoadingInquiries(true);
+    try {
+      const snap = await getDocs(collection(db, 'leadInquiries'));
+      const items = snap.docs.map(d => ({
+        id: d.id,
+        ...d.data()
+      })) as LeadInquiry[];
+      items.sort((a, b) => {
+        const timeA = a.createdAt?.toMillis ? a.createdAt.toMillis() : (a.createdAt?.seconds ? a.createdAt.seconds * 1000 : 0);
+        const timeB = b.createdAt?.toMillis ? b.createdAt.toMillis() : (b.createdAt?.seconds ? b.createdAt.seconds * 1000 : 0);
+        return timeB - timeA;
+      });
+      setInquiries(items);
+    } catch (err) {
+      console.error('Failed to load inquiries', err);
+    } finally {
+      setIsLoadingInquiries(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      fetchInquiries();
+    }
+  }, [isOpen]);
+
+  const handleDeleteInquiry = async (id: string) => {
+    if (confirm('Are you sure you want to remove this client inquiry?')) {
+      try {
+        await deleteDoc(doc(db, 'leadInquiries', id));
+        setInquiries(prev => prev.filter(i => i.id !== id));
+        showToast('Inquiry removed.', 'success');
+      } catch (e) {
+        showToast('Failed to delete inquiry.', 'error');
+      }
+    }
+  };
 
   // Prevent background scrolling and hide the main page scrollbar when Admin Console is open
   useEffect(() => {
@@ -439,10 +491,10 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
     phone: settings?.phone || '+233 256 259 336',
     secondaryPhone: settings?.secondaryPhone || '+233 504 041 694',
     location: settings?.location || 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana',
-    openingHours: settings?.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)',
+    openingHours: settings?.openingHours || 'Monday – Saturday, 8:30 AM – 7:00 PM GMT',
     avgResponseTime: settings?.avgResponseTime || 'Average response: under 12 hours for new submissions.',
-    socialImpactText: settings?.socialImpactText || 'Every project finances the Joe Vardy Al-Hikmah Foundation.',
-    agencySlogan: settings?.agencySlogan || 'Weaving digital excellence.',
+    socialImpactText: settings?.socialImpactText || "Every project finances the Joe Vardy Al-Hikmah Foundation, educating Accra's underserved youth in modern tech skills.",
+    agencySlogan: settings?.agencySlogan || 'We design clean flyers, professional company branding, and fast websites that make Ghanaian businesses look trusted and win more customers.',
     heroBgImage: settings?.heroBgImage || '',
     facebookLink: settings?.facebookLink || '',
     twitterLink: settings?.twitterLink || '',
@@ -450,19 +502,19 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
     youtubeLink: settings?.youtubeLink || '',
     linkedinLink: settings?.linkedinLink || '',
     githubLink: settings?.githubLink || '',
-    metricNumber: settings?.metricNumber || '1000+',
-    metricSubtitle: settings?.metricSubtitle || 'Personalized Horoscopes',
-    metricDescription: settings?.metricDescription || 'Created for you by experienced astrologers best by you.',
-    hqTitle: settings?.hqTitle || 'Accra Studio',
+    metricNumber: settings?.metricNumber || '100+',
+    metricSubtitle: settings?.metricSubtitle || 'Delivered Projects',
+    metricDescription: settings?.metricDescription || 'Clean flyers, company branding, and modern websites delivered for businesses across Ghana and beyond.',
+    hqTitle: settings?.hqTitle || 'Our Studio',
     hqSubtitle: settings?.hqSubtitle || '& Community Hub',
     socialImpactTitle: settings?.socialImpactTitle || '10% Social Impact Investment',
     socialImpactCardTitle: settings?.socialImpactCardTitle || 'Financing The Future Of Accra',
-    heroTitleLine1: settings?.heroTitleLine1 || 'Your Cosmic Path',
-    heroTitleLine2: settings?.heroTitleLine2 || 'To Clarity.',
-    heroDescription: settings?.heroDescription || 'Through in-depth astrology readings and personal horoscopes, we guide you in discovering the cosmic forces influencing your life.',
-    heroBadgeText: settings?.heroBadgeText || '5 Second Transition Loop',
+    heroTitleLine1: settings?.heroTitleLine1 || 'Design That Makes',
+    heroTitleLine2: settings?.heroTitleLine2 || 'Your Brand Impossible To Ignore.',
+    heroDescription: settings?.heroDescription || 'We design clean brand identities, eye-catching flyers, and fast modern websites that help Ghanaian and international businesses stand out and grow.',
+    heroBadgeText: settings?.heroBadgeText || 'Creative Excellence & Strategy',
     heroCardImage: settings?.heroCardImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80',
-    heroCardText: settings?.heroCardText || 'Whether you are seeking guidance about career, romance, or personal growth, our hand-selected cosmic experts charter tailored horoscope configurations for you.',
+    heroCardText: settings?.heroCardText || 'Complete brand identity, professional logo design, and brand guidelines built to make your business trusted.',
     heroCardImage1: settings?.heroCardImage1 || '',
     heroCardText1: settings?.heroCardText1 || '',
     heroCardImage2: settings?.heroCardImage2 || '',
@@ -483,10 +535,10 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
         phone: settings.phone || '+233 256 259 336',
         secondaryPhone: settings.secondaryPhone || '+233 504 041 694',
         location: settings.location || 'TechLoom Studio, 3rd Floor, Airport Gate Towers, Airport Residential Area, Accra, Ghana',
-        openingHours: settings.openingHours || 'Monday – Saturday (08:30 – 19:00 GHS)',
+        openingHours: settings.openingHours || 'Monday – Saturday, 8:30 AM – 7:00 PM GMT',
         avgResponseTime: settings.avgResponseTime || 'Average response: under 12 hours for new submissions.',
         socialImpactText: settings.socialImpactText || 'Every project finances the Joe Vardy Al-Hikmah Foundation, educating Accra\'s underserved youth in modern tech skills.',
-        agencySlogan: settings.agencySlogan || 'Weaving digital excellence. We custom-engineer premium visual branding, high-speed platforms, and cinematically animated narratives designed to make Ghana businesses look truly world-class.',
+        agencySlogan: settings.agencySlogan || 'We design clean flyers, professional company branding, and fast websites that make Ghanaian businesses look trusted and win more customers.',
         heroBgImage: settings.heroBgImage || '',
         facebookLink: settings.facebookLink || '',
         twitterLink: settings.twitterLink || '',
@@ -494,19 +546,19 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
         youtubeLink: settings.youtubeLink || '',
         linkedinLink: settings.linkedinLink || '',
         githubLink: settings.githubLink || '',
-        metricNumber: settings.metricNumber || '1000+',
-        metricSubtitle: settings.metricSubtitle || 'Personalized Horoscopes',
-        metricDescription: settings.metricDescription || 'Created for you by experienced astrologers best by you.',
-        hqTitle: settings.hqTitle || 'Accra Studio',
+        metricNumber: settings.metricNumber || '100+',
+        metricSubtitle: settings.metricSubtitle || 'Delivered Projects',
+        metricDescription: settings.metricDescription || 'Clean flyers, company branding, and modern websites delivered for businesses across Ghana and beyond.',
+        hqTitle: settings.hqTitle || 'Our Studio',
         hqSubtitle: settings.hqSubtitle || '& Community Hub',
         socialImpactTitle: settings.socialImpactTitle || '10% Social Impact Investment',
         socialImpactCardTitle: settings.socialImpactCardTitle || 'Financing The Future Of Accra',
-        heroTitleLine1: settings.heroTitleLine1 || 'Your Cosmic Path',
-        heroTitleLine2: settings.heroTitleLine2 || 'To Clarity.',
-        heroDescription: settings.heroDescription || 'Through in-depth astrology readings and personal horoscopes, we guide you in discovering the cosmic forces influencing your life.',
-        heroBadgeText: settings.heroBadgeText || '5 Second Transition Loop',
+        heroTitleLine1: settings.heroTitleLine1 || 'Design That Makes',
+        heroTitleLine2: settings.heroTitleLine2 || 'Your Brand Impossible To Ignore.',
+        heroDescription: settings.heroDescription || 'We design clean brand identities, eye-catching flyers, and fast modern websites that help Ghanaian and international businesses stand out and grow.',
+        heroBadgeText: settings.heroBadgeText || 'Creative Excellence & Strategy',
         heroCardImage: settings.heroCardImage || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80',
-        heroCardText: settings.heroCardText || 'Whether you are seeking guidance about career, romance, or personal growth, our hand-selected cosmic experts charter tailored horoscope configurations for you.',
+        heroCardText: settings.heroCardText || 'Complete brand identity, professional logo design, and brand guidelines built to make your business trusted.',
         heroCardImage1: settings.heroCardImage1 || '',
         heroCardText1: settings.heroCardText1 || '',
         heroCardImage2: settings.heroCardImage2 || '',
@@ -722,12 +774,12 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
   };
 
   const handleDeletePortfolio = async (id: string) => {
-    if (confirm('Are you absolutely certain about deleting this portfolio case study?')) {
+    if (confirm('Are you absolutely certain about deleting this portfolio project?')) {
       setAuthError('');
       try {
         const ok = await deletePortfolio(id);
         if (ok) {
-          triggerSuccess('Portfolio case file permanently removed.');
+          triggerSuccess('Portfolio project permanently removed.');
         }
       } catch (err: any) {
         console.error(err);
@@ -970,6 +1022,27 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                     <ChevronRight className="w-3.5 h-3.5 opacity-60" />
                   </button>
 
+                  {/* Tab Button: Client Inquiries */}
+                  <button
+                    onClick={() => {
+                      setActiveTab('inquiries');
+                      fetchInquiries();
+                    }}
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                      activeTab === 'inquiries'
+                        ? 'bg-brand-blue text-white shadow-lg shadow-brand-blue/20 border border-transparent'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-900 border border-transparent'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <Inbox className="w-4 h-4 stroke-[1.8]" />
+                      <span>Client Inquiries</span>
+                    </div>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${activeTab === 'inquiries' ? 'bg-white/20 text-white' : 'bg-slate-900 text-slate-500'}`}>
+                      {inquiries.length}
+                    </span>
+                  </button>
+
                   {/* Tab Button 2: Services */}
                   <button
                     onClick={() => setActiveTab('services')}
@@ -999,7 +1072,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                   >
                     <div className="flex items-center gap-2.5">
                       <Image className="w-4 h-4 stroke-[1.8]" />
-                      <span>Portfolio Cases</span>
+                      <span>Portfolio Items</span>
                     </div>
                     <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${activeTab === 'portfolio' ? 'bg-white/20 text-white' : 'bg-slate-900 text-slate-500'}`}>
                       {portfolio.length}
@@ -1139,6 +1212,17 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                   Coordinates
                 </button>
                 <button
+                  onClick={() => {
+                    setActiveTab('inquiries');
+                    fetchInquiries();
+                  }}
+                  className={`px-3 py-2 text-[10px] font-bold uppercase tracking-wider rounded-lg whitespace-nowrap transition-all cursor-pointer ${
+                    activeTab === 'inquiries' ? 'bg-brand-blue text-white' : 'bg-slate-50 text-slate-450 hover:bg-slate-100'
+                  }`}
+                >
+                  Inquiries ({inquiries.length})
+                </button>
+                <button
                   onClick={() => setActiveTab('services')}
                   className={`px-3 py-2 text-[10px] font-bold uppercase tracking-wider rounded-lg whitespace-nowrap transition-all cursor-pointer ${
                     activeTab === 'services' ? 'bg-brand-blue text-white' : 'bg-slate-50 text-slate-450 hover:bg-slate-100'
@@ -1152,7 +1236,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                     activeTab === 'portfolio' ? 'bg-brand-blue text-white' : 'bg-slate-50 text-slate-450 hover:bg-slate-100'
                   }`}
                 >
-                  Cases ({portfolio.length})
+                  Projects ({portfolio.length})
                 </button>
                 <button
                   onClick={() => setActiveTab('testimonials')}
@@ -1472,7 +1556,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                       <h5 className="text-xs font-bold text-slate-600 uppercase tracking-widest font-display">Headquarters & Social Impact Content Labels</h5>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-1">
-                          <label className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">HQ Title Header (e.g. Accra Studio)</label>
+                          <label className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">HQ Title Header (e.g. Our Studio)</label>
                           <input
                             type="text"
                             value={contactForm.hqTitle || ''}
@@ -1695,6 +1779,141 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                   </form>
                 )}
 
+                {/* TAB: CLIENT INQUIRIES & MESSAGES */}
+                {activeTab === 'inquiries' && (
+                  <div className="space-y-6">
+                    {/* Header bar */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                      <div>
+                        <div className="flex items-center gap-2.5">
+                          <h4 className="font-display font-bold text-base text-slate-900">
+                            Client Inquiries &amp; Messages
+                          </h4>
+                          <span className="text-[11px] font-mono font-bold bg-brand-blue/10 text-brand-blue px-2.5 py-0.5 rounded-full border border-brand-blue/20">
+                            {inquiries.length} Messages
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-500 mt-1">
+                          Direct submissions received from the website contact form and client inquiry section.
+                        </p>
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={fetchInquiries}
+                        disabled={isLoadingInquiries}
+                        className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-xs cursor-pointer"
+                      >
+                        <RefreshCw className={`w-3.5 h-3.5 ${isLoadingInquiries ? 'animate-spin text-brand-blue' : ''}`} />
+                        <span>Refresh Messages</span>
+                      </button>
+                    </div>
+
+                    {/* Inquiry Cards List */}
+                    {isLoadingInquiries ? (
+                      <div className="p-12 text-center text-slate-400 text-xs">
+                        <RefreshCw className="w-6 h-6 animate-spin mx-auto text-brand-blue mb-2" />
+                        Loading inquiries...
+                      </div>
+                    ) : inquiries.length === 0 ? (
+                      <div className="p-12 text-center bg-slate-50 rounded-2xl border border-slate-100 text-slate-400 text-xs space-y-2">
+                        <Inbox className="w-10 h-10 mx-auto text-slate-300 stroke-[1.5]" />
+                        <p className="font-bold text-slate-600">No client messages yet</p>
+                        <p className="text-slate-400 max-w-sm mx-auto">
+                          When visitors submit inquiries through the contact form, their name, email, phone number, and project details will appear here.
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 gap-4">
+                        {inquiries.map((inquiry) => {
+                          const dateString = inquiry.createdAt?.toDate 
+                            ? inquiry.createdAt.toDate().toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })
+                            : inquiry.createdAt?.seconds 
+                              ? new Date(inquiry.createdAt.seconds * 1000).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })
+                              : 'Recent';
+
+                          const cleanPhone = (inquiry.phone || '').replace(/[^0-9]/g, '');
+                          const waText = encodeURIComponent(`Hi ${inquiry.name}, thank you for reaching out to Techloom Ghana regarding your inquiry.`);
+                          const waUrl = cleanPhone ? `https://wa.me/${cleanPhone}?text=${waText}` : null;
+
+                          return (
+                            <div 
+                              key={inquiry.id}
+                              className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all space-y-4"
+                            >
+                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                                <div>
+                                  <h5 className="font-display font-black text-sm text-slate-900">
+                                    {inquiry.name}
+                                  </h5>
+                                  <span className="text-[10px] font-mono text-slate-400">
+                                    Received: {dateString}
+                                  </span>
+                                </div>
+
+                                <div className="flex items-center gap-2">
+                                  {inquiry.email && (
+                                    <a
+                                      href={`mailto:${inquiry.email}?subject=${encodeURIComponent(`Techloom Ghana - Response for ${inquiry.name}`)}`}
+                                      className="inline-flex items-center gap-1.5 bg-brand-blue hover:bg-brand-blue/90 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg shadow-xs transition-all cursor-pointer"
+                                    >
+                                      <Mail className="w-3.5 h-3.5" />
+                                      <span>Reply via Email</span>
+                                    </a>
+                                  )}
+
+                                  {waUrl && (
+                                    <a
+                                      href={waUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold px-3 py-1.5 rounded-lg shadow-xs transition-all cursor-pointer"
+                                    >
+                                      <MessageSquare className="w-3.5 h-3.5" />
+                                      <span>WhatsApp</span>
+                                    </a>
+                                  )}
+
+                                  <button
+                                    type="button"
+                                    onClick={() => handleDeleteInquiry(inquiry.id)}
+                                    className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer"
+                                    title="Delete this message"
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                  </button>
+                                </div>
+                              </div>
+
+                              {/* Contact Details info pills */}
+                              <div className="flex flex-wrap items-center gap-3 text-xs text-slate-650">
+                                <span className="inline-flex items-center gap-1.5 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200/60 font-mono text-[11px]">
+                                  <Mail className="w-3.5 h-3.5 text-brand-blue" />
+                                  <a href={`mailto:${inquiry.email}`} className="hover:underline">{inquiry.email}</a>
+                                </span>
+
+                                {inquiry.phone && (
+                                  <span className="inline-flex items-center gap-1.5 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200/60 font-mono text-[11px]">
+                                    <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                                    <a href={`tel:${inquiry.phone}`} className="hover:underline">{inquiry.phone}</a>
+                                  </span>
+                                )}
+                              </div>
+
+                              {/* Message body */}
+                              <div className="bg-slate-50/80 rounded-xl p-4 border border-slate-150">
+                                <p className="text-xs text-slate-700 leading-relaxed font-sans whitespace-pre-wrap">
+                                  {inquiry.message}
+                                </p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {/* TAB 2: SERVICES SPECIALTIES */}
                 {activeTab === 'services' && (
                   <div className="space-y-10">
@@ -1823,12 +2042,12 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                   </div>
                 )}
 
-                {/* TAB 3: PORTFOLIO CASE STUDIES */}
+                {/* TAB 3: PORTFOLIO SHOWCASE */}
                 {activeTab === 'portfolio' && (
                   <div className="space-y-10">
                     <form onSubmit={handleSavePortfolio} className="bg-slate-50 p-5 rounded-2xl border border-slate-150 space-y-4">
                       <h4 className="font-display font-semibold text-sm text-slate-900 border-b border-slate-100 pb-2 flex items-center justify-between">
-                        <span>{editingPortfolio ? `Editing design case: ${editingPortfolio.id}` : 'Create New Portfolio Asset Card'}</span>
+                        <span>{editingPortfolio ? `Editing project: ${editingPortfolio.id}` : 'Create New Portfolio Asset Card'}</span>
                         {editingPortfolio && (
                           <button
                             type="button"
@@ -1857,7 +2076,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
 
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="space-y-1">
-                          <label className="text-[9px] font-mono font-bold text-slate-400 uppercase">Case Identifier Unique Slug</label>
+                          <label className="text-[9px] font-mono font-bold text-slate-400 uppercase">Project Identifier Unique Slug</label>
                           <input
                             type="text"
                             placeholder="e.g. apex-rebranding"
@@ -1930,7 +2149,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                       </div>
 
                       <div className="space-y-1">
-                        <label className="text-[9px] font-mono font-bold text-slate-400 uppercase">Case Study Project Scope (Comma Separated)</label>
+                        <label className="text-[9px] font-mono font-bold text-slate-400 uppercase">Project Scope & Deliverables (Comma Separated)</label>
                         <input
                            type="text"
                            placeholder="Identity Blueprints, Vector layouts, Social design grids"
@@ -1974,7 +2193,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                               </span>
                             </span>
                             <span className="text-[10px] text-slate-400 leading-normal">
-                              These images (plus the primary cover) form the full-quality slideshow/carousel inside the case study details. You can upload 20 or more images.
+                              These images (plus the primary cover) form the full-quality slideshow/carousel inside the project details. You can upload 20 or more images.
                             </span>
                           </div>
                           <button
@@ -2115,11 +2334,11 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                         type="submit"
                         className="bg-slate-900 text-white hover:bg-black px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider"
                       >
-                        {editingPortfolio ? 'Update Case Study' : 'Publish Portfolio Project'}
+                        {editingPortfolio ? 'Update Project Details' : 'Publish Portfolio Project'}
                       </button>
                     </form>
 
-                    {/* List Existing Case Studies */}
+                    {/* List Existing Projects */}
                     <div className="space-y-6">
                       {/* 1. Homepage Featured Web Platforms Selection (Top Showcase) */}
                       <div className="bg-slate-900 text-white p-5 rounded-2xl border border-slate-800 space-y-4 shadow-md">
@@ -2131,7 +2350,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                             </h4>
                           </div>
                           <p className="text-xs text-slate-400 leading-relaxed">
-                            Pin which live web applications appear in the top browser-frame showcase on the homepage. Defaults to top 3 web platforms if none are pinned.
+                            Pin which live web applications appear in the top browser-frame showcase on the homepage. Only pinned platforms are displayed.
                           </p>
                         </div>
 
@@ -2670,7 +2889,7 @@ export default function AdminConsole({ isOpen = true, onClose }: AdminConsolePro
                         <div className="space-y-1 text-xs">
                           <p className="font-bold text-amber-800">Migration Safety &amp; Safeguards</p>
                           <p className="text-slate-600 leading-relaxed font-light">
-                            This operation copies records from the AI Studio default instance into your custom Firebase project. Existing identical document IDs on your personal project will be updated with the latest versions. It will migrate settings coordinates, specialty services, portfolio case studies, testimonials, and circular skill gauges automatically.
+                            This operation copies records from the AI Studio default instance into your custom Firebase project. Existing identical document IDs on your personal project will be updated with the latest versions. It will migrate settings coordinates, specialty services, portfolio projects, testimonials, and circular skill gauges automatically.
                           </p>
                         </div>
                       </div>
